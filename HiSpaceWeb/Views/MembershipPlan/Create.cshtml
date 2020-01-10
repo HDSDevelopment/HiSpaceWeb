@@ -1,0 +1,159 @@
+﻿@model HiSpaceWeb.ViewModel.MembershipPlanViewModel
+
+@{
+    ViewBag.Title = "Membership";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-10">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Membership Plan <span class="action-text"> - Create</span></h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Membership Plan</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+
+        @using (Html.BeginForm("Create", "MembershipPlan", FormMethod.Post, new { id = "", @class = "md-form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row" id="add_view">
+                <div class="col-12 mb-3">
+                    <p><a href="@Url.Action( "Index","MembershipPlan")" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+                </div>
+
+                <div class="col-12 tabs-contant">
+                    <div class="">
+                        <!--section 1-->
+                        <div class="card card-statistics">
+                            <div class="card-header">
+                                <div class="card-heading">
+                                    <h4 class="card-title">Plan Info</h4>
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            @Html.EditorFor(m => m.clientMemPlan.MembershipName, new { htmlAttributes = new { @placeholder = "Enter Name", @class = "required-input" } })
+                                            @*<input id="m_name" placeholder="Enter Name" />*@
+                                            <label class="control-label" for="m_name">Name</label>
+                                            <i class="bar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            @*<select id="m_type" name="">
+                    <option selected disabled="disabled" value="0">Select</option>
+                    <option value="1">Hour</option>
+                    <option value="2">Day</option>
+                    <option value="3">Month</option>
+                    <option value="4">Year</option>
+                </select>*@
+                                            <select id="MembershipDurationType" name="MembershipDurationType" asp-for="MembershipDurationType"
+                                                    asp-items="@(new SelectList(ViewBag.ListOfMembershipDurationTypes,"MembershipDurationType", "MembershipDurationType"))"></select>
+                                            <label class="control-label" for="m_type">Type</label>
+                                            <i class="bar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            @Html.EditorFor(m => m.clientMemPlan.MembershipDuration, new { htmlAttributes = new { @placeholder = "10", @class = "required-input" } })
+                                            <label class="control-label" for="m_duration">Duration</label>
+                                            <i class="bar"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            @Html.EditorFor(m => m.clientMemPlan.Price, new { htmlAttributes = new { @placeholder = "100", @class = "required-input" } })
+                                            <label class="control-label" for="m_price">Price</label>
+                                            <i class="bar"></i>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-2 col-md-6 col-sm-6 col-12">
+                                        <div class="form-group">
+                                            @Html.EditorFor(m => m.clientMemPlan.RenewalAlertDays, new { htmlAttributes = new { @placeholder = "30", @class = "required-input" } })
+                                            <label class="control-label" for="m_price">Renewal Alert Days</label>
+                                            <i class="bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-10 col-md-12 col-sm-12 col-12">
+                                        <div class="form-group">
+                                            @Html.EditorFor(m => m.clientMemPlan.Description, new { htmlAttributes = new { @placeholder = "Text here...", @class = "required-input" } })
+                                            <label class="control-label" for="m_description">Description</label>
+                                            <i class="bar"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group mt-10">
+                                            <div class="checkbox checbox-switch switch-primary mt-10">
+                                                <label class="p-0">
+                                                    @Html.CheckBoxFor(m => m.IsActive, new { htmlAttributes = new { @class = "required-input" } })
+                                                    <span></span>
+                                                    Activate
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+                                        <div class="form-group mt-10">
+                                            <div class="checkbox checbox-switch switch-primary mt-10">
+                                                <label class="p-0">
+                                                    @Html.CheckBoxFor(m => m.IsRecommented, new { htmlAttributes = new { @class = "required-input" } })
+                                                    <span></span>
+                                                    Recommented Plan
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--submit section-->
+                        <div class="card card-statistics">
+                            <div class="card-body">
+                                <!--row 1-->
+                                <div class="row">
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <div>
+                                            <a href="@Url.Action("Index", "MembershipPlan")" class="btn btn-primary text-uppercase go-to-table">Back</a>
+                                            <input href="javascript:void(0);" type="reset" value="Reset" class="btn btn-secondary text-uppercase" />
+                                        </div>
+                                        <input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase" value="Submit" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

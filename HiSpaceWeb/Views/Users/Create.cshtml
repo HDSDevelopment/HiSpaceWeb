@@ -1,0 +1,152 @@
+﻿@model HiSpaceModels.UserLogin
+
+@{
+	ViewBag.Title = "Users";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+	<!-- begin container-fluid -->
+	<div class="container-fluid">
+		<!-- begin row -->
+		<div class="row">
+			<div class="col-md-12 m-b-20">
+				<!-- begin page title -->
+				<div class="d-block d-sm-flex flex-nowrap align-items-center">
+					<div class="page-title mb-2 mb-sm-0">
+						<h1>User <span class="action-text"> - Create</span></h1>
+					</div>
+					<div class="ml-auto d-flex align-items-center">
+						<nav>
+							<ol class="breadcrumb p-0 m-b-0">
+								<li class="breadcrumb-item">
+									<a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+								</li>
+								<li class="breadcrumb-item active text-primary" aria-current="page">Users</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<!-- end page title -->
+			</div>
+		</div>
+		<!-- end row -->
+		<!-- begin row -->
+		<!--User table view-->
+		<!--User table Add view-->
+		@using (Html.BeginForm("Create", "Users", FormMethod.Post, new { id = "", @class = "md-form", enctype = "multipart/form-data" }))
+		{
+			@Html.AntiForgeryToken()
+			<div class="row" id="add_view">
+				<div class="col-12 mb-3">
+					<p><a href="@Url.Action("Index", "Users")" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+				</div>
+
+				<div class="col-md-12">
+					<!--section 1-->
+					<div class="card card-statistics">
+						<div class="card-header">
+							<div class="card-heading">
+								<h4 class="card-title">User Info</h4>
+							</div>
+						</div>
+						<div class="card-body">
+							<!--row 1-->
+							<div class="row">
+								@if (ViewBag.Type == 1)
+								{
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<select id="ClientID" name="ClientID" asp-for="ClientID"
+												asp-items="@(new SelectList(ViewBag.ListOfClients,"ClientID", "ClientName"))"></select>
+										@Html.LabelFor(m => m.ClientID, new { @class = "control-label" })
+										<i class="bar"></i>
+									</div>
+								</div>
+								}
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.EditorFor(m => m.Username, new { htmlAttributes = new { @placeholder = "Enter Username" } })
+										@Html.LabelFor(m => m.Username, new { @class = "control-label" })
+										<i class="bar"></i>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+
+										@Html.EditorFor(m => m.Password, new { htmlAttributes = new { type = "password", @placeholder = "123abc", @maxlength = "16", onfocus = "applyStyle(this)", onblur = "removeStyle(this)", @class = "input-password" } })
+										@Html.LabelFor(m => m.Password, new { @class = "control-label md-password" })
+										<i class="bar"></i>
+									</div>
+								</div>
+								
+							</div>
+							<!--row 2-->
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-radio row mt-2 mb-1">
+										<div class="col-md-6 col-sm-6 col-12">
+											<div class="radio">
+												<label>
+													@Html.RadioButtonFor(m => m.UserType, "2", new { @checked = "checked", id="clientAdmin" })
+													<i class="helper"></i>
+													Client Admin
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6 col-12">
+											<div class="radio">
+												<label>
+													@Html.RadioButtonFor(m => m.UserType, "3", new { id="clientUser" })
+													<i class="helper"></i>
+													Client User
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--row 3-->
+							<div class="row">
+								<div class="col-lg-3 col-md-3 col-sm-12 col-12">
+									<div class="form-group mt-10">
+										<div class="checkbox checbox-switch switch-primary mt-10">
+											<label class="p-0">
+												@Html.CheckBoxFor(m => m.Active, new { @checked = "checked" })
+												<span></span>
+												Activate
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<!--submit section-->
+					<div class="card card-statistics">
+						<div class="card-body">
+							<!--row 1-->
+							<div class="row">
+								<div class="col-12 d-flex justify-content-between">
+									<div>
+										<a href="@Url.Action("Index", "Users")" class="btn btn-primary text-uppercase go-to-table">Back</a>
+										<input href="javascript:void(0);" type="reset" value="Reset" class="btn btn-secondary text-uppercase" />
+									</div>
+									<input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase" value="Submit" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+
+	</div>
+</div>
+
+
+
+

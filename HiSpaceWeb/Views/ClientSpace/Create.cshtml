@@ -1,0 +1,1415 @@
+﻿@model HiSpaceWeb.ViewModel.ClientSpaceViewModel
+
+@{
+	ViewBag.Title = "Space";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Create", "ClientSpace", FormMethod.Post, new { id = "", @class = "md-form", enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	<!-- begin app-main -->
+	<div class="app-main" id="main">
+		<!-- begin container-fluid -->
+		<div class="container-fluid">
+			<!-- begin row -->
+			<div class="row">
+				<div class="col-md-12 m-b-20">
+					<!-- begin page title -->
+					<div class="d-block d-sm-flex flex-nowrap align-items-center">
+						<div class="page-title mb-2 mb-sm-0">
+							<h1>Client Space<span class="action-text"> - Create</span></h1>
+						</div>
+						<div class="cr-floor">Step 3. <span>Insert Workspace <i class="fa fa-pie-chart" aria-hidden="true"></i></span> </div>
+						<div class="ml-auto d-flex align-items-center">
+							<nav>
+								<ol class="breadcrumb p-0 m-b-0">
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","Client")">Client</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID})">Client Location</a>
+									</li>
+									@*<li class="breadcrumb-item">
+											<a href="@Url.Action( "Index","ClientFloor")">Client Floor</a>
+										</li>*@
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","ClientSpace")">Client Space</a>
+									</li>
+									<li class="breadcrumb-item active text-primary" aria-current="page">Create</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<!--Form wizard start-->
+				<div class="wizard">
+					<div class="wizard-inner">
+						<div class=""></div>
+						<ul class="nav nav-tabs" role="tablist">
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Location</div>
+							</li>
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-building" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Floor</div>
+							</li>
+							<li role="presentation" class="active">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Space</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Form wizard end-->
+				</div>
+			</div>
+			<!-- end row -->
+			<!--Space table Add view-->
+			<div class="row" id="add_view">
+				<div class="col-12 mb-3">
+					<p><a href="@Url.Action( "Index","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID, ClientFloorID = ViewBag.ClientFloorID})" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+				</div>
+
+				<div class="col-12 tabs-contant">
+					<div class="">
+						<div class="tab round">
+							<ul class="nav nav-tabs hi-tab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active show" id="head-1" data-id="1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"> <span>1.</span> Info </a>
+								</li>
+								<li class="nav-item cursor-no-drop">
+									<a class="nav-link pointer-event-none" id="head-2" data-id="2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><span>2.</span> scheduler </a>
+								</li>
+								<li class="nav-item cursor-no-drop">
+									<a class="nav-link pointer-event-none" id="head-3" data-id="3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><span>3.</span> Seat Price </a>
+								</li>
+								<li class="nav-item cursor-no-drop">
+									<a class="nav-link pointer-event-none" id="head-4" data-id="4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"> <span>4.</span> Floor Plan </a>
+								</li>
+								<li class="nav-item cursor-no-drop">
+									<a class="nav-link pointer-event-none" id="head-5" data-id="5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false"> <span>5.</span> Matrix Input </a>
+								</li>
+								<li class="nav-item cursor-no-drop">
+									<a class="nav-link pointer-event-none" id="head-6" data-id="6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6" aria-selected="false"> <span>6.</span> Preview </a>
+								</li>
+							</ul>
+						</div>
+						<div class="card card-statistics">
+							<div class="card-body">
+								<div class="tab round">
+									<div class="tab-content">
+										<!--tab 1-->
+										<div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="head-1">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientLocationID)
+														@Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientFloorID)
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.SpaceName, new { htmlAttributes = new { @placeholder = "Enter Space Name", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceName, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select class="selectpicker" id="WSpaceTypeID" name="WSpaceTypeID" asp-for="WSpaceTypeID"
+																asp-items="@(new SelectList(ViewBag.ListOfSpaceTypes,"WSpaceTypeID", "WSpaceTypeName"))"></select>
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.WSpaceTypeID, new { @class = "control-label selectpicker-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select disabled id="ClientFloorID" name="ClientFloorID" asp-for="ClientFloorID"
+																asp-items="@(new SelectList(ViewBag.ListOfFloors,"ClientFloorID", "FloorNumber"))"></select>
+														<label class="control-label">Floor Number</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select id="StatusName" name="StatusName" asp-for="StatusName"
+																asp-items="@(new SelectList(ViewBag.ListOfStatus,"StatusName", "StatusName"))"></select>
+														<label for="StatusName" class="control-label">Status</label><i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+													@*<div class="form-group">
+															@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { htmlAttributes = new { @placeholder = "Enter text...", @class="textarea-editor" } })
+															@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label" })
+															<i class="bar"></i>
+														</div>*@
+													<div class="form-group">
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label texteditor-label" })
+														@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { placeholder = "", @class = "form-control textarea-editor" })
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 2-->
+										<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="head-2">
+
+											<div class="form-radio m-0">
+												<!--radio 1-->
+												<div class="sch-1">
+													<div class="radio">
+														<label class="radio-active">
+															<input type="radio" name="space_scheduler" checked="checked" value="24/7" /><i class="helper"></i>24 / 7 Available
+														</label>
+													</div>
+												</div>
+												<!--radio 2 mon-fri-->
+												<div class="sch-2">
+													<div class="radio m-0">
+														<label>
+															<input type="radio" name="space_scheduler" value="weekdays" /><i class="helper"></i>Weekdays
+														</label>
+													</div>
+													<div class="sch-weekdays cursor-no-drop">
+														<div class="pointer-event-none">
+															<!--mon-fri-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Monday - Friday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--radio 3 mon-sat-->
+												<div class="sch-3">
+													<div class="radio m-0">
+														<label>
+															<input type="radio" name="space_scheduler" value="weeksaturday" /><i class="helper"></i>Weekdays with Saturday
+														</label>
+													</div>
+													<div class="sch-weeksaturday cursor-no-drop">
+														<div class="pointer-event-none">
+															<!--mon-fri-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Monday - Friday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--sat-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Saturday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--radio 4-->
+												<div class="sch-4">
+													<div class="radio m-0">
+														<label>
+															<input type="radio" name="space_scheduler" value="custom" /><i class="helper"></i>Custom Available
+														</label>
+													</div>
+
+													<!--time selection-->
+													<div class="sch-custom cursor-no-drop">
+														<div class="pointer-event-none">
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Sunday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Monday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Tuesday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Wednesday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Thursday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Friday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Saturday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_open" name="">
+																					<option selected disabled="disabled" value="0">Opens at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group m-0">
+																				<select id="" class="selectpicker sch_close" name="">
+																					<option selected disabled="disabled" value="0">Closes at</option>
+																					<option value="1">24 hours</option>
+																					<option value="2">12:00 am</option>
+																					<option value="3">01:00 am</option>
+																					<option value="4">02:00 am</option>
+																					<option value="5">03:00 am</option>
+																					<option value="6">04:00 am</option>
+																					<option value="7">05:00 am</option>
+																					<option value="8">06:00 am</option>
+																					<option value="9">07:00 am</option>
+																					<option value="10">08:00 am</option>
+																					<option value="11">09:00 am</option>
+																					<option value="12">10:00 am</option>
+																					<option value="13">11:00 am</option>
+																					<option value="14">12:00 pm</option>
+																					<option value="15">01:00 pm</option>
+																					<option value="16">02:00 pm</option>
+																					<option value="17">03:00 pm</option>
+																					<option value="18">04:00 pm</option>
+																					<option value="19">05:00 pm</option>
+																					<option value="20">06:00 pm</option>
+																					<option value="21">07:00 pm</option>
+																					<option value="22">08:00 pm</option>
+																					<option value="23">09:00 pm</option>
+																					<option value="24">10:00 pm</option>
+																					<option value="25">11:00 pm</option>
+																				</select>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 3-->
+										<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="head-3">
+											<!--row 1-->
+											<div class="row align-items-center">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.NumberOfSeats, new { htmlAttributes = new { @placeholder = "No. of Seats", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfSeats, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select id="ChairTypeID" name="ChairTypeID" asp-for="ChairTypeID"
+																asp-items="@(new SelectList(ViewBag.ListOfChairTypes,"ChairTypeID", "ChairTypeName"))"></select>
+														<label for="s_seat_type" class="control-label">Seat Type</label><i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.Price, new { htmlAttributes = new { @placeholder = "Enter Price", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.Price, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 4-->
+										<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="head-4">
+											<!--row 1-->
+											<div class="row align-items-center">
+												<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<p class="label-head mb-10">Space Image</p>
+														@Html.EditorFor(m => m.FloorPlanFile, new { accept = "image/*", @class = "form-control-file" })
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 5-->
+										<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="head-5">
+											<!--row 1-->
+											<div class="row align-items-center">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select id="ScaleMetricID" name="ScaleMetricID" asp-for="ScaleMetricID"
+																asp-items="@(new SelectList(ViewBag.ListOfScaleMetrics,"ScaleMetricID", "ScaleMetricName"))"></select>
+														<label for="s_no_seats" class="control-label">Scale Metric</label><i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.FloorLength, new { htmlAttributes = new { @placeholder = "Enter Floor Length", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.FloorLength, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.FloorBreadth, new { htmlAttributes = new { @placeholder = "Enter Floor Breadth", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.FloorBreadth, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.NumberOfRows, new { htmlAttributes = new { @placeholder = "No. of Rows", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfRows, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<!--row 2-->
+											<div class="row align-items-center">
+
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.NumberOfColumns, new { htmlAttributes = new { @placeholder = "No. of Columns", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfColumns, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.SeatSize, new { htmlAttributes = new { @placeholder = "Seat Size", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SeatSize, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 6-->
+										<div class="tab-pane fade" id="tab-6" role="tabpanel" aria-labelledby="head-6">
+											<div class="card-body wsb-floors__space" id="matrixBody">
+												<!--row 1-->
+												<div class="row align-items-center">
+													<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+
+														<a onclick="test123();" href="javascript:void(0);" id="btnMatrixPreview" class="btn btn-primary text-uppercase go-to-table">Preview Floor Plan</a>
+													</div>
+												</div>
+												<!--row 2-->
+												<div class="ws-space__padding space-tab-1">
+													<div class="row align-items-center">
+														<div class="col-sm-5 wsb-floors__space-sec1">
+															<div class="wsb-floors__space-floor">
+																<div class="ws-seathint">
+																	<div class="row">
+																		<div class="col-md-4 col-sm-6">
+																			<span>
+																				<input title="Available" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Available</span>
+																		</div>
+																		@*<div class="col-md-4 col-sm-6 ws-seathint__selected">
+																				<span>
+																					<input title="Selected" type="button" class="matrixButton">
+																					<i class="flaticon-furniture-and-household"></i>
+																				</span>
+																				<span class="ws-seathint__heading">Selected</span>
+																			</div>*@
+																		<div class="col-md-4 col-sm-6 ws-seathint__booked">
+																			<span>
+																				<input title="Booked" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Booked</span>
+																		</div>
+																		<div class="col-md-4 col-sm-6 ws-seathint__unavailable">
+																			<span>
+																				<input title="Unavailable" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Unavailable</span>
+																		</div>
+																		<div class="col-md-4 col-sm-6 ws-seathint__blocked">
+																			<span>
+																				<input title="Booked" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Floor-Space</span>
+																		</div>
+																		<div class="col-md-8 col-sm-6 ws-seathint__blocked">
+																			<span>
+																				<input title="Details" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Double-click --> Details</span>
+																		</div>
+																	</div>
+																</div>
+																<div id="admin_matrixpreview" class="matrix-preview-panel">
+																</div>
+															</div>
+														</div>
+														<div class="offset-md-1 col-sm-6">
+															<div class="ws-seatinput alert-success animated zoomIn alert-success alert-dismissible" id="ws-seatinput" role="alert">
+																<h5 class="text-center">Double click the box to view the details</h5>
+																@*<h5 class="card-title text-center ws-seatinput__title">seat (<span>11</span>) - <span>Available</span></h5>
+
+																	<div class="row">
+																		<div class="offset-lg-2 col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				<div class="form-group">
+																					<input id="seat_name" name="seat_name" type="text" placeholder="Seat name" />
+																					<label for="seat_name" class="control-label">Seat Name</label>
+																					<i class="bar"></i>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				<div class="form-group">
+																					<input id="seat_price" name="seat_price" type="number" placeholder="123" />
+																					<label for="seat_price" class="control-label">Seat Price</label>
+																					<i class="bar"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="row">
+																		<div class="offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
+																			<div class="form-group">
+																				<div class="form-group">
+																					<input id="seat_description" name="seat_description" type="text" placeholder="Enter here..." />
+																					<label for="seat_description" class="control-label">Seat Description</label>
+																					<i class="bar"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="row">
+																		<div class="offset-lg-2 col-lg-8 col-md-12 col-sm-12 col-12">
+																			<div class="form-group">
+																				<div class="form-group">
+																					<input id="seat_status" name="seat_status" type="text" placeholder="Enter here..." />
+																					<label for="seat_status" class="control-label">Status (display in tooltip)</label>
+																					<i class="bar"></i>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row">
+																		<div class="offset-lg-2 col-10 d-flex justify-content-between">
+																			<div>
+																				<a href="" class="btn btn-success text-uppercase">Apply</a>
+																			</div>
+																		</div>
+																	</div>*@
+															</div>
+															<div class="" id="wsSeatNotification">
+															</div>
+														</div>
+													</div>
+
+													<div id="matrixpreviewRight" class="matrix-preview-panelRight">
+														<div class="card card-statistics">
+															<div class="card-header">
+																<div class="card-heading" style="float:left;">
+																	<h4 class="card-title">Seat Details <span id="seatID"></span></h4>
+																</div>
+																<div style="float:right;">
+																	<img id="closeButton" style="cursor:pointer;" title="Close" src="~/img/buttons/close.jpg" width="25" height="25" />
+																</div>
+															</div>
+
+															<div class="card-body">
+
+																<div id="MatrixSeatDetails">
+																	<!--row 1-->
+																	<div class="row align-items-center">
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				@Html.EditorFor(m => m.SeatPrice, new { htmlAttributes = new { @placeholder = "Enter Seat Price", @class = "" } })
+																				Price
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				@Html.EditorFor(m => m.SeatDescription, new { htmlAttributes = new { @placeholder = "Enter Seat Description", @class = "" } })
+																				Description
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																	<!--row 2-->
+																	<div class="row align-items-center">
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				<select id="SeatStatusID" name="SeatStatusID" asp-for="SeatStatusID"
+																						asp-items="@(new SelectList(ViewBag.ListOfSeatStatus,"SeatStatusID", "SeatStatusName"))"></select>
+																				<label for="s_no_seats" class="control-label">Seat Status</label><i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				<select id="ApplyToID" name="ApplyToID" asp-for="ApplyToID"
+																						asp-items="@(new SelectList(ViewBag.ListOfApplyTo,"ApplyToID", "ApplyToName"))"></select>
+																				<label for="s_no_seats" class="control-label">Apply To</label><i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
+																<!--row 3-->
+																<div class="row align-items-center">
+																	<div class="col-lg-6 col-md-6 col-sm-6 col-12">
+																		<div class="form-group">
+																			<div style="width:20px;height:20px;background-color:green;float:left;">
+																			</div>
+																			<div style="margin-left:20px;">
+																				Available
+																			</div>
+																			<div style="width:20px;height:20px;background-color:orange;float:left;">
+																			</div>
+																			<div style="margin-left:20px;">
+																				Occupied
+																			</div>
+																			<div style="width:20px;height:20px;background-color:gray;float:left;">
+																			</div>
+																			<div style="margin-left:20px;">
+																				Blocked
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card card-statistics">
+							<div class="card-body">
+								<div class="row hi-btn-event">
+									<div class="col-12">
+										<a href="javascript:void(0);" onclick="tabNavigation(0);" class="btn btn-primary text-uppercase tab-back-btn">Back</a>
+										<a href="javascript:void(0);" onclick="tabNavigation(1);" class="btn btn-primary text-uppercase tab-next-btn float-right">Next</a>
+										<input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase tab-submit float-right" value="Submit" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

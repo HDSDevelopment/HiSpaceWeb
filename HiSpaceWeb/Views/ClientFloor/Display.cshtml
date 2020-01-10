@@ -1,0 +1,319 @@
+﻿@model HiSpaceWeb.ViewModel.ClientFloorViewModel
+@{
+    ViewBag.Title = "Floor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "ClientFloor", FormMethod.Post, new { id = "", @class = "", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- begin app-main -->
+    <div class="app-main" id="main">
+        <!-- begin container-fluid -->
+        <div class="container-fluid">
+            <!-- begin row -->
+            <div class="row">
+                <div class="col-md-12 m-b-20">
+                    <!-- begin page title -->
+                    <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                        <div class="page-title mb-2 mb-sm-0">
+                            <h1>Client Floor<span class="action-text"> - Display</span></h1>
+                        </div>
+                        <div class="cr-floor">Step 2. <span>Add Floor <i class="fa fa-building" aria-hidden="true"></i></span> </div>
+                        <div class="ml-auto d-flex align-items-center">
+                            <nav>
+                                <ol class="breadcrumb p-0 m-b-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action("Index", "Home")"><i class="ti ti-home"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action("Index", "ClientLocation")">Client Location</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action("Index", "ClientFloor")">Client Floor</a>
+                                    </li>
+                                    <li class="breadcrumb-item active text-primary" aria-current="page">Display</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+					<!--Form wizard start-->
+				<div class="wizard">
+					<div class="wizard-inner">
+						<div class=""></div>
+						<ul class="nav nav-tabs" role="tablist">
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Location</div>
+							</li>
+
+							<li role="presentation" class="active">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-building" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Floor</div>
+							</li>
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Space</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Form wizard end-->
+                </div>
+            </div>
+            <!-- end row -->
+            <!-- begin row -->
+            <!--Floor table Edit view-->
+            <div class="row" id="add_edit">
+                <div class="col-12 mb-3">
+                    <p><a href="@Url.Action("Index", "ClientFloor")" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+                </div>
+                <div class="col-md-12" id="accordion" aria-multiselectable="true">
+                    <!--section 1-->
+                    <div class="card card-statistics">
+                        <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                            <div class="card-heading">
+                                <h4 class="card-title">Floor Info</h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show" id="collapse-1" aria-labelledby="heading-1">
+                            <!--row 1-->
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientFloor.FloorName, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientFloor.FloorName, new { htmlAttributes = new { @placeholder = "eg: Ground Floor" } })
+                                        <i class="bar"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+
+                                        @Html.HiddenFor(m => m.ClientFloor.ClientLocationID, new { ClientLocationID = Model.ClientFloor.ClientLocationID })
+
+                                        @*@Html.EditorFor(m => m.ClientFloor.FloorNumber,new { htmlAttributes = new { @placeholder = "0" } })*@
+                                        @*<select id="ddlFloorNumber" name="ddlFloorNumber">
+            <option value="0">Ground Floor</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>*@
+                                        @*<select disabled id="StatusName" name="FloorNumber" asp-for="FloorNumber"
+        asp-items="@(new SelectList(ViewBag.ListOfFloors,"FloorNumber", "FloorNumber"))"></select>*@
+
+                                        @Html.LabelFor(m => m.ClientFloor.FloorNumber, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientFloor.FloorNumber, new { htmlAttributes = new { @placeholder = "Enter text..." } })
+                                        <i class="bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientFloor.FloorDescription, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientFloor.FloorDescription, new { htmlAttributes = new { @placeholder = "Enter text..." } })
+                                        <i class="bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--section 2-->
+                    <div class="card card-statistics">
+                        <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
+                            <div class="card-heading">
+                                <h4 class="card-title">Floor Facilities</h4>
+                            </div>
+                        </div>
+
+                        <div class="card-body collapse show" id="collapse-2" aria-labelledby="heading-2">
+                            <div class="floor-hint">
+                                <div class="checkbox mt-10 mb-0">
+                                    <label>
+                                        <input type="checkbox" checked />
+                                        <i class="helper"></i>
+                                        Check the Amenities
+                                    </label>
+                                </div>
+                                <span class="ml--30">Switch</span>
+                                <div class="checkbox checbox-switch switch-primary checbox-switch-small">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        <span></span>
+                                        Paied Amenities
+                                    </label>
+                                </div>
+                                <span>( or )</span>
+                                <div class="checkbox checbox-switch switch-primary checbox-switch-small">
+                                    <label>
+                                        <input type="checkbox">
+                                        <span></span>
+                                        Free Amenities
+                                    </label>
+                                </div>
+                            </div>
+                            <!--row 1-->
+                            <div class="row">
+                                <div class="col-md-12 floor-facilities nested-accordion" id="l_floor_facilities">
+
+                                    <div id="accordion-1" aria-multiselectable="true">
+                                        @for (int i = 0; i < Model.FacilityCatList.Count(); i++)
+                                        {
+                                            <div class="card">
+                                                <div class="card-accordion" data-toggle="collapse" data-parent="#accordion-1" data-target="#collapse-a-@i" aria-expanded="true" aria-controls="collapse-a-@i">
+                                                    <p class="label-head m-0">@Model.FacilityCatList[i].CatName</p>
+                                                </div>
+                                                <div class="card-body panel-collapse collapse show" id="collapse-a-@i" aria-labelledby="heading-a-@i">
+                                                    <div class="row">
+                                                        @for (int j = 0; j < Model.FacilityCatList[i].FacilityList.Count(); j++)
+                                                        {
+                                                            <div class="col-md-3 col-sm-6 col-12">
+                                                                <div class="row">
+                                                                    <div class="col-md-9 col-sm-9 col-9 pr--0">
+                                                                        <div class="checkbox mt-10 mb-0">
+
+                                                                            <label>
+                                                                                <input disabled type="checkbox" asp-for="@Model.FacilityCatList[i].FacilityList[j].Selected" value="@Model.FacilityCatList[i].FacilityList[j].FacilityID" />
+                                                                                @*<input type="checkbox" id="@Model.FacilityCatList[i].FacilityList[j].FacilityID" for="@Model.FacilityCatList[i].FacilityList[j].FacilityID" value="@Model.FacilityCatList[i].FacilityList[j].FacilityID" />*@
+                                                                                <i class="helper"></i>
+                                                                                @Model.FacilityCatList[i].FacilityList[j].FacilityName
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3 col-sm-3 col-3 am_check">
+                                                                        <div class="checkbox checbox-switch switch-primary checbox-switch-small">
+                                                                            <label>
+                                                                                @*@Html.CheckBoxFor(m => m.FacilityCatList[i].FacilityList[j].IsPaidAmenity, new { @checked = "unchecked"})*@
+                                                                                <input disabled type="checkbox" asp-for="@Model.FacilityCatList[i].FacilityList[j].IsPaidAmenity" value="@Model.FacilityCatList[i].FacilityList[j].FacilityID" />
+                                                                                @*<input type="checkbox" name="@Model.FacilityCatList[i].FacilityList[j].IsPaidAmenity" id="@Model.FacilityCatList[i].FacilityList[j].IsPaidAmenity">*@
+                                                                                <span></span>
+
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 am_price">
+                                                                        <div class="form-group">
+                                                                            <input id="PaidAmenityPrice_@Model.FacilityCatList[i].FacilityList[j].FacilityID" placeholder="0000" asp-for="@Model.FacilityCatList[i].FacilityList[j].PaidAmenityPrice" value="@Model.FacilityCatList[i].FacilityList[j].PaidAmenityPrice" />
+                                                                            <label class="control-label">Amenity Price</label>
+                                                                            <i class="bar"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                @*<div class="form-radio">
+                                                                        <div class="radio">
+                                                                            <label>
+                                                                                <input type="radio" name="@Model.FacilityCatList[i].FacilityList[j].FacilityID" /><i class="helper"></i>Paid
+                                                                            </label>
+                                                                        </div>
+                                                                        <div class="radio">
+                                                                            <label>
+                                                                                <input type="radio" name="@Model.FacilityCatList[i].FacilityList[j].FacilityID" checked="checked" /><i class="helper"></i>Free
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>*@
+                                                                @*<div class="checkbox checbox-switch switch-primary mt-10">
+                                                                        <label class="p-0">
+                                                                            @Html.CheckBoxFor(m => m.ClientMaster.ClientStatus, new { @checked = "checked" })
+                                                                            <span></span>
+                                                                            Activate
+                                                                        </label>
+                                                                    </div>*@
+
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 2-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.DisplayFor(m => m.ClientFloor.PaidAmenitiesPrice, new { htmlAttributes = new { @placeholder = "1000", @type = "number" } })
+                                        @Html.LabelFor(m => m.ClientFloor.PaidAmenitiesPrice, new { @class = "control-label" })
+                                        <i class="bar"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--section 3-->
+                    <div class="card card-statistics">
+                        <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-3" aria-expanded="true" aria-controls="collapse-3">
+                            <div class="card-heading">
+                                <h4 class="card-title">Floor Image</h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show" id="collapse-3" aria-labelledby="heading-3">
+                            <!--row 1-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">Floor Image</p>
+                                        @if (Model.ClientFloor.FloorPlanFilePath != null)
+                                        {
+                                            <div class="gallery">
+                                                @Html.DisplayFor(m => m.FloorPlanFilePath, new { accept = "image/*", @class = "form-control-file" })
+                                                <a href="@Url.Content(Model.ClientFloor.FloorPlanFilePath)" class="view1"><img src="@Url.Content(Model.ClientFloor.FloorPlanFilePath)" class="img-fluid" alt="RCCopy"></a>
+                                                <p><a href="@Url.Content(Model.ClientFloor.FloorPlanFilePath)" target="_blank">@Model.ClientFloor.FloorPlanFilePath</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            @Html.EditorFor(m => m.FloorPlanFilePath, new { accept = "image/*", @class = "form-control-file" })
+                                            <p class="font-15 text-danger">Contact Person Aadhaar Not Uploaded!</p>
+                                        }
+                                        @*@Html.EditorFor(m => m.FloorPlanFilePath, new { accept = "image/*", @class = "form-control-file" })*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--submit section-->
+                    <div class="card card-statistics">
+                        <div class="card-body">
+                            <!--row 1-->
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <div>
+                                        <a href="@Url.Action("Index", "ClientFloor",new { @ClientLocationID=ViewBag.ClientLocationID })" class="btn btn-primary text-uppercase go-to-table">Back</a>
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+}
+

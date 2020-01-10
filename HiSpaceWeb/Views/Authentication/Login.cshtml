@@ -1,0 +1,185 @@
+﻿@model HiSpaceWeb.ViewModel.UserLoginViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>BMW - Login</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Admin template that can be used to build dashboards for CRM, CMS, etc." />
+    <meta name="author" content="Book My Workspace" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- app favicon -->
+    <link rel="shortcut icon" href="~/img/favicon.ico">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <!-- app style -->
+    <link rel="stylesheet" href="~/css/vendors.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/custom.css">
+
+
+
+</head>
+<body class="bg-white">
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img src="~/img/loader/loader.svg" alt="loader">
+                    </div>
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!--start login contant-->
+            <div class="app-contant">
+                <div class="bg-white">
+                    <div class="container-fluid p-0">
+                        <div class="row no-gutters">
+                            <div class="col-sm-6 col-lg-5 col-xxl-3  align-self-center order-2 order-sm-1">
+                                <div class="d-flex align-items-center">
+                                    <div class="login p-50">
+                                        @*<h1 class="mb-2 text-center">Book My Workspace</h1>*@
+                                        <img class="img-responsive" src="~/img/logo.png" alt="logo" />
+                                        @*<p class="text-center">Welcome back, please login to your account.</p>*@
+                                        @*<form action="" class="mt-3 mt-sm-4 md-form">*@
+                                        @using (Html.BeginForm("Login", "Authentication",FormMethod.Post, new { IsBooking = ViewBag.IsBooking, id = "frmLogin", @class="md-form" }))
+                                        {
+                                            @Html.HiddenFor(m => m.IsBooking)
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        @Html.TextBoxFor(m => m.UserLogin.Username, new { @id = "txtUsername", required = "required" })
+                                                        <label for="userName" class="control-label">User Name*</label><i class="bar"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-group">
+														@Html.EditorFor(m => m.UserLogin.Password, new { htmlAttributes = new {type="password", @maxlength="16", onfocus="applyStyle(this)", onblur="removeStyle(this)", @class="", required = "required"} })
+                                                        <label for="password" class="control-label">Password*</label><i class="bar"></i>
+                                                    </div>
+                                                </div>
+                                                @*<div class="col-12">
+                                                    <div class="form-radio row">
+                                                        <div class="col-6">
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="login-type" value="client" /><i class="helper"></i>Client - Offering
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="radio">
+                                                                <label>
+                                                                    <input type="radio" name="login-type" value="user" /><i class="helper"></i>User - Occupying
+                                                                </label>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>*@
+                                                <div class="col-12">
+                                                    <div class="d-block d-sm-flex  align-items-center">
+                                                        <div class="form-check">
+                                                            <input class="form-check-input" type="checkbox" id="RememberMe">
+                                                            <label class="form-check-label" for="RememberMe">
+                                                                Remember Me
+                                                            </label>
+                                                        </div>
+                                                        <a href="@Url.Action("ForgotPassword", "Authentication")" class="ml-auto">Forgot Password ?</a>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 mt-3">
+                                                    <input type="submit" id="btnSignIn" class="btn btn-primary text-uppercase" />
+                                                </div>
+                                                <div class="col-12  mt-3">
+                                                    <p>Don't have an account ?<a href="@Url.Action("Signup", "Authentication")"> Sign Up</a></p>
+                                                </div>
+
+                                            </div>
+                                        }
+                                        @*</form>*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xxl-9 col-lg-7 o-hidden order-1 order-sm-2">
+                                <div class="login-image">
+                                </div>
+                                <div class="login-text">
+                                    <div class="login-head">Book My Workspace <span></span></div>
+                                    <div class="login-desc">Community to share, combine, offering your workspace...Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end login contant-->
+        </div>
+        <!-- end app-wrap -->
+    </div>
+    <!-- end app -->
+    <!-- plugins -->
+    <script src="~/js/vendors.js"></script>
+    <!-- custom app -->
+    <script src="~/js/app.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+			$('#btnSignIn').on("click", function () {
+
+                $('#frmLogin').submit();
+
+                var UserLogin = new Object();
+
+                //UserLogin.Username = "u2";
+                //UserLogin.Password = "aa";
+
+                //UserLogin.Username = $('#txtUsername').val();
+                //UserLogin.Password = $('#txtPassword').val();
+
+                //var jsonObject = JSON.stringify(object);
+                //alert(jsonObject);
+
+
+                //contentType: "application/json; charset=utf-8",
+                //User-Agent: PostmanRuntime/7.15.2
+                //Postman-Token: 1cd5b9c5-98eb-4746-a94c-96f9824032bd,45e93c9c-196d-41fd-8c46-543a58b9b902
+                $.ajax({
+                    type: 'GET',
+                    url: 'http://localhost:52886/api/UserLogin/AuthenticateUserText',
+                    //dataType: 'jsonp',
+                    //crossDomain: true,
+                    data: UserLogin,
+                    ContentType: "application/text;",
+                    //ContentType: "application/json; charset=utf-8",
+                    //Host: 'http://localhost:52886/',
+                    //AccessControlAllowOrigin: 'https://localhost:44322/',
+                    //AccessControlAllowMethods: 'GET, POST, PUT',
+                    //AccessControlAllowHeaders: 'Content-Type',
+                    //Accept: '*/*',
+
+                    success: function (d) {
+                        alert(d.msg);
+                    },
+                    error: function (err) { console.log(err); }
+                });
+
+            });
+
+        });
+
+    </script>
+</body>
+</html>

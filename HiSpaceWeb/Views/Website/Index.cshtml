@@ -1,0 +1,1038 @@
+﻿@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+	@using Microsoft.AspNetCore.Http
+	@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+}
+
+<!-- page content START -->
+<div class="content" id="content">
+	<!-- slider START -->
+	<div id="corporateSlider" class="corporate-slider">
+
+		<!-- slide1 START -->
+		<div class="kr-sky" data-duration="12000" data-transition="14">
+
+			<!-- Setting slide background -->
+			<img class="sky-background" src="~/img/slides/bmwHomeSlides/slider1.jpg" alt="slide1" data-size="cover">
+
+			<h1 class="kr-cloud slide-title big light-color" style="top:150px; width:100%; text-align:center;" data-transitionin="offsetx:0;skewx:40;duration:1500;delay:500;easing:easeOutQuart;scalex:4;"
+				data-transitionout="scalex:0.1; scaley:0,1; duration:1500; delay:3000;">
+				Move Into Your Space, With Us
+			</h1>
+
+			<p class="kr-cloud slide-sub-title light-color" style="top:330px;width:100%; text-align:center;" data-transitionin="offsety:500;duration:1500;delay:1500;easing:easeInOutExpo;"
+			   data-transitionout="scalex:0.1; scaley:0.1; duration:400; delay:2500;">
+				Unzip your business
+			</p>
+
+			<p class="kr-cloud slide-sub-title" style="top:380px; left:520px;" data-transitionin="offsety:500;duration:1500;delay:2800;easing:easeOutQuart;" data-transitionout="offsety:500; scaley:0.1; duration:1200; delay:3500;easing:easeInOutExpo;">
+				<a href="@Url.Action( "WorkspaceDetail","Website")" class="btn btn-primary btn-lg cst-btn-nine" title="Lest Start">Explore It</a>
+			</p>
+		</div>
+		<!-- slide1 END -->
+		<!-- slide2 START -->
+		<div class="kr-sky" data-duration="12000" data-transition="14">
+
+			<!-- Setting slide background -->
+			<img class="sky-background" src="~/img/slides/bmwHomeSlides/slider3.jpg" alt="slide3" data-size="cover">
+
+			<h1 class="kr-cloud slide-title big light-color" style="top:150px; width:100%; text-align:center;" data-transitionin="offsetx:-200;duration:1500;delay:500;easing:easeOutQuart;scalex:0;"
+				data-transitionout="offsety:-500; duration:1500; delay:3000;">
+				Step Into Your Workspace, With Us
+			</h1>
+
+			<p class="kr-cloud slide-sub-title light-color" style="top:330px;width:100%; text-align:center;" data-transitionin="offsetx:200;duration:1500;delay:1500;easing:easeInOutExpo;scalex:0"
+			   data-transitionout="offsety:-500; scaley:0.1; duration:1200; delay:2500;">
+				Any Where Any Time
+			</p>
+
+			<p class="kr-cloud slide-sub-title" style="top:380px; left:520px;" data-transitionin="offsety:500;duration:1500;delay:2800;easing:easeOutQuart;" data-transitionout="offsety:500; scaley:0.1; duration:1200; delay:3500;easing:easeInOutExpo;">
+				<a href="javascript:void(0);" class="btn btn-info btn-lg cst-btn-nine" title="Lest Start">About Us</a>
+			</p>
+		</div>
+		<!-- slide2 END -->
+		<!-- slide3 START -->
+		<div class="kr-sky" data-duration="12000" data-transition="14">
+
+			<!-- Setting slide background -->
+			<img class="sky-background" src="~/img/slides/bmwHomeSlides/slider4.jpg" alt="slide4" data-size="cover">
+
+			<h1 class="kr-cloud slide-title big light-color" style="top:230px; width:100%; text-align:center;" data-transitionin="offsety:500;duration:1500;delay:500;easing:easeOutQuart;" data-transitionout="offsety:-500; duration:1500; delay:3000;">
+				Workspace
+			</h1>
+
+			<p class="kr-cloud slide-sub-title light-color" style="top:330px;width:100%; text-align:center;" data-transitionin="offsety:500;duration:1500;delay:900;easing:easeInOutExpo;"
+			   data-transitionout="offsety:-500; scaley:0.1; duration:1200; delay:3000;">
+				Make your space usable to others
+			</p>
+
+			<p class="kr-cloud slide-sub-title" style="top:380px; left:520px;" data-transitionin="offsety:500;duration:1500;delay:2800;easing:easeOutQuart;" data-transitionout="offsety:500; scaley:0.1; duration:1200; delay:3500;easing:easeInOutExpo;">
+				<a href="javascript:void(0);" class="btn btn-success btn-lg cst-btn-nine" title="Lest Start">I Share Myspace</a>
+			</p>
+		</div>
+		<!-- slide3 END -->
+
+		<div class="row space-search">
+			<div class="col-6">
+				<form class="form-inline">
+					<div class="form-group">
+						<label class="sr-only" for="search">Enter city name...</label>
+						<input type="text" class="form-control" id="search" name="" placeholder="Enter city name...">
+					</div>
+					<button class="btn btn-warning cst-btn-nine" name="submit" type="submit" value="Submit"><i class="livicon" data-name="search" data-color="#fff" data-hovercolor="false" data-size="22"></i> Search</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- slider END -->
+	<!-- section top workspace START -->
+	<section class="section top-space">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Top Workspace</h2>
+						<small class="text-uppercase strong base-color">We list the top most workspaces<br>Near to you</small>
+					</div>
+					<hr class="spacer-10">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 list-workspace">
+					<div class="col-sm-4">
+						<div class="ws-image">
+							<img src="~/img/officeTypes/businesscentre.jpg" alt="">
+						</div>
+						<div class="ws-listing-badge-new">New</div>
+						<div class="ws-like-icon"></div>
+					</div>
+					<div class="col-sm-8">
+						<div class="list-space-name">
+							<ul class="">
+								<li class=""><a href="#" class="btn btn-info btn-xs cst-btn-nine"><span>Co-Workspace</span></a></li>
+								<li class=""><a href="#" class="btn btn-success btn-xs cst-btn-nine"><span>Meeting Room</span></a></li>
+								<li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Outdoor Space</span></a></li>
+								<li class=""><a href="#" class="btn btn-warning btn-xs cst-btn-nine"><span>Virtual Office</span></a></li>
+								<li class=""><a href="#" class="btn btn-danger btn-xs cst-btn-nine"><span>Private Office</span></a></li>
+								<li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Creative Office</span></a></li>
+								<li class=""><a href="#" class="btn btn-default btn-xs cst-btn-nine"><span>Hot Desk</span></a></li>
+							</ul>
+						</div>
+						<div class="ws-title">
+							<h3>Shared Offices</h3>
+						</div>
+						<div class="ws-desc">
+							<div class="">
+								Get working with our plug-and-play shared offices. There’s no contract or minimum commitments, and you can pay per day or month-on-month.
+							</div>
+						</div>
+						<div class="ws-amenities position-relative">
+							<ul class="">
+								<li class=""><i class="fas fa-coffee" data-toggle="tooltip" title="" data-original-title="Coffee"></i></li>
+								<li class=""><i class="fas fa-wifi" data-toggle="tooltip" title="" data-original-title="Wifi"></i></li>
+								<li class=""><i class="fas fa-phone" data-toggle="tooltip" title="" data-original-title="Phone"></i></li>
+								<li class=""><i class="fas fa-print" data-toggle="tooltip" title="" data-original-title="Print"></i></li>
+								<li class=""><i class="fas fa-server" data-toggle="tooltip" title="" data-original-title="Server"></i></li>
+								<li class=""><i class="fas fa-shield-alt" data-toggle="tooltip" title="" data-original-title="Security"></i></li>
+							</ul>
+							<a class="btn btn-primary btn-xs cst-btn-two amenities-more"  onclick="allAmenities(this)"><span>More</span></a>
+						</div>
+						<div class="ws-bottom">
+							<a href="@Url.Action( "WorkspaceDetail","Website")" class="btn btn-primary cst-btn-nine" title="Lest Start">Explore</a>
+							<div>
+								<span class="text-info">Total Seats: 30</span> | <span class="text-danger">Occupaid: 20</span> | <span class="text-success">Available: 10</span>
+								<div class="ws-review-content-rating">
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star empty"></span>
+									<a href="#" class="rating-review">4.0</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 list-workspace">
+					<div class="col-sm-4">
+						<div class="ws-image">
+							<img src="~/img/officeTypes/traditionaloffice.jpg" alt="">
+						</div>
+						<div class="ws-listing-badge-featured">Featured</div>
+						<div class="ws-like-icon"></div>
+					</div>
+					<div class="col-sm-8">
+						<div class="list-space-name">
+							<ul class="">
+								<li class=""><a href="#" class="btn btn-success btn-xs cst-btn-nine"><span>Meeting Room</span></a></li>
+								<li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Outdoor Space</span></a></li>
+								<li class=""><a href="#" class="btn btn-warning btn-xs cst-btn-nine"><span>Virtual Office</span></a></li>
+								<li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Creative Office</span></a></li>
+							</ul>
+						</div>
+						<div class="ws-title">
+							<h3>Traditional Office Space</h3>
+						</div>
+						<div class="ws-desc">
+							<div class="">
+								Are you a solopreneur or an independent professional? Do you own a startup or a small/medium business? We know exactly know what you need when it comes to an office.
+							</div>
+						</div>
+						<div class="ws-amenities position-relative">
+							<ul class="">
+								<li class=""><i class="fas fa-coffee" data-toggle="tooltip" title="" data-original-title="Coffee"></i></li>
+								<li class=""><i class="fas fa-wifi" data-toggle="tooltip" title="" data-original-title="Wifi"></i></li>
+								<li class=""><i class="fas fa-phone" data-toggle="tooltip" title="" data-original-title="Phone"></i></li>
+								<li class=""><i class="fas fa-print" data-toggle="tooltip" title="" data-original-title="Print"></i></li>
+								<li class=""><i class="fas fa-server" data-toggle="tooltip" title="" data-original-title="Server"></i></li>
+								<li class=""><i class="fas fa-shield-alt" data-toggle="tooltip" title="" data-original-title="Security"></i></li>
+							</ul>
+							<a class="btn btn-primary btn-xs cst-btn-two amenities-more"  onclick="allAmenities(this)"><span>More</span></a>
+						</div>
+						<div class="ws-bottom">
+							<a href="@Url.Action( "WorkspaceDetail","Website")" class="btn btn-primary cst-btn-nine" title="Lest Start">Explore</a>
+							<div>
+								<span class="text-info">Total Seats: 30</span> | <span class="text-danger">Occupaid: 20</span> | <span class="text-success">Available: 10</span>
+								<div class="ws-review-content-rating">
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star half"></span>
+									<span class="star empty"></span>
+									<a href="#" class="rating-review">3.5</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 list-workspace">
+					<div class="col-sm-4">
+						<div class="ws-image">
+							<img src="~/img/officeTypes/cafe.jpg" alt="">
+						</div>
+						<div class="ws-listing-badge-hot">hot</div>
+						<div class="ws-like-icon"></div>
+					</div>
+					<div class="col-sm-8">
+						<div class="list-space-name">
+							<ul class="">
+								<li class=""><a href="#" class="btn btn-success btn-xs cst-btn-nine"><span>Meeting Room</span></a></li>
+								<li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Outdoor Space</span></a></li>
+								<li class=""><a href="#" class="btn btn-warning btn-xs cst-btn-nine"><span>Virtual Office</span></a></li>
+							</ul>
+						</div>
+						<div class="ws-title">
+							<h3>Coworking Cafese</h3>
+						</div>
+						<div class="ws-desc">
+							<div class="">
+								Our conveniently located co-working cafes, across multiple cities, come with fast Wi-Fi, great ambience and are affordably priced at Rs 25/hour upwards.
+							</div>
+						</div>
+						<div class="ws-amenities position-relative">
+							<ul class="">
+								<li class=""><i class="fas fa-coffee" data-toggle="tooltip" title="" data-original-title="Coffee"></i></li>
+								<li class=""><i class="fas fa-wifi" data-toggle="tooltip" title="" data-original-title="Wifi"></i></li>
+								<li class=""><i class="fas fa-phone" data-toggle="tooltip" title="" data-original-title="Phone"></i></li>
+								<li class=""><i class="fas fa-print" data-toggle="tooltip" title="" data-original-title="Print"></i></li>
+								<li class=""><i class="fas fa-server" data-toggle="tooltip" title="" data-original-title="Server"></i></li>
+								<li class=""><i class="fas fa-shield-alt" data-toggle="tooltip" title="" data-original-title="Security"></i></li>
+							</ul>
+							<a class="btn btn-primary btn-xs cst-btn-two amenities-more"  onclick="allAmenities(this)"><span>More</span></a>
+						</div>
+						<div class="ws-bottom">
+							<a href="@Url.Action( "WorkspaceDetail","Website")" class="btn btn-primary cst-btn-nine" title="Lest Start">Explore</a>
+							<div>
+								<span class="text-info">Total Seats: 30</span> | <span class="text-danger">Occupaid: 20</span> | <span class="text-success">Available: 10</span>
+								<div class="ws-review-content-rating">
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star"></span>
+									<span class="star empty"></span>
+									<span class="star empty"></span>
+									<a href="#" class="rating-review">3.0</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section top workspace END -->
+	<!-- section workspace type START -->
+	<section class="space-type gray-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Workspace Types</h2>
+						<small class="text-uppercase strong base-color">We have different type of work area <br>Feel like a home</small>
+					</div>
+					<hr class="spacer-10">
+				</div>
+			</div>
+		</div>
+		<div class="cbp creative-4col">
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/businesscentre.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Business Centre</span>
+					</div>
+					<div class="cbp-caption-activeWrap">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Business Centre</div>
+								<div class="cbp-l-caption-desc">20+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/coworkingspace.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Co-Working Space</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-info">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Co-Working Space</div>
+								<div class="cbp-l-caption-desc">30+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/creativeofficespace.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Creative Office</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-warning">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Creative Office</div>
+								<div class="cbp-l-caption-desc">50+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/dedicateddesk.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Dedicated Desk</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-danger">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Dedicated Desk</div>
+								<div class="cbp-l-caption-desc">200+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/executivesuites.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Executive Suites</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-primary">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Executive Suites</div>
+								<div class="cbp-l-caption-desc">100+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/hotdesk.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Hot Desk</span>
+					</div>
+					<div class="cbp-caption-activeWrap">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Hot Desk</div>
+								<div class="cbp-l-caption-desc">20+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/meetingroom.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Meeting Room</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-success">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Meeting Room</div>
+								<div class="cbp-l-caption-desc">90+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/outdoorspace.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Outdoor Space</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-info">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Outdoor Space</div>
+								<div class="cbp-l-caption-desc">40+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/privateoffice.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Private Office</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-warning">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Private Office</div>
+								<div class="cbp-l-caption-desc">70+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/traditionaloffice.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Traditional Office</span>
+					</div>
+					<div class="cbp-caption-activeWrap overlay-danger">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Traditional Office</div>
+								<div class="cbp-l-caption-desc">50+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="cbp-item identity logos">
+				<a href="#" class="cbp-caption">
+					<div class="cbp-caption-defaultWrap">
+						<img src="~/img/officeTypes/virtualoffice.jpg" alt="">
+					</div>
+					<div class="type-name-overlay">
+						<span>Virtual Office</span>
+					</div>
+					<div class="cbp-caption-activeWrap">
+						<div class="cbp-l-caption-alignLeft">
+							<div class="cbp-l-caption-body">
+								<div class="cbp-l-caption-title">Virtual Office</div>
+								<div class="cbp-l-caption-desc">100+ Workspace</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</section>
+	<!-- section workspace type END -->
+	<!-- section city wise START -->
+	<section class="section city-list">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">List of Cities</h2>
+						<small class="text-uppercase strong base-color">Beautiful Cities list <br>and there Workspace </small>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="cbp-panel">
+						<div class="cbp juicy-projects-carousel">
+							<div class="cbp-item">
+								<a href="#" class="cbp-caption">
+									<div class="cbp-caption-defaultWrap">
+										<img src="~/img/ListOfCities/chennai.jpg" alt="">
+									</div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignLeft">
+											<div class="cbp-l-caption-body">
+												<div class="cbp-l-caption-title">Chennai</div>
+												<div class="cbp-l-caption-desc">200+ Workspace</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="cbp-item">
+								<a href="#" class="cbp-caption">
+									<div class="cbp-caption-defaultWrap">
+										<img src="~/img/ListOfCities/mumbai.jpg" alt="">
+									</div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignLeft">
+											<div class="cbp-l-caption-body">
+												<div class="cbp-l-caption-title">Mumbai</div>
+												<div class="cbp-l-caption-desc">140+ Workspace</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="cbp-item">
+								<a href="#" class="cbp-caption">
+									<div class="cbp-caption-defaultWrap">
+										<img src="~/img/ListOfCities/delhi.jpg" alt="">
+									</div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignLeft">
+											<div class="cbp-l-caption-body">
+												<div class="cbp-l-caption-title">New Delhi</div>
+												<div class="cbp-l-caption-desc">100+ Workspace</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="cbp-item">
+								<a href="#" class="cbp-caption">
+									<div class="cbp-caption-defaultWrap">
+										<img src="~/img/ListOfCities/kolkata.jpg" alt="">
+									</div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignLeft">
+											<div class="cbp-l-caption-body">
+												<div class="cbp-l-caption-title">Kolkata</div>
+												<div class="cbp-l-caption-desc">50+ Workspace</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="cbp-item">
+								<a href="#" class="cbp-caption">
+									<div class="cbp-caption-defaultWrap">
+										<img src="~/img/ListOfCities/bangalore.jpg" alt="">
+									</div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignLeft">
+											<div class="cbp-l-caption-body">
+												<div class="cbp-l-caption-title">Bangalore</div>
+												<div class="cbp-l-caption-desc">250+ Workspace</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="cbp-item">
+								<a href="#" class="cbp-caption">
+									<div class="cbp-caption-defaultWrap">
+										<img src="~/img/ListOfCities/hyderabad.jpg" alt="">
+									</div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignLeft">
+											<div class="cbp-l-caption-body">
+												<div class="cbp-l-caption-title">Hyderabad</div>
+												<div class="cbp-l-caption-desc">80+ Workspace</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+							<div class="cbp-item">
+								<a href="#" class="cbp-caption">
+									<div class="cbp-caption-defaultWrap">
+										<img src="~/img/ListOfCities/ahmedabad.jpg" alt="">
+									</div>
+									<div class="cbp-caption-activeWrap">
+										<div class="cbp-l-caption-alignLeft">
+											<div class="cbp-l-caption-body">
+												<div class="cbp-l-caption-title">Ahmedabad</div>
+												<div class="cbp-l-caption-desc">40+ Workspace</div>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section city wise END -->
+	<!-- section list START -->
+	<section class="section gray-bg" id="next">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 text-center">
+					<div class="section-header">
+						<small class="text-uppercase strong base-color">way to success</small>
+						<h1>Happy clients</h1>
+					</div>
+
+					<!-- optional spacer classes "spacer-10" "spacer-20" "spacer-30" upto "spacer-80" -->
+					<hr class="spacer-20">
+				</div>
+			</div>
+			<div class="row">
+
+				<!-- fun fact START -->
+				<div class="col-xs-6 col-sm-3">
+					<div class="count-wrap">
+						<i class="icon-briefcase text-info"></i>
+						<div class="fun-counter"> 100 </div>
+						<h5 class="fun-title">Clients</h5>
+					</div>
+				</div>
+				<!-- fun fact END -->
+				<!-- fun fact START -->
+				<div class="col-xs-6 col-sm-3">
+					<div class="count-wrap">
+						<i class="icon-profile-male text-warning"></i>
+						<div class="fun-counter"> 200 </div>
+						<h5 class="fun-title">Users</h5>
+					</div>
+				</div>
+				<!-- fun fact END -->
+				<!-- fun fact START -->
+				<div class="col-xs-6 col-sm-3">
+					<div class="count-wrap">
+						<i class="icon-target text-danger"></i>
+						<div class="fun-counter"> 1329 </div>
+						<h5 class="fun-title">Workspace</h5>
+					</div>
+				</div>
+				<!-- fun fact END -->
+				<!-- fun fact START -->
+				<div class="col-xs-6 col-sm-3">
+					<div class="count-wrap">
+						<i class="icon-map text-success"></i>
+						<div class="fun-counter"> 10 </div>
+						<h5 class="fun-title">Cities</h5>
+					</div>
+				</div>
+				<!-- fun fact END -->
+			</div>
+		</div>
+	</section>
+	<!-- section list END -->
+	<!-- section amenities START -->
+	<section class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Amenities</h2>
+						<small class="text-uppercase strong base-color">List of facitilies <br>that has been provided</small>
+					</div>
+					<hr class="spacer-10">
+				</div>
+			</div>
+
+			<div class="row list-amenities">
+				<ul class="">
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-internet"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">Internet</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-extinguisher"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">Extinguisher</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-security-camera"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">Camera</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-air-conditioner"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">AC</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-megaphone"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">megaphone</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-customer-service"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">service</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-no-fire"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">No fire</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-bowling"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">Games</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-office-space"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">office space</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-chair"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">chair</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-doctor-bag"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">FirstAid kit</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-microwave-oven"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">oven</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-parking"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">Parking</div>
+					</li>
+					<li class="">
+						<div class="amenities-icons-effect">
+							<div class="amenities-icons text-center">
+								<i class="flaticon-operator-avatar"></i>
+								<div class="btc_step_overlay"></div>
+							</div>
+						</div>
+						<div class="amenities-name">Support</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+	<!-- section amenities END -->
+	<!-- section testimonial START -->
+	<section class="gray-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Testimonial</h2>
+						<small class="text-uppercase strong base-color">Some of our clients <br>Shared there reviews </small>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+					<div class="testimonial_slider">
+
+						<div class="carousel-item">
+							<div class="card  valign-wrapper">
+								<div class="card-image">
+									<img src="~/img/authors/author1.jpg" alt="img">
+								</div>
+								<div class="card-content center-align valign">
+									<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
+									<p class="card-title">lara Smith <span>CEO</span></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="card  valign-wrapper">
+								<div class="card-image">
+									<img src="~/img/authors/author2.jpg" alt="img">
+								</div>
+								<div class="card-content center-align valign">
+									<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ” </p>
+									<p class="card-title">michel sem <span>buyer</span></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="card  valign-wrapper">
+								<div class="card-image">
+									<img src="~/img/authors/author2.jpg" alt="img">
+								</div>
+								<div class="card-content center-align valign">
+									<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ” </p>
+									<p class="card-title">Jonh Smith <span>support manager</span></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="card  valign-wrapper">
+								<div class="card-image">
+									<img src="~/img/authors/author2.jpg" alt="img">
+								</div>
+								<div class="card-content center-align valign">
+									<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
+									<p class="card-title">Jonh Smith <span>chairman</span></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="card  valign-wrapper">
+								<div class="card-image">
+									<img src="~/img/authors/author2.jpg" alt="img">
+								</div>
+								<div class="card-content center-align valign">
+									<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ” </p>
+									<p class="card-title">selina doe <span>buyer</span></p>
+								</div>
+							</div>
+						</div>
+
+						<div class="carousel-item">
+							<div class="card  valign-wrapper">
+								<div class="card-image">
+									<img src="~/img/authors/author2.jpg" alt="img">
+								</div>
+								<div class="card-content center-align valign">
+									<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
+									<p class="card-title">Jonh Smith <span>CEO, Apple Inc</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section testimonial END -->
+	<!-- section client START -->
+	<section class="section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Clients</h2>
+						<small class="text-uppercase strong base-color">Some of our happy clients <br>Share and Get their Workspace</small>
+					</div>
+					<hr class="spacer-10">
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+
+					<!-- clients carousel START -->
+					<div class="cbp cbp-l-grid-clients our-clients">
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/1.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/2.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/3.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/4.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/5.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/6.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/7.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/8.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/9.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/10.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/11.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/12.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/13.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/14.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+						<div class="cbp-item">
+							<a href="javascript:void(0);" class="cbp-caption" target="_blank">
+								<div class="cbp-caption-defaultWrap">
+									<img src="~/img/clients/15.png" alt="Image title here">
+								</div>
+							</a>
+						</div>
+					</div>
+					<!-- clients carousel END -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section client END -->
+</div>
+<!-- page content END -->

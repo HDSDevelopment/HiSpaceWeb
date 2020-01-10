@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "AddWorkspace";
+    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+	@using Microsoft.AspNetCore.Http
+	@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+}
+
+<!-- page title style3 START -->
+<section class="page-title style3" data-path="../img/headers/header1.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="strong text-uppercase"><i class="fas fa-plus"> </i> Workspace</h1>
+				<ol class="breadcrumb hidden-xs">
+					<li><a href="@Url.Action( "Index","Website")"><i class="fa fa-home"></i></a></li>
+					<li class="active">Add Workspace</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- page title style3 END -->
+
+<!-- page content START -->
+<div class="content" id="content">
+
+	<!-- section testimonial START -->
+		<section class="gray-bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<hr class="spacer-10">
+						<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+							<h2 class="strong">Testimonial</h2>
+							<small class="text-uppercase strong base-color">Some of our clients <br>Shared there reviews </small>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+						<div class="testimonial_slider">
+
+							<div class="carousel-item">
+								<div class="card  valign-wrapper">
+									<div class="card-image">
+										<img src="~/img/authors/author1.jpg" alt="img">
+									</div>
+									<div class="card-content center-align valign">
+										<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
+										<p class="card-title">lara Smith <span>CEO</span></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item">
+								<div class="card  valign-wrapper">
+									<div class="card-image">
+										<img src="~/img/authors/author2.jpg" alt="img">
+									</div>
+									<div class="card-content center-align valign">
+										<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ” </p>
+										<p class="card-title">michel sem <span>buyer</span></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item">
+								<div class="card  valign-wrapper">
+									<div class="card-image">
+										<img src="~/img/authors/author2.jpg" alt="img">
+									</div>
+									<div class="card-content center-align valign">
+										<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ” </p>
+										<p class="card-title">Jonh Smith <span>support manager</span></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item">
+								<div class="card  valign-wrapper">
+									<div class="card-image">
+										<img src="~/img/authors/author2.jpg" alt="img">
+									</div>
+									<div class="card-content center-align valign">
+										<p>“ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
+										<p class="card-title">Jonh Smith <span>chairman</span></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item">
+								<div class="card  valign-wrapper">
+									<div class="card-image">
+										<img src="~/img/authors/author2.jpg" alt="img">
+									</div>
+									<div class="card-content center-align valign">
+										<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ” </p>
+										<p class="card-title">selina doe <span>buyer</span></p>
+									</div>
+								</div>
+							</div>
+
+							<div class="carousel-item">
+								<div class="card  valign-wrapper">
+									<div class="card-image">
+										<img src="~/img/authors/author2.jpg" alt="img">
+									</div>
+									<div class="card-content center-align valign">
+										<p> “ I don't always clap, but when I do, it's because of Sella. We can't understand how we've been living without Sella. ”</p>
+										<p class="card-title">Jonh Smith <span>CEO, Apple Inc</span></p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- section testimonial END -->
+
+</div>
+<!-- page content END -->

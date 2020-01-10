@@ -1,0 +1,326 @@
+﻿@model HiSpaceWeb.ViewModel.SpaceBookingViewModel
+
+@{
+    ViewBag.Title = "Book Space";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- begin app-main -->
+
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-20">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Book Space<span class="action-text"> </span></h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action("Index", "Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Book Space</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+        <!--Space table Add view-->
+        <div class="row" id="Display_view">
+            <div class="col-12 mb-3">
+                <p><a href="@Url.Action("Index", "ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID })" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+            </div>
+            <div class="col-md-12">
+                <!--section 1-->
+                <div class="card card-statistics">
+                    <div class="card-header">
+                        <div class="card-heading">
+                            <h4 class="card-title">Space Info</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!--row 1-->
+                        <div class="row">
+                            @Html.HiddenFor(m => m.SpaceFloorPlan.ClientSpaceFloorPlanID, new { @Value = Model.SpaceFloorPlan.ClientSpaceFloorPlanID })
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.SpaceName, new { @class = "control-label" })
+                                    @Html.DisplayFor(m => m.SpaceFloorPlan.SpaceName, new { })
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.WSpaceTypeID, new { @class = "control-label" })
+                                    <select disabled id="WSpaceTypeID" name="WSpaceTypeID" asp-for="WSpaceTypeID"
+                                            asp-items="@(new SelectList(ViewBag.ListOfSpaceTypes, "WSpaceTypeID", "WSpaceTypeName"))"></select>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.ClientFloorID, new { @class = "control-label" })
+                                    @Html.DisplayFor(m => m.SpaceFloorPlan.ClientFloorID, new { })
+                                </div>
+                            </div>
+
+                        </div>
+                        <!--row 2-->
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="s_type" class="control-label">Status</label>
+                                    <select disabled id="StatusName" name="StatusName" asp-for="StatusName"
+                                            asp-items="@(new SelectList(ViewBag.ListOfStatus, "StatusName", "StatusName"))"></select>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12" id="l_floor_facilities">
+                                <p class="label-head m-0">Space Facilities</p>
+                                <div class="row">
+
+                                    @for (int i = 0; i < Model.FacilityList.Count(); i++)
+                                    {
+                                        <div class="col-md-3 col-sm-6 col-12">
+                                            <div class="checkbox mt-1 mb-0">
+                                                <label>
+                                                    @if (Model.FacilityList[i].Selected)
+                                                    {
+                                                        <input disabled checked type="checkbox" asp-for="FacilityList[i].Selected" value="FacilityList[i].FacilityID" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input disabled type="checkbox" asp-for="FacilityList[i].Selected" value="FacilityList[i].FacilityID" />
+                                                    }
+                                                    <i class="helper"></i>
+                                                    <label asp-for="FacilityList[i].FacilityName">@Model.FacilityList[i].FacilityName</label>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--section 3-->
+                <div class="card card-statistics">
+                    <div class="card-header">
+                        <div class="card-heading">
+                            <h4 class="card-title">Floor Plan</h4>
+                        </div>
+                    </div>
+                    <!--row 1--> @using (Html.BeginForm("BookSpace", "SpaceBooking", FormMethod.Post, new { id = "frmEditSpaceBook", @class = "md-form", enctype = "multipart/form-data" }))
+                    {
+                        <div class="card-body">
+                            <div class="row">
+                                <!--image and plan-->
+                                <div class="col-md-4">
+                                    <div class="row align-items-center">
+                                        <!--image-->
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <p class="label-head mb-10">Space Image</p>
+                                                @if (Model.SpaceFloorPlan.FloorPlanFilePath != null)
+                                                {
+                                                    <div class="gallery">
+                                                        @Html.HiddenFor(m => m.FloorPlanFile, new { accept = "image/*", @class = "form-control-file" })
+                                                        <a href="@Url.Content(Model.SpaceFloorPlan.FloorPlanFilePath)" class="view1"><img src="@Url.Content(Model.SpaceFloorPlan.FloorPlanFilePath)" class="img-fluid" alt="RCCopy"></a>
+                                                        <p><a href="@Url.Content(Model.SpaceFloorPlan.FloorPlanFilePath)" target="_blank">@Model.SpaceFloorPlan.FloorPlanFilePath</a></p>
+                                                    </div>
+                                                }
+                                                else
+                                                {
+                                                    @Html.EditorFor(m => m.FloorPlanFile, new { accept = "image/*", @class = "form-control-file" })
+                                                    <p class="font-15 text-danger">Floor Copy Not Uploaded!</p>
+                                                }
+                                            </div>
+                                        </div>
+                                        <!--plan-->
+                                        <div class="col-12">
+                                            @Html.HiddenFor(m => m.SpaceFloorPlan.ClientSpaceFloorPlanID)
+                                            <div class="" style="display:none;">
+                                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                    <a href="javascript:void(0);" id="butPreviewSpaceBook" class="btn btn-primary text-uppercase go-to-table">Preview Matrix</a>
+                                                </div>
+                                            </div>
+                                            <div id="matrixpreviewSpaceBook" class="matrix-preview-panel">
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--model popup-->
+                                <div class="col-md-8">
+                                    <div class="" id="matrixBodySpaceBook">
+                                        <!--row 1-->
+
+                                        <div id="matrixpreviewRightSpaceBook" class="matrix-preview-panelRight">
+                                            <div class="card card-statistics">
+                                                <div class="card-header">
+                                                    <div class="card-heading" style="float:left;">
+                                                        <h4 class="card-title">Seat Details <span id="seatIDSpaceBook"></span></h4>
+                                                    </div>
+                                                    <div style="float:right;">
+                                                        <img id="closeButtonSpaceBook" style="cursor:pointer;" title="Close" src="~/img/buttons/close.jpg" width="25" height="25" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="card-body">
+
+                                                    <div id="MatrixSeatDetailsSpaceBook">
+                                                        <!--row 1-->
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(m => m.SeatPrice, new { htmlAttributes = new { @placeholder = "Enter Seat Price", @class = "" } })
+                                                                    Price
+                                                                    <i class="bar"></i>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                                <div class="form-group">
+                                                                    @Html.EditorFor(m => m.SeatDescription, new { htmlAttributes = new { @placeholder = "Enter Seat Description", @class = "" } })
+                                                                    Description
+                                                                    <i class="bar"></i>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <!--row 2-->
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                                <div class="form-group">
+                                                                    <select id="ApplyToIDSpaceBook" name="ApplyToID" asp-for="ApplyToID"
+                                                                            asp-items="@(new SelectList(ViewBag.ListOfApplyTo, "ApplyToID", "ApplyToName"))"></select>
+                                                                    <label for="s_no_seats" class="control-label">Apply To</label><i class="bar"></i>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!--row 3-->
+                                                    <div class="row align-items-center">
+                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                            <div class="form-group">
+                                                                <div style="width:20px;height:20px;background-color:green;float:left;">
+                                                                </div>
+                                                                <div style="margin-left:20px;">
+                                                                    Available
+                                                                </div>
+                                                                <div style="width:20px;height:20px;background-color:orange;float:left;">
+                                                                </div>
+                                                                <div style="margin-left:20px;">
+                                                                    Occupied
+                                                                </div>
+                                                                <div style="width:20px;height:20px;background-color:gray;float:left;">
+                                                                </div>
+                                                                <div style="margin-left:20px;">
+                                                                    Blocked
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--submit section-->
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <div>
+                                        <input type="hidden" id="matrixDisplaySpaceBook" value="2" />
+                                        <a href="@Url.Action("Index", "Home", new { ClientLocationID = ViewBag.ClientLocationID })" class="btn btn-primary text-uppercase go-to-table">Back</a>
+                                        <input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase" value="Submit" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+
+
+
+
+                <!--section 4-->
+                <div class="card card-statistics" style="display: none;">
+                    <div class="card-header">
+                        <div class="card-heading">
+                            <h4 class="card-title">Floor Plan Matrix</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <!--row 1-->
+                        <div class="row align-items-center hide">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="s_no_seats" class="control-label">Scale Metric</label>
+                                    <select disabled id="ScaleMetricID" name="ScaleMetricID" asp-for="ScaleMetricID"
+                                            asp-items="@(new SelectList(ViewBag.ListOfScaleMetrics, "ScaleMetricID", "ScaleMetricName"))"></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.FloorLength, new { @class = "control-label" })
+                                    @Html.DisplayFor(m => m.SpaceFloorPlan.FloorLength, new { })
+                                    @Html.HiddenFor(m => m.SpaceFloorPlan.FloorLength, new { id = "SpaceFloorPlan_FloorLength" })
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.FloorBreadth, new { @class = "control-label" })
+                                    @Html.DisplayFor(m => m.SpaceFloorPlan.FloorBreadth, new { })
+                                    @Html.HiddenFor(m => m.SpaceFloorPlan.FloorBreadth, new { id = "SpaceFloorPlan_FloorBreadth" })
+                                </div>
+                            </div>
+                        </div>
+                        <!--row 2-->
+                        <div class="row align-items-center">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.NumberOfRows, new { @class = "control-label" })
+                                    @Html.DisplayFor(m => m.SpaceFloorPlan.NumberOfRows, new { id = "SpaceFloorPlan_NumberOfRows" })
+                                    @Html.HiddenFor(m => m.SpaceFloorPlan.NumberOfRows, new { id = "SpaceFloorPlan_NumberOfRows" })
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.NumberOfColumns, new { @class = "control-label" })
+                                    @Html.DisplayFor(m => m.SpaceFloorPlan.NumberOfColumns, new { })
+                                    @Html.HiddenFor(m => m.SpaceFloorPlan.NumberOfColumns, new { id = "SpaceFloorPlan_NumberOfColumns" })
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.SpaceFloorPlan.SeatSize, new { @class = "control-label" })
+                                    @Html.DisplayFor(m => m.SpaceFloorPlan.SeatSize, new { })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

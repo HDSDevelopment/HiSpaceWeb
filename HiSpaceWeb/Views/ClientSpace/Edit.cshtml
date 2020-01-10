@@ -1,0 +1,439 @@
+﻿@model HiSpaceWeb.ViewModel.ClientSpaceViewModel
+
+@{
+	ViewBag.Title = "Space";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "ClientSpace", FormMethod.Post, new { id = "frmEditClientSpace", @class = "md-form", enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	<!-- begin app-main -->
+	<div class="app-main" id="main">
+		<!-- begin container-fluid -->
+		<div class="container-fluid">
+			<!-- begin row -->
+			<div class="row">
+				<div class="col-md-12 m-b-20">
+					<!-- begin page title -->
+					<div class="d-block d-sm-flex flex-nowrap align-items-center">
+						<div class="page-title mb-2 mb-sm-0">
+							<h1>Client Space<span class="action-text"> - Edit</span></h1>
+						</div>
+						<div class="cr-floor">Step 3. <span>Insert Workspace <i class="fa fa-pie-chart" aria-hidden="true"></i></span> </div>
+						<div class="ml-auto d-flex align-items-center">
+							<nav>
+								<ol class="breadcrumb p-0 m-b-0">
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","Client")">Client</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","ClientLocation")">Client Location</a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="@Url.Action( "Index","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID})">Client Space</a>
+									</li>
+									<li class="breadcrumb-item active text-primary" aria-current="page">Edit</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<!--Form wizard start-->
+				<div class="wizard">
+					<div class="wizard-inner">
+						<div class=""></div>
+						<ul class="nav nav-tabs" role="tablist">
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Location</div>
+							</li>
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-building" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Floor</div>
+							</li>
+							<li role="presentation" class="active">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Space</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Form wizard end-->
+				</div>
+			</div>
+			<!-- end row -->
+			<!--Space table Add view-->
+			<div class="row" id="edit_view">
+				<div class="col-12 mb-3">
+					<p><a href="@Url.Action( "Index","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID})" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+				</div>
+
+				<div class="col-12 tabs-contant">
+					<div class="">
+						<div class="tab round">
+							<ul class="nav nav-tabs hi-tab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active show" id="head-1" data-id="1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"> <span>1.</span> Info </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-2" data-id="2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><span>2.</span> Seat Price </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-3" data-id="3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"> <span>3.</span> Floor Plan </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-4" data-id="4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"> <span>4.</span> Matrix Input </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-5" data-id="5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false"> <span>5.</span> Preview </a>
+								</li>
+							</ul>
+						</div>
+						<div class="card card-statistics">
+							<div class="card-body">
+								<div class="tab round">
+									<div class="tab-content">
+										<!--tab 1-->
+										<div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="head-1">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientLocationID)
+														@Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientFloorID)
+														@Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientSpaceFloorPlanID)
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.SpaceName, new { htmlAttributes = new { @placeholder = "Enter Space Name", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceName, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select id="WSpaceTypeID" name="WSpaceTypeID" asp-for="WSpaceTypeID"
+																asp-items="@(new SelectList(ViewBag.ListOfSpaceTypes,"WSpaceTypeID", "WSpaceTypeName"))"></select>
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.WSpaceTypeID, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.DisplayFor(m => m.ClientSpaceFloorPlan.ClientFloorID, new { @class = "control-label" })
+														<select disabled id="ClientFloorID" name="ClientFloorID" asp-for="ClientFloorID"
+																asp-items="@(new SelectList(ViewBag.ListOfFloors,"ClientFloorID", "FloorNumber"))"></select>
+														<label class="control-label">Floor Number</label>
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select id="StatusName" name="StatusName" asp-for="StatusName"
+																asp-items="@(new SelectList(ViewBag.ListOfStatus,"StatusName", "StatusName"))"></select>
+														<label for="StatusName" class="control-label">Status</label><i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-lg-12 col-md-6 col-sm-6 col-12">
+													@*<div class="form-group">
+														@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { htmlAttributes = new { @placeholder = "Enter text..." } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>*@
+													<div class = "form-group" > 
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label texteditor-label" })
+														@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { placeholder = "", @class = "form-control textarea-editor"}) 
+													</div> 
+												</div>
+											</div>
+										</div>
+										<!--tab 2-->
+										<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="head-2">
+											<!--row 1-->
+											<div class="row align-items-center">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.NumberOfSeats, new { htmlAttributes = new { @placeholder = "No. of Seats", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfSeats, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select id="ChairTypeID" name="ChairTypeID" asp-for="ChairTypeID"
+																asp-items="@(new SelectList(ViewBag.ListOfChairTypes,"ChairTypeID", "ChairTypeName"))"></select>
+														<label for="s_seat_type" class="control-label">Seat Type</label><i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.Price, new { htmlAttributes = new { @placeholder = "Enter Price", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.Price, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 3-->
+										<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="head-3">
+											<!--row 1-->
+											@Html.HiddenFor(m => m.ClientSpaceFloorPlan.FloorPlanFilePath)
+											<div class="row align-items-center">
+												<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<p class="label-head mb-10">Space Image</p>
+														@if (Model.ClientSpaceFloorPlan.FloorPlanFilePath != null)
+														{
+															<div class="gallery">
+																@Html.EditorFor(m => m.FloorPlanFile, new { accept = "image/*", @class = "form-control-file" })
+																<a href="@Url.Content(Model.ClientSpaceFloorPlan.FloorPlanFilePath)" class="view1"><img src="@Url.Content(Model.ClientSpaceFloorPlan.FloorPlanFilePath)" class="img-fluid" alt="RCCopy"></a>
+																<p><a href="@Url.Content(Model.ClientSpaceFloorPlan.FloorPlanFilePath)" target="_blank">@Model.ClientSpaceFloorPlan.FloorPlanFilePath</a></p>
+															</div>
+														}
+														else
+														{
+															@Html.EditorFor(m => m.FloorPlanFile, new { accept = "image/*", @class = "form-control-file" })
+															<p class="font-15 text-danger">Floor Copy Not Uploaded!</p>
+														}
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 4-->
+										<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="head-4">
+											<!--row 1-->
+											<div class="row align-items-center">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<select id="ScaleMetricID" name="ScaleMetricID" asp-for="ScaleMetricID"
+																asp-items="@(new SelectList(ViewBag.ListOfScaleMetrics,"ScaleMetricID", "ScaleMetricName"))"></select>
+														<label for="s_no_seats" class="control-label">Scale Metric</label><i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.FloorLength, new { htmlAttributes = new { @placeholder = "Enter Floor Length", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.FloorLength, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.FloorBreadth, new { htmlAttributes = new { @placeholder = "Enter Floor Breadth", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.FloorBreadth, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.NumberOfRows, new { htmlAttributes = new { @placeholder = "No. of Rows", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfRows, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<!--row 2-->
+											<div class="row align-items-center">
+
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.NumberOfColumns, new { htmlAttributes = new { @placeholder = "No. of Columns", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfColumns, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.ClientSpaceFloorPlan.SeatSize, new { htmlAttributes = new { @placeholder = "Seat Size", @class = "" } })
+														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SeatSize, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 5-->
+										<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="head-5">
+											<div class="card-body wsb-floors__space" id="matrixBody">
+												<!--row 1-->
+												<div class="row align-items-center">
+													<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+
+														<a href="javascript:void(0);" id="btnMatrixPreview" class="btn btn-primary text-uppercase go-to-table">Preview Floor Plan</a>
+													</div>
+												</div>
+												<!--row 2-->
+												<div class="ws-space__padding space-tab-1">
+													<div class="row align-items-center">
+														<div class="col-sm-5 wsb-floors__space-sec1">
+															<div class="wsb-floors__space-floor">
+																<div class="ws-seathint">
+																	<div class="row">
+																		<div class="col-md-4 col-sm-6">
+																			<span>
+																				<input title="Available" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Available</span>
+																		</div>
+																		<div class="col-md-4 col-sm-6 ws-seathint__booked">
+																			<span>
+																				<input title="Booked" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Booked</span>
+																		</div>
+																		<div class="col-md-4 col-sm-6 ws-seathint__unavailable">
+																			<span>
+																				<input title="Unavailable" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Unavailable</span>
+																		</div>
+																		<div class="col-md-4 col-sm-6 ws-seathint__blocked">
+																			<span>
+																				<input title="Booked" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Floor-Space</span>
+																		</div>
+																		<div class="col-md-8 col-sm-6 ws-seathint__blocked">
+																			<span>
+																				<input title="Details" type="button" class="matrixButton">
+																				<i class="flaticon-furniture-and-household"></i>
+																			</span>
+																			<span class="ws-seathint__heading">Double-click --> Details</span>
+																		</div>
+																	</div>
+																</div>
+																<div id="admin_matrixpreview" class="matrix-preview-panel">
+																</div>
+															</div>
+														</div>
+														<div class="offset-md-1 col-sm-6">
+															<div class="ws-seatinput alert-success animated zoomIn alert-success alert-dismissible" id="ws-seatinput" role="alert">
+																<h5 class="text-center">Double click the box to view the details</h5>
+															</div>
+															<div class="" id="wsSeatNotification">
+															</div>
+														</div>
+													</div>
+
+													<div id="matrixpreviewRight" class="matrix-preview-panelRight">
+														<div class="card card-statistics">
+															<div class="card-header">
+																<div class="card-heading" style="float:left;">
+																	<h4 class="card-title">Seat Details <span id="seatID"></span></h4>
+																</div>
+																<div style="float:right;">
+																	<img id="closeButton" style="cursor:pointer;" title="Close" src="~/img/buttons/close.jpg" width="25" height="25" />
+																</div>
+															</div>
+
+															<div class="card-body">
+
+																<div id="MatrixSeatDetails">
+																	<!--row 1-->
+																	<div class="row align-items-center">
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				@Html.EditorFor(m => m.SeatPrice, new { htmlAttributes = new { @placeholder = "Enter Seat Price", @class = "" } })
+																				Price
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				@Html.EditorFor(m => m.SeatDescription, new { htmlAttributes = new { @placeholder = "Enter Seat Description", @class = "" } })
+																				Description
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																	<!--row 2-->
+																	<div class="row align-items-center">
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				<select id="SeatStatusID" name="SeatStatusID" asp-for="SeatStatusID"
+																						asp-items="@(new SelectList(ViewBag.ListOfSeatStatus,"SeatStatusID", "SeatStatusName"))"></select>
+																				<label for="s_no_seats" class="control-label">Seat Status</label><i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+																			<div class="form-group">
+																				<select id="ApplyToID" name="ApplyToID" asp-for="ApplyToID"
+																						asp-items="@(new SelectList(ViewBag.ListOfApplyTo,"ApplyToID", "ApplyToName"))"></select>
+																				<label for="s_no_seats" class="control-label">Apply To</label><i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
+																<!--row 3-->
+																<div class="row align-items-center">
+																	<div class="col-lg-6 col-md-6 col-sm-6 col-12">
+																		<div class="form-group">
+																			<div style="width:20px;height:20px;background-color:green;float:left;">
+																			</div>
+																			<div style="margin-left:20px;">
+																				Available
+																			</div>
+																			<div style="width:20px;height:20px;background-color:orange;float:left;">
+																			</div>
+																			<div style="margin-left:20px;">
+																				Occupied
+																			</div>
+																			<div style="width:20px;height:20px;background-color:gray;float:left;">
+																			</div>
+																			<div style="margin-left:20px;">
+																				Blocked
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card card-statistics">
+							<div class="card-body">
+								<div class="row hi-btn-event">
+									<div class="col-12">
+										<a href="javascript:void(0);" onclick="tabNavigation(0);" class="btn btn-primary text-uppercase tab-back-btn">Back</a>
+										<a href="javascript:void(0);" onclick="tabNavigation(1);" class="btn btn-primary text-uppercase tab-next-btn float-right">Next</a>
+										<input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase tab-submit float-right" value="Submit" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

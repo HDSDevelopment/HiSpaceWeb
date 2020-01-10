@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="ion-android-cart"></i><sup class="items-in-cart" id="cart_count">0</sup></a>
+<ul class="dropdown-menu" role="menu">
+	<li>
+
+		<!-- shoppin cart dropdown START -->
+		<div class="cart-wrap">
+			<ul id="cart_navBarDetails">
+				@*<li class="d-flex align-items-center">
+					<div class="ws-cart__image">
+						<i class="flaticon-chair"></i>
+					</div>
+					<div class="ws-cart__quantity">
+						<span class="d-block">Highbrow type1</span>
+						<span class="quantity d-block">1 x 100</span>
+					</div>
+					<div class="ws-cart__price">
+						&#8377;100.00
+					</div>
+					<div class="ws-cart__price text-danger" onclick="removeList(this)">
+						<i class="fas fa-trash-alt"></i>
+					</div>
+				</li>*@
+			</ul>
+		</div>
+		<div class="sub-total">
+			<h4 class="text-right">Total: <span id="cart_navBarTotal">&#8377;00</span></h4>
+		</div>
+		<div class="shop-controls clearfix">
+			<a href="@Url.Action( "ViewCartWorkspace","Website")" class="btn btn-primary btn-xs cst-btn-nine" title="View Cart">View Cart</a>
+			<a href="javascript:void(0);" class="btn btn-success btn-xs cst-btn-nine checkout" title="Checkout"  data-toggle="modal" data-target="#checkout">Checkout</a>
+		</div>
+		<!-- shoppin cart dropdown END -->
+	</li>
+</ul>
+

@@ -1,0 +1,416 @@
+﻿@model HiSpaceWeb.ViewModel.MemberViewModel
+
+@{
+	ViewBag.Title = "Member";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Edit", "Member", FormMethod.Post, new { id = "", @class = "md-form", enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+	<!-- begin app-main -->
+	<div class="app-main" id="main">
+		<!-- begin container-fluid -->
+		<div class="container-fluid">
+			<!-- begin row -->
+			<div class="row">
+				<div class="col-md-12 m-b-20">
+					<!-- begin page title -->
+					<div class="d-block d-sm-flex flex-nowrap align-items-center">
+						<div class="page-title mb-2 mb-sm-0">
+							@if (ViewBag.Type != 4)
+							{
+								<h1>Member <span class="action-text"> - Edit</span></h1>
+							}
+							else
+							{
+								<h1>Member <span class="action-text"> - Profile</span></h1>
+							}
+						</div>
+						<div class="ml-auto d-flex align-items-center">
+							<nav>
+								<ol class="breadcrumb p-0 m-b-0">
+									<li class="breadcrumb-item">
+										<a href="@Url.Action("Index", "Home")"><i class="ti ti-home"></i></a>
+									</li>
+									<li class="breadcrumb-item active text-primary" aria-current="page">Member</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!-- end page title -->
+				</div>
+			</div>
+			<!-- end row -->
+			<!-- begin row -->
+
+			<div class="row" id="edit_view">
+				<div class="col-12 mb-3">
+					@if (ViewBag.Type != 4)
+					{
+						<p><a href="@Url.Action("Index", "Member")" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+					}
+				</div>
+
+				<div class="col-12 tabs-contant">
+					<div class="">
+						<div class="tab round">
+							<ul class="nav nav-tabs hi-tab" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active show" id="head-1" data-id="1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"> <span>1.</span> Info </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-2" data-id="2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><span>2.</span> Address </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-3" data-id="3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"> <span>3.</span> Primary Contact </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-4" data-id="4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"> <span>4.</span> Membership Plan </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-5" data-id="5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false"> <span>5.</span> Document </a>
+								</li>
+							</ul>
+						</div>
+						<div class="card card-statistics">
+							<div class="card-body">
+								<div class="tab round">
+									<div class="tab-content">
+										<!--tab 1-->
+										<div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="head-1">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.MemberName, new { htmlAttributes = new { @placeholder = "Enter Member Name" } })
+														@Html.LabelFor(m => m.MemberMaster.MemberName, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.Number, new { htmlAttributes = new { type = "number", @placeholder = "9999999999" } })
+														@Html.LabelFor(m => m.MemberMaster.Number, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.Email, new { htmlAttributes = new { type = "email", @placeholder = "text@abc.com" } })
+														@Html.LabelFor(m => m.MemberMaster.Email, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.GSTIN, new { htmlAttributes = new { @placeholder = "22AAAAA0000A1Z5", @class = "text-uppercase" } })
+														@Html.LabelFor(m => m.MemberMaster.GSTIN, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<!--row 2-->
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.PAN, new { htmlAttributes = new { @placeholder = "ABCDE1234F", @class = "text-uppercase" } })
+														@Html.LabelFor(m => m.MemberMaster.PAN, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.UAN, new { htmlAttributes = new { @placeholder = "111122223333", @class = "text-uppercase" } })
+														@Html.LabelFor(m => m.MemberMaster.UAN, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.Fax, new { htmlAttributes = new { @placeholder = "12223333333", @class = "text-uppercase" } })
+														@Html.LabelFor(m => m.MemberMaster.Fax, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<!--row 3-->
+											<div class="row">
+												<div class="col-lg-8 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.Description, new { htmlAttributes = new { @placeholder = "Enter your text here ..." } })
+														@Html.LabelFor(m => m.MemberMaster.Description, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 2-->
+										<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="head-2">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.Address, new { htmlAttributes = new { @placeholder = "Flat:no, street Name" } })
+														@Html.LabelFor(m => m.MemberMaster.Address, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.City, new { htmlAttributes = new { @placeholder = "City name" } })
+														@Html.LabelFor(m => m.MemberMaster.City, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.State, new { htmlAttributes = new { @placeholder = "State name" } })
+														@Html.LabelFor(m => m.MemberMaster.State, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.Country, new { htmlAttributes = new { @placeholder = "Country name" } })
+														@Html.LabelFor(m => m.MemberMaster.Country, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+											<!--row 2-->
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.Pincode, new { htmlAttributes = new { @placeholder = "000000", @maxlength = "6" } })
+														@Html.LabelFor(m => m.MemberMaster.Pincode, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 3-->
+										<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="head-3">
+											<div class="card-body collapse show" id="c_add_contact" aria-labelledby="heading-3">
+												<!--row 1-->
+												<div class="row align-items-center">
+													<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+														<div class="form-group">
+															@Html.EditorFor(m => m.MemberMaster.PrimaryContactName, new { htmlAttributes = new { @placeholder = "Enter Contact Name" } })
+															@Html.LabelFor(m => m.MemberMaster.PrimaryContactName, new { @class = "control-label" })
+															<i class="bar"></i>
+														</div>
+													</div>
+													<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+														<div class="form-group">
+															@Html.EditorFor(m => m.MemberMaster.PrimaryContactNumber, new { htmlAttributes = new { type = "number", @placeholder = "9999999999", @maxlength = "10" } })
+															@Html.LabelFor(m => m.MemberMaster.PrimaryContactNumber, new { @class = "control-label" })
+															<i class="bar"></i>
+														</div>
+													</div>
+													<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+														<div class="form-group">
+															@Html.EditorFor(m => m.MemberMaster.PrimaryContactEmail, new { htmlAttributes = new { type = "email", @placeholder = "text@abc.com" } })
+															@Html.LabelFor(m => m.MemberMaster.PrimaryContactEmail, new { @class = "control-label" })
+															<i class="bar"></i>
+														</div>
+													</div>
+													<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+														<div class="form-group">
+															@Html.EditorFor(m => m.MemberMaster.MemberUsername, new { htmlAttributes = new { @placeholder = "Enter Username", @class = "input-readonly" } })
+															@Html.LabelFor(m => m.MemberMaster.MemberUsername, new { @class = "control-label" })
+															<i class="bar"></i>
+														</div>
+													</div>
+												</div>
+												<!--row 2-->
+												<div class="row align-items-center">
+													<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+														<div class="form-group password-group">
+
+															@Html.EditorFor(m => m.MemberMaster.MemberPassword, new { htmlAttributes = new { type = "password", @placeholder = "123abc", @maxlength = "16", onfocus = "applyStyle(this)", onblur = "removeStyle(this)", @class = "input-password input-readonly" } })
+															@Html.LabelFor(m => m.MemberMaster.MemberPassword, new { @class = "control-label md-password" })
+															<i class="bar"></i>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 4-->
+										<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="head-4">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-md-12" id="membership_plan">
+													<p class="label-head m-0">Membership Plans</p>
+													<div class="row form-radio mt-2 mb-1">
+
+														@for (int i = 0; i < Model.MembershipList.Count(); i++)
+														{
+															<div class="col-md-4 col-sm-6 col-12">
+																<div class="radio mt-0 mb-0">
+																	<label>
+																		@if (Model.MembershipList[i].Selected)
+																		{
+																			@Html.RadioButtonFor(m => m.MemberMaster.ClientMembershipPlanID, @Model.MembershipList[i].ClientMembershipPlanID, new { id = Model.MembershipList[i].ClientMembershipPlanID, text = Model.MembershipList[i].Price })
+
+																		}
+																		else
+																		{
+																			@Html.RadioButtonFor(m => m.MemberMaster.ClientMembershipPlanID, @Model.MembershipList[i].ClientMembershipPlanID, new { id = Model.MembershipList[i].ClientMembershipPlanID, text = Model.MembershipList[i].Price })
+																		}
+																		<i class="helper"></i>
+																		<span class="text-success font-weight-bold">@Model.MembershipList[i].MembershipName</span> / <span class="text-danger font-weight-bold">@Model.MembershipList[i].MembershipDuration Months</span> / <span class="text-primary font-weight-bold">Rs: @Model.MembershipList[i].Price</span>
+																		<span class="mem-plans">Let Your Fingers Do the Walking Through the <span class="text-success font-weight-bold">Book My Workspace</span> membership .</span>
+																	</label>
+																</div>
+															</div>
+														}
+													</div>
+												</div>
+											</div>
+
+											<!--row 2-->
+											<div class="row">
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.DepositeRefundable, new { htmlAttributes = new { @placeholder = "Enter Amount" } })
+														@Html.LabelFor(m => m.MemberMaster.DepositeRefundable, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.DepositeNonRefundable, new { htmlAttributes = new { @placeholder = "Enter Amount" } })
+														@Html.LabelFor(m => m.MemberMaster.DepositeNonRefundable, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.DiscountPercent, new { htmlAttributes = new { type = "number", @placeholder = "Enter Discount Percentage", min = "0", max = "99", value = "0", @class = "disc-number" } })
+														@Html.LabelFor(m => m.MemberMaster.DiscountPercent, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														@Html.EditorFor(m => m.MemberMaster.DiscountedPrice, new { htmlAttributes = new { @class = "input-readonly", @placeholder = "Discounted Price" } })
+														@Html.LabelFor(m => m.MemberMaster.DiscountedPrice, new { @class = "control-label" })
+														<i class="bar"></i>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 5-->
+										<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="head-5">
+											<!--row 1-->
+											<div class="row">
+												<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<p class="label-head mb-10">Registration Certificate</p>
+
+														@if (Model.MemberMaster.Doc_RCCopy != null)
+														{
+
+															<div class="gallery">
+																@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
+																<a href="@Url.Content(Model.MemberMaster.Doc_RCCopy)" class="view1"><img src="@Url.Content(Model.MemberMaster.Doc_RCCopy)" class="img-fluid" alt="RCCopy"></a>
+																<p><a href="@Url.Content(Model.MemberMaster.Doc_RCCopy)" target="_blank">@Model.MemberMaster.Doc_RCCopy</a></p>
+															</div>
+														}
+														else
+														{
+															@Html.EditorFor(m => m.RCCopy, new { accept = "image/*", @class = "form-control-file" })
+															<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
+														}
+													</div>
+												</div>
+												<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<p class="label-head mb-10">Contact Person PAN</p>
+
+														@if (Model.MemberMaster.Doc_ContactPersonPAN != null)
+														{
+
+															<div class="gallery">
+																@Html.EditorFor(m => m.ContactPersonPAN, new { accept = "image/*", @class = "form-control-file" })
+																<a href="@Url.Content(Model.MemberMaster.Doc_ContactPersonPAN)" class="view1"><img src="@Url.Content(Model.MemberMaster.Doc_ContactPersonPAN)" class="img-fluid" alt="ContactPersonPAN"></a>
+																<p><a href="@Url.Content(Model.MemberMaster.Doc_ContactPersonPAN)" target="_blank">@Model.MemberMaster.Doc_ContactPersonPAN</a></p>
+															</div>
+														}
+														else
+														{
+															@Html.EditorFor(m => m.ContactPersonPAN, new { accept = "image/*", @class = "form-control-file" })
+															<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
+														}
+													</div>
+												</div>
+												<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+													<div class="form-group">
+														<p class="label-head mb-10">GST</p>
+
+														@if (Model.MemberMaster.Doc_ContactPersonAadhaar != null)
+														{
+
+															<div class="gallery">
+																@Html.EditorFor(m => m.ContactPersonAadhaar, new { accept = "image/*", @class = "form-control-file" })
+																<a href="@Url.Content(Model.MemberMaster.Doc_ContactPersonAadhaar)" class="view1"><img src="@Url.Content(Model.MemberMaster.Doc_ContactPersonAadhaar)" class="img-fluid" alt="ContactPersonAadhaar"></a>
+																<p><a href="@Url.Content(Model.MemberMaster.Doc_ContactPersonAadhaar)" target="_blank">@Model.MemberMaster.Doc_ContactPersonAadhaar</a></p>
+															</div>
+														}
+														else
+														{
+															@Html.EditorFor(m => m.ContactPersonAadhaar, new { accept = "image/*", @class = "form-control-file" })
+															<p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
+														}
+													</div>
+												</div>
+											</div>
+											<!--row 2-->
+											@if (ViewBag.Type != 4)
+											{
+												<div class="row align-items-center">
+													<div class="col-lg-12 col-md-12 col-sm-12 col-12">
+														<div class="form-group mt-10">
+															<div class="checkbox checbox-switch switch-primary mt-10">
+																<label class="p-0">
+																	@Html.CheckBoxFor(m => m.MemberMaster.MemberStatus, new { @checked = "checked" })
+																	<span></span>
+																	Activate
+																</label>
+															</div>
+														</div>
+													</div>
+												</div>
+											}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="card card-statistics">
+							<div class="card-body">
+								<div class="row hi-btn-event">
+									<div class="col-12">
+										@Html.HiddenFor(m => m.MemberMaster.MemberID)
+										@Html.HiddenFor(m => m.MemberMaster.Doc_RCCopy)
+										@Html.HiddenFor(m => m.MemberMaster.Doc_ContactPersonPAN)
+										@Html.HiddenFor(m => m.MemberMaster.Doc_ContactPersonAadhaar)
+										@Html.HiddenFor(m => m.MemberMaster.MembershipExpiryDate)
+										@Html.HiddenFor(m => m.MemberMaster.MembershipPriceOnDate)
+										@Html.HiddenFor(m => m.MemberMaster.MembershipStartedDate)
+										@Html.HiddenFor(m => m.MemberMaster.RenewalAlertDate)
+										<a href="javascript:void(0);" onclick="tabNavigation(0);" class="btn btn-primary text-uppercase tab-back-btn">Back</a>
+										<a href="javascript:void(0);" onclick="tabNavigation(1);" class="btn btn-primary text-uppercase tab-next-btn float-right">Next</a>
+										<input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase tab-submit float-right" value="Submit" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

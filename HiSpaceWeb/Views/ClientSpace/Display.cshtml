@@ -1,0 +1,441 @@
+﻿@model HiSpaceWeb.ViewModel.ClientSpaceViewModel
+
+@{
+	ViewBag.Title = "Space";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+	<!-- begin app-main --> <div class="app-main" id="main">
+		<!-- begin container-fluid -->
+		<div class="container-fluid">
+			<!-- begin row -->
+			<div class="row">
+				<div class="col-md-12 m-b-20">
+					<!-- begin page title -->
+                    <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                        <div class="page-title mb-2 mb-sm-0">
+                            <h1>Client Space<span class="action-text"> - Display</span></h1>
+                        </div>
+                        <div class="cr-floor">Step 3. <span>Insert Workspace <i class="fa fa-pie-chart" aria-hidden="true"></i></span> </div>
+                        <div class="ml-auto d-flex align-items-center">
+                            <nav>
+                                <ol class="breadcrumb p-0 m-b-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action( "Index","Client")">Client</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action( "Index","ClientLocation")">Client Location</a>
+                                    </li>
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action( "Index","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID})">Client Space</a>
+                                    </li>
+                                    <li class="breadcrumb-item active text-primary" aria-current="page">Display</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+					<!-- end page title -->
+
+					<!--Form wizard start-->
+				<div class="wizard">
+					<div class="wizard-inner">
+						<div class=""></div>
+						<ul class="nav nav-tabs" role="tablist">
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Location</div>
+							</li>
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-building" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Floor</div>
+							</li>
+							<li role="presentation" class="active">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Space</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Form wizard end-->
+				</div>
+			</div>
+			<!-- end row -->
+			<!--Space table Add view-->
+			<div class="row" id="Display_view">
+				<div class="col-12 mb-3">
+					<p><a href="@Url.Action( "Index","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID})" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+				</div>
+                <div class="col-md-12">
+                    <!--section 1-->
+                    <div class="card card-statistics">
+                        <div class="card-header">
+                            <div class="card-heading">
+                                <h4 class="card-title">Space Info</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!--row 1-->
+                            <div class="row">
+                                @*@Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientSpaceFloorPlanID, new { @Value = Model.ClientSpaceFloorPlan.ClientSpaceFloorPlanID })*@
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientLocationID)
+                                        @Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientFloorID)
+                                        @Html.HiddenFor(m => m.ClientSpaceFloorPlan.ClientSpaceFloorPlanID)
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceName, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.SpaceName, new { htmlAttributes = new { @placeholder = "Enter Space Name", @class = "" } })
+                                        <i class="bar"></i>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.WSpaceTypeID, new { @class = "control-label" })
+                                        <i class="bar"></i>
+                                        <select disabled id="WSpaceTypeID" name="WSpaceTypeID" asp-for="WSpaceTypeID"
+                                                asp-items="@(new SelectList(ViewBag.ListOfSpaceTypes,"WSpaceTypeID", "WSpaceTypeName"))"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Floor Number</label>
+                                        <i class="bar"></i>
+                                        <select disabled id="ClientFloorID" name="ClientFloorID" asp-for="ClientFloorID"
+                                                asp-items="@(new SelectList(ViewBag.ListOfFloors,"ClientFloorID", "FloorNumber"))"></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="StatusName" class="control-label">Status</label><i class="bar"></i>
+                                        <select disabled id="StatusName" name="StatusName" asp-for="StatusName"
+                                                asp-items="@(new SelectList(ViewBag.ListOfStatus,"StatusName", "StatusName"))"></select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label" })
+
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { htmlAttributes = new { @placeholder = "Enter text..." } })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--section 2-->
+                    <div class="card card-statistics">
+                        <div class="card-header">
+                            <div class="card-heading">
+                                <h4 class="card-title">Space Seats / Price</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!--row 1-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfSeats, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.NumberOfSeats, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="s_seat_type" class="control-label">Seat Type</label>
+                                        <select disabled id="ChairTypeID" name="ChairTypeID" asp-for="ChairTypeID"
+                                                asp-items="@(new SelectList(ViewBag.ListOfChairTypes,"ChairTypeID", "ChairTypeName"))"></select>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.Price, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.Price, new { })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--section 3-->
+                    <div class="card card-statistics">
+                        <div class="card-header">
+                            <div class="card-heading">
+                                <h4 class="card-title">Floor Plan</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!--row 1-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">Space Image</p>
+                                        @if (Model.ClientSpaceFloorPlan.FloorPlanFilePath != null)
+                                        {
+                                            <div class="gallery">
+                                                @Html.HiddenFor(m => m.FloorPlanFile, new { accept = "image/*", @class = "form-control-file" })
+                                                <a href="@Url.Content(Model.ClientSpaceFloorPlan.FloorPlanFilePath)" class="view1"><img src="@Url.Content(Model.ClientSpaceFloorPlan.FloorPlanFilePath)" class="img-fluid" alt="RCCopy"></a>
+                                                <p><a href="@Url.Content(Model.ClientSpaceFloorPlan.FloorPlanFilePath)" target="_blank">@Model.ClientSpaceFloorPlan.FloorPlanFilePath</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            @Html.EditorFor(m => m.FloorPlanFile, new { accept = "image/*", @class = "form-control-file" })
+                                            <p class="font-15 text-danger">Floor Copy Not Uploaded!</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--section 4-->
+                    <div class="card card-statistics">
+                        <div class="card-header">
+                            <div class="card-heading">
+                                <h4 class="card-title">Floor Plan Matrix</h4>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!--row 1-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="s_no_seats" class="control-label">Scale Metric</label>
+                                        <select disabled id="ScaleMetricID" name="ScaleMetricID" asp-for="ScaleMetricID"
+                                                asp-items="@(new SelectList(ViewBag.ListOfScaleMetrics,"ScaleMetricID", "ScaleMetricName"))"></select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.FloorLength, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.FloorLength, new { })
+                                        @Html.HiddenFor(m => m.ClientSpaceFloorPlan.FloorLength, new { id = "SpaceFloorPlan_FloorLength" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.FloorBreadth, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.FloorBreadth, new { })
+                                        @Html.HiddenFor(m => m.ClientSpaceFloorPlan.FloorBreadth, new { id = "SpaceFloorPlan_FloorBreadth" })
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 2-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfRows, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.NumberOfRows, new { id = "SpaceFloorPlan_NumberOfRows" })
+                                        @Html.HiddenFor(m => m.ClientSpaceFloorPlan.NumberOfRows, new { id = "SpaceFloorPlan_NumberOfRows" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.NumberOfColumns, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.NumberOfColumns, new { })
+                                        @Html.HiddenFor(m => m.ClientSpaceFloorPlan.NumberOfColumns, new { id = "SpaceFloorPlan_NumberOfColumns" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientSpaceFloorPlan.SeatSize, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientSpaceFloorPlan.SeatSize, new { })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--section 5-->
+                    <div class="card card-statistics">
+                        <div class="card-header">
+                            <div class="card-heading">
+                                <h4 class="card-title">Floor Plan Matrix - Preview</h4>
+                            </div>
+                        </div>
+                        <div class="card-body wsb-floors__space" id="matrixBody">
+                            <!--row 1-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+
+                                    <a href="javascript:void(0);" id="btnMatrixPreview" class="btn btn-primary text-uppercase go-to-table">Preview Floor Plan</a>
+                                </div>
+                            </div>
+                            <!--row 2-->
+                            <div class="ws-space__padding space-tab-1">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-5 wsb-floors__space-sec1">
+                                        <div class="wsb-floors__space-floor">
+                                            <div class="ws-seathint">
+                                                <div class="row">
+                                                    <div class="col-md-4 col-sm-6">
+                                                        <span>
+                                                            <input title="Available" type="button" class="matrixButton">
+                                                            <i class="flaticon-furniture-and-household"></i>
+                                                        </span>
+                                                        <span class="ws-seathint__heading">Available</span>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 ws-seathint__booked">
+                                                        <span>
+                                                            <input title="Booked" type="button" class="matrixButton">
+                                                            <i class="flaticon-furniture-and-household"></i>
+                                                        </span>
+                                                        <span class="ws-seathint__heading">Booked</span>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 ws-seathint__unavailable">
+                                                        <span>
+                                                            <input title="Unavailable" type="button" class="matrixButton">
+                                                            <i class="flaticon-furniture-and-household"></i>
+                                                        </span>
+                                                        <span class="ws-seathint__heading">Unavailable</span>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-6 ws-seathint__blocked">
+                                                        <span>
+                                                            <input title="Booked" type="button" class="matrixButton">
+                                                            <i class="flaticon-furniture-and-household"></i>
+                                                        </span>
+                                                        <span class="ws-seathint__heading">Floor-Space</span>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-6 ws-seathint__blocked">
+                                                        <span>
+                                                            <input title="Details" type="button" class="matrixButton">
+                                                            <i class="flaticon-furniture-and-household"></i>
+                                                        </span>
+                                                        <span class="ws-seathint__heading">Double-click --> Details</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="admin_matrixpreview" class="matrix-preview-panel">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="offset-md-1 col-sm-6">
+                                        <div class="ws-seatinput alert-success animated zoomIn alert-success alert-dismissible" id="ws-seatinput" role="alert">
+                                            <h5 class="text-center">Double click the box to view the details</h5>
+                                        </div>
+                                        <div class="" id="wsSeatNotification">
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="matrixpreviewRight" class="matrix-preview-panelRight">
+                                    <div class="card card-statistics">
+                                        <div class="card-header">
+                                            <div class="card-heading" style="float:left;">
+                                                <h4 class="card-title">Seat Details <span id="seatID"></span></h4>
+                                            </div>
+                                            <div style="float:right;">
+                                                <img id="closeButton" style="cursor:pointer;" title="Close" src="~/img/buttons/close.jpg" width="25" height="25" />
+                                            </div>
+                                        </div>
+
+                                        <div class="card-body">
+
+                                            <div id="MatrixSeatDetails">
+                                                <!--row 1-->
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            @Html.EditorFor(m => m.SeatPrice, new { htmlAttributes = new { @placeholder = "Enter Seat Price", @class = "" } })
+                                                            Price
+                                                            <i class="bar"></i>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            @Html.EditorFor(m => m.SeatDescription, new { htmlAttributes = new { @placeholder = "Enter Seat Description", @class = "" } })
+                                                            Description
+                                                            <i class="bar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--row 2-->
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <select id="SeatStatusID" name="SeatStatusID" asp-for="SeatStatusID"
+                                                                    asp-items="@(new SelectList(ViewBag.ListOfSeatStatus,"SeatStatusID", "SeatStatusName"))"></select>
+                                                            <label for="s_no_seats" class="control-label">Seat Status</label><i class="bar"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group">
+                                                            <select id="ApplyToID" name="ApplyToID" asp-for="ApplyToID"
+                                                                    asp-items="@(new SelectList(ViewBag.ListOfApplyTo,"ApplyToID", "ApplyToName"))"></select>
+                                                            <label for="s_no_seats" class="control-label">Apply To</label><i class="bar"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!--row 3-->
+                                            <div class="row align-items-center">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <div style="width:20px;height:20px;background-color:green;float:left;">
+                                                        </div>
+                                                        <div style="margin-left:20px;">
+                                                            Available
+                                                        </div>
+                                                        <div style="width:20px;height:20px;background-color:orange;float:left;">
+                                                        </div>
+                                                        <div style="margin-left:20px;">
+                                                            Occupied
+                                                        </div>
+                                                        <div style="width:20px;height:20px;background-color:gray;float:left;">
+                                                        </div>
+                                                        <div style="margin-left:20px;">
+                                                            Blocked
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--submit section-->
+                    <div class="card card-statistics">
+                        <div class="card-body">
+                            <!--row 1-->
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <div>
+                                        <input type="hidden" id="matrixDisplay" value="1" />
+                                        <a href="@Url.Action( "Index","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID})" class="btn btn-primary text-uppercase go-to-table">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+			</div>
+
+		</div>
+	</div>
+

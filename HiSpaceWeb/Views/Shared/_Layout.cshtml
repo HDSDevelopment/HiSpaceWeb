@@ -1,0 +1,211 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HiSpace Admin - @ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Admin template that can be used to build dashboards for CRM, CMS, etc." />
+    <meta name="author" content="Book My Workspace" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- app favicon -->
+    <link rel="shortcut icon" href="~/img/favicon.ico">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="~/css/vendors.css">
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/summernote.css">
+    <!-- Latest compiled and minified CSS -->
+
+
+    <link rel="stylesheet" href="~/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="~/css/website/animate.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datetimepicker.css">
+    <link rel="stylesheet" href="~/css/bootstrap-datetimepicker-standalone.css">
+    <link rel="stylesheet" href="~/css/custom.css">
+    <link rel="stylesheet" href="~/css/Comman.css">
+
+
+</head>
+<body>
+    <!-- begin app -->
+    <div class="app">
+        <!-- begin app-wrap -->
+        <div class="app-wrap">
+            <!-- begin pre-loader -->
+            <div class="loader">
+                <div class="h-100 d-flex justify-content-center">
+                    <div class="align-self-center">
+                        <img src="~/img/loader/loader.svg" alt="loader">
+                    </div>
+                </div>
+            </div>
+            <!-- end pre-loader -->
+            <!-- begin app-header -->
+            @Html.Partial("_AdminNavBar")
+            <!-- end app-header -->
+            <!-- begin app-container -->
+            <div class="app-container">
+                <!-- begin app-nabar -->
+                @Html.Partial("_AdminLeftNav")
+                <!-- end app-navbar -->
+                <!--statring the body section-->
+                @RenderBody()
+                <!--end the body section-->
+                <!-- end container-fluid -->
+            </div>
+            <!-- end app-main -->
+        </div>
+        <!-- end app-container -->
+        <!-- begin footer -->
+        <footer class="footer">
+            <div class="row">
+                <div class="col-12 col-sm-6 text-center text-sm-left">
+                    <p>&copy; Copyright 2019. All rights reserved.</p>
+                </div>
+                <div class="col  col-sm-6 ml-sm-auto text-center text-sm-right">
+                    <p>Hand-crafted made with <i class="fa fa-heart text-danger mx-1"></i> by Highbrow Diligence Services</p>
+                </div>
+            </div>
+        </footer>
+        <!-- end footer -->
+    </div>
+    <!-- end app -->
+    <!-- Modal for the  -->
+    <div class="modal fade" id="plan-details" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="exampleModalLabel-2">Membership Details</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    @using (Html.BeginForm("Edit", "MembershipPlan", FormMethod.Post, new { id = "", @class = "md-form full-width", enctype = "multipart/form-data" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row display_view" id="Display_view">
+                            <div class="col-12 tabs-contant">
+                                <div class="">
+                                    <!--section 1-->
+                                    <div class="card card-statistics">
+
+                                        <div class="card-body">
+
+                                            <span id="popupClientMembershipPlanID" class="hidden"></span>
+
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="">Name</label>
+                                                        <span id="popupMembershipName"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="m_type">Type</label>
+                                                        <span id="popupMembershipDurationType"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="m_duration">Duration</label>
+                                                        <span id="popupMembershipDuration"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="m_price">Price</label>
+                                                        <span id="popupPrice"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 pricing-content">
+                                                    <ul class="py-2 even-column">
+                                                        <li><i class="fa fa-check" aria-hidden="true"></i>24/7 Open</li>
+                                                        <li><i class="fa fa-check" aria-hidden="true"></i>Free Coffee, Wifi</li>
+                                                        <li><i class="fa fa-check" aria-hidden="true"></i>Printer and Scanner</li>
+                                                        <li><i class="fa fa-check" aria-hidden="true"></i>Premium Amenities</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                    <div class="form-group bg-start">
+                                                        <label class="control-label" for="">Start Date</label>
+                                                        <span id="popupMembershipStartDate"></span>
+                                                    </div>
+                                                </div>
+                                                @*<div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                                                        <div class="form-group bg-end">
+                                                            <label class="control-label" for="m_type">End Date</label>
+                                                            <span id="popupMembershipEndDate"></span>
+                                                        </div>
+                                                    </div>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="modal-footer d-flex justify-content-between">
+                    <div>
+                        @*<a href="@Url.Action("payment", "Website")" class="btn btn-inverse-dark"><span>Renewal </span></a>*@
+                        <a href="@Url.Action("PlanList", "MembershipPlan")" class="btn btn-inverse-dark"><span>Change Plan</span></a>
+                    </div>
+                    <div>
+                        <a onclick="RenewalMembershipPlan();" class="btn btn-info cursor-pointer"><span>Renewal </span></a>
+                        <a href="javascript:void(0);" class="btn btn-warning" data-dismiss="modal"><span>Close </span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Modal for the bulk upload-->
+    <div class="modal fade hi-modal" id="bulkUploadAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-3" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel-3">DATA UPLOADED SUCCESSFULLY</h5>
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>*@
+                </div>
+                <div class="modal-body d-flex justify-content-center">
+                    <div class="modal-image text-center">
+                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                        <p>success</p>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <a href="#" onclick="location.reload(true); return false;" class="btn btn-info cst-btn-nine" data-dismiss="modal"><span>Close </span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- plugins -->
+    <script src="~/js/Jquery.js"></script>
+    <script src="~/js/vendors.js"></script>
+    <script src="~/js/summernote.js"></script>
+    <script src="~/js/bootstrap-select.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+
+    <script src="~/js/bootstrap-datetimepicker.min.js"></script>
+    <!-- custom app -->
+    <script src="~/js/app.js"></script>
+    <script src="~/js/custom.js"></script>
+    <script src="~/js/Comman.js"></script>
+    @*<script src="~/js/TestSpace.js"></script>*@
+</body>
+</html>

@@ -1,0 +1,164 @@
+﻿@model IEnumerable<HiSpaceModels.ClientLocation>
+
+@{
+    ViewBag.Title = "Location";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-20">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Client Location<span class="action-text"></span></h1>
+                    </div>
+                    <div class="cr-location">Step 1. <span>Create Location <i class="fa fa-map-marker" aria-hidden="true"></i></span> </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Client Location</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+				<!--Form wizard start-->
+				<div class="wizard">
+					<div class="wizard-inner">
+						<div class=""></div>
+						<ul class="nav nav-tabs" role="tablist">
+
+							<li role="presentation" class="active">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Location</div>
+							</li>
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-building" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Floor</div>
+							</li>
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Space</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Form wizard end-->
+            </div>
+        </div>
+        <!-- end row -->
+        <!-- begin row -->
+        <!--ClientLocation table view-->
+        <div class="row" id="table_view">
+            <div class="col-lg-12">
+                <div class="card card-statistics">
+                    <div class="card-body">
+                        <div class="datatable-wrapper table-responsive">
+                            <a href="@Url.Action( "Create","ClientLocation")">
+                                <div class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </a>
+                            <table id="clientFloorTable" class="display compact table table-striped mdtable">
+                                <thead>
+
+                                    <tr>
+                                        <th>L-ID</th>
+                                        <th>Location Name</th>
+                                        <th>Ct. Person</th>
+                                        <th>Email</th>
+                                        <th>No.of Seats</th>
+                                        <th>City</th>
+                                        <th><i class="fa fa-building mr--8"></i>Floor</th>
+                                        <th>Status</th>
+                                        <th class="text-center" width="106px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        @if (item.ClientLocationStatus)
+                                        {
+                                            ViewBag.Status = "text-success fa fa-check btn btn-icon icon-status";
+                                        }
+                                        else
+                                        {
+                                            ViewBag.Status = "text-danger fa fa-ban btn btn-icon icon-status";
+                                        }
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ClientLocationID)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ClientLocationName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ContactPersonName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Email)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NumberOfSeats)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.City)
+                                            </td>
+                                            <td class="p-0">
+                                                <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
+                                                    <a href="@Url.Action("Index", "ClientFloor",new { ClientLocationID=item.ClientLocationID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Floors inside the location">
+                                                        <i class="fa fa-building btn btn-icon "></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
+                                                    <i class="@ViewBag.Status"></i>
+                                                </div>
+                                            </td>
+                                            <td class="p-0">
+                                                <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+
+                                                    <a href="@Url.Action( "Display","ClientLocation", new { ClientLocationID = item.ClientLocationID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+                                                        <i class="fa fa-eye btn btn-icon"></i>
+                                                    </a>
+                                                    <a href="@Url.Action( "Edit","ClientLocation", new { ClientLocationID = item.ClientLocationID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                        <i class="fa fa-pencil-square-o btn btn-icon "></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,233 @@
+﻿@model HiSpaceModels.ClientLocation
+
+@{
+	ViewBag.Title = "Client Location";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	@if (Model.ClientLocationStatus)
+	{
+		ViewBag.Status = "Active";
+		ViewBag.className = "text-success font-weight-bold";
+	}
+	else
+	{
+		ViewBag.Status = "Inactive";
+		ViewBag.className = "text-danger font-weight-bold";
+	}
+}
+
+@using (Html.BeginForm("Edit", "Client", FormMethod.Post, new { id = "", @class = "", enctype = "multipart/form-data" }))
+{
+	@Html.AntiForgeryToken()
+
+	<!-- begin app-main -->
+	<div class="app-main" id="main">
+		<!-- begin container-fluid -->
+		<div class="container-fluid">
+			<!-- begin row -->
+			<div class="row">
+				<div class="col-md-12 m-b-20">
+					<!-- begin page title -->
+					<div class="d-block d-sm-flex flex-nowrap align-items-center">
+						<div class="page-title mb-2 mb-sm-0">
+							<h1>Client Location<span class="action-text"> - View</span></h1>
+						</div>
+						<div class="cr-location">Step 1. <span>Create Location <i class="fa fa-map-marker" aria-hidden="true"></i></span> </div>
+						<div class="ml-auto d-flex align-items-center">
+							<nav>
+								<ol class="breadcrumb p-0 m-b-0">
+									<li class="breadcrumb-item">
+										<a href="@Url.Action("Index", "Home")"><i class="ti ti-home"></i></a>
+									</li>
+									<li class="breadcrumb-item">
+										<a href="@Url.Action("Index", "ClientLocation")">Client Location</a>
+									</li>
+									<li class="breadcrumb-item active text-primary" aria-current="page">View</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+					<!-- end page title -->
+
+					<!--Form wizard start-->
+				<div class="wizard">
+					<div class="wizard-inner">
+						<div class=""></div>
+						<ul class="nav nav-tabs" role="tablist">
+
+							<li role="presentation" class="active">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Location</div>
+							</li>
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-building" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Floor</div>
+							</li>
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Space</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Form wizard end-->
+				</div>
+			</div>
+			<!-- end row -->
+			<!--Location table Edit view-->
+			<div class="row" id="Display_view">
+				<div class="col-12 mb-3">
+					<p><a class="go-to-table" href="@Url.Action("Index", "ClientLocation")"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+				</div>
+				<div class="col-md-12">
+					<!--section 1-->
+					<div class="card card-statistics">
+						<div class="card-header">
+							<div class="card-heading">
+								<h4 class="card-title">Location Info</h4>
+							</div>
+						</div>
+						<div class="card-body">
+							<!--row 1-->
+							<div class="row">
+
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.ClientLocationName, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.ClientLocationName, new { })
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.NumberOfSeats, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.NumberOfSeats, new { })
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.Email, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.Email, new { })
+									</div>
+								</div>
+							</div>
+							<!--row 2-->
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.Fax, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.Fax, new { })
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--section 2-->
+					<div class="card card-statistics">
+						<div class="card-header">
+							<div class="card-heading">
+								<h4 class="card-title">Location Address</h4>
+							</div>
+						</div>
+						<div class="card-body">
+							<!--row 1-->
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.Address, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.Address, new { })
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.City, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.City, new { })
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.State, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.State, new { })
+									</div>
+								</div>
+							</div>
+							<!--row 2-->
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.Country, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.Country, new { })
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.Pincode, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.Pincode, new { })
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--section 3-->
+					<div class="card card-statistics">
+						<div class="card-header">
+							<div class="card-heading">
+								<h4 class="card-title">Contact Person Details</h4>
+							</div>
+						</div>
+						<div class="card-body">
+							<!--row 1-->
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.ContactPersonName, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.ContactPersonName, new { })
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.ContactPersonPAN, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.ContactPersonPAN, new { })
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.ContactPersonAadhaar, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.ContactPersonAadhaar, new { })
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--submit section-->
+					<div class="card card-statistics">
+						<div class="card-body">
+							<!--row 1-->
+							<div class="row text-right">
+								<div class="col-12">
+									<div>
+										<a href="@Url.Action("Index", "ClientLocation")" class="btn btn-primary text-uppercase go-to-table text-right">Back</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}

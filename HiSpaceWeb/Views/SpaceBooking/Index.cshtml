@@ -1,0 +1,152 @@
+﻿@model HiSpaceWeb.ViewModel.SpaceBookingViewModel
+
+@{
+    ViewBag.Title = "Member Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ViewBag.ClientLocationID = Model.ClientLocationID;
+}
+
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-20">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Client Spaces<span class="action-text"></span></h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action("Index", "Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Client Space List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+        <!-- begin row -->
+        <!--ClientLocation table view-->
+      
+        <div class="row" id="table_view">
+            <div class="col-lg-12">
+                <div class="card card-statistics">
+                    <div class="card-body">
+                        @using (Html.BeginForm("Index", "SpaceBooking", FormMethod.Post, new { ClientLocationID = @ViewBag.ClientLocationID, id = "frmSpaceBooking", @class = "md-form", enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">Search : 
+
+                                <select id="ClientLocationID" name="ClientLocationID" asp-for="ClientLocationID"
+                                        asp-items="@(new SelectList(ViewBag.ListOfLocations, "ClientLocationID", "ClientLocationName"))"></select>
+                                <i class="bar"></i>
+
+                                <input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase" value="Submit" />
+                            </div>
+
+                        }
+                        <div class="datatable-wrapper table-responsive">
+                            @*<a href="@Url.Action( "Create","SpaceBooking")">
+                <div class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add">
+                    <i class="fa fa-plus"></i>
+                </div>
+            </a>*@
+                            <table id="SpaceBookingTable" class="display compact table table-striped mdtable">
+                                <thead>
+
+                                    <tr>
+                                        <th>Status</th>
+                                        <th>Space Name</th>
+                                        <th>Space Type</th>
+                                        <th>No.of.seats</th>
+                                        <th>Floor</th>
+                                        <th>Length</th>
+                                        <th>Breadth</th>
+                                        <th>Price</th>
+                                        <th>Book Space</th>
+                                        @*<th class="text-center" width="106px">Action</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.BookingSpaces)
+                                    {
+                                        @if (item.Status == "Available")
+                                        {
+                                            ViewBag.Status = "text-success fa fa-check btn btn-icon icon-status";
+                                            ViewBag.StatusTitle = item.Status;
+                                        }
+                                        else
+                                        {
+                                            ViewBag.Status = "text-danger fa fa-ban btn btn-icon icon-status";
+                                            ViewBag.StatusTitle = item.Status;
+                                        }
+                                        <tr>
+                                            <td>
+                                                <div title="@ViewBag.StatusTitle" class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
+                                                    <i class="@ViewBag.Status"></i>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SpaceName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.WSpaceTypeName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NumberOfSeats)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Floor)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FloorLength) @Html.DisplayFor(modelItem => item.ScaleMetricName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FloorBreadth) @Html.DisplayFor(modelItem => item.ScaleMetricName)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td class="p-0">
+                                                @if (item.Status == "Available")
+                                                {
+                                                    <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
+                                                        <a href="@Url.Action("BookSpace", "SpaceBooking", new { SpaceFloorPlanID = item.ClientSpaceFloorPlanID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Book This Space">
+                                                            <i class="fa fa-pie-chart btn btn-icon "></i>
+                                                        </a>
+                                                    </div>
+                                                }
+                                            </td>
+                                            @*<td class="p-0">
+                                <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+                                    <a href="@Url.Action("Display", "ClientLocation", new { ClientLocationID = item.ClientLocationID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+                                        <i class="fa fa-eye btn btn-icon"></i>
+                                    </a>
+                                </div>
+                            </td>*@
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

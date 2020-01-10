@@ -1,0 +1,154 @@
+﻿@model HiSpaceWeb.ViewModel.UserLoginViewModel
+@{
+	ViewData["Title"] = "User Display";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	@if (Model.UserLogin.Active)
+	{
+		ViewBag.Status = "Active";
+		ViewBag.className = "text-success font-weight-bold";
+	}
+	else
+	{
+		ViewBag.Status = "Inactive";
+		ViewBag.className = "text-danger font-weight-bold";
+	}
+}
+
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+	<!-- begin container-fluid -->
+	<div class="container-fluid">
+		<!-- begin row -->
+		<div class="row">
+			<div class="col-md-12 m-b-20">
+				<!-- begin page title -->
+				<div class="d-block d-sm-flex flex-nowrap align-items-center">
+					<div class="page-title mb-2 mb-sm-0">
+						<h1>User <span class="action-text"> - Display</span></h1>
+					</div>
+					<div class="ml-auto d-flex align-items-center">
+						<nav>
+							<ol class="breadcrumb p-0 m-b-0">
+								<li class="breadcrumb-item">
+									<a href="@Url.Action("Index", "Home")"><i class="ti ti-home"></i></a>
+								</li>
+								<li class="breadcrumb-item active text-primary" aria-current="page">Users</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<!-- end page title -->
+			</div>
+		</div>
+		<!-- end row -->
+		<!-- begin row -->
+		<!--table Edit view-->
+		<div class="row" id="Display_view">
+
+			<div class="col-12 mb-3" ">
+				<p><a href="@Url.Action( "Index","Users")" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+			</div>
+
+			<div class="col-md-12">
+
+				<!--section 1-->
+					<div class="card card-statistics">
+						<div class="card-header">
+							<div class="card-heading">
+								<h4 class="card-title">User Info</h4>
+							</div>
+						</div>
+						<div class="card-body">
+							<!--row 1-->
+							<div class="row">
+								@if (ViewBag.Type == 1)
+								{
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.HiddenFor(m => m.ClientMasterID, new { value=Model.UserLogin.ClientID})
+										@Html.LabelFor(m => m.UserLogin.ClientID, new { @class = "control-label" })
+										<select id="UserLogin.ClientID" name="UserLogin.ClientID" asp-for="UserLogin.ClientID"
+												asp-items="@(new SelectList(ViewBag.ListOfClients,"ClientID", "ClientName"))"></select>
+									</div>
+								</div>
+								}
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.UserLogin.Username, new { @class = "control-label" })
+										@Html.DisplayFor(m => m.UserLogin.Username, new { htmlAttributes = new { @placeholder = "Enter Username" } })
+										<i class="bar"></i>
+									</div>
+								</div>
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										@Html.LabelFor(m => m.UserLogin.Password, new { @class = "control-label md-password" })
+										@Html.DisplayFor(m => m.UserLogin.Password, new { htmlAttributes = new { type = "password", @placeholder = "123abc", @maxlength = "16", onfocus = "applyStyle(this)", onblur = "removeStyle(this)", @class = "input-password" } })
+										<i class="bar"></i>
+									</div>
+								</div>
+							</div>
+							<!--row 2-->
+							<div class="row">
+								<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+									<div class="form-radio row mt-2 mb-1">
+										<div class="col-md-6 col-sm-6 col-12">
+											<div class="radio">
+												<label>
+													@Html.RadioButtonFor(m => m.UserLogin.UserType, "2", new { @checked = "checked", id="clientAdmin" })
+													<i class="helper"></i>
+													Client Admin
+												</label>
+											</div>
+										</div>
+										<div class="col-md-6 col-sm-6 col-12">
+											<div class="radio">
+												<label>
+													@Html.RadioButtonFor(m => m.UserLogin.UserType, "3", new { id="clientUser" })
+													<i class="helper"></i>
+													Client User
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--row 3-->
+							<div class="row">
+							<div class="col-lg-4 col-md-6 col-sm-6 col-12">
+								<div class="form-group">
+									@Html.LabelFor(m => m.UserLogin.Active, new { @class = "control-label" })
+									<span class="@ViewBag.className">@ViewBag.Status</span>
+								</div>
+							</div>
+						</div>
+
+						</div>
+					</div>
+
+				<!--submit section-->
+				<div class="card card-statistics">
+					<div class="card-body">
+						<!--row 1-->
+						<div class="row text-right">
+							<div class="col-12">
+								<div>
+									<a href="@Url.Action( "Index","Users")" class="btn btn-primary text-uppercase go-to-table text-right">Back</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</div>
+</div>
+
+
+
+
+

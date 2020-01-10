@@ -1,0 +1,132 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<HiSpaceModels.HolidayMaster>
+@{
+    ViewBag.Title = "Holiday";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-20">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Holiday<span class="action-text"></span></h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Holiday</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="">
+            <!--Employee table view-->
+            <div class="row" id="table_view">
+                <div class="col-lg-12">
+                    <div class="card card-statistics">
+                        <div class="card-body">
+
+
+                            <div class="datatable-wrapper table-responsive">
+                                <div class="table-upload">
+                                    @*<input type="file" id="fUpload" name="files" class="form-control" />
+                                        <input type="button" id="btnUpload" value="Upload" />*@
+
+                                    @*<input type="file" id="show_add_view" class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to Upload" value="Upload" style="display:none;" />
+                                    <label for="show_add_view" class="add-new upload-btn">Upload</label>*@
+                                </div>
+                                <a href="@Url.Action( "Create","Holiday")">
+                                    <div id="show_add_view" class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add">
+                                        <i class="fa fa-plus"></i>
+                                    </div>
+                                </a>
+
+                                <table id="employeeTable" class="display compact table table-striped mdtable">
+                                    <thead>
+                                        <tr>
+                                            <th>Holiday Date</th>
+                                            <th>Holiday Name</th>                                            
+                                            <th class="text-center" width="106px">
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HolidayDate, "{0:dd/MM/yyyy}")
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HolidayDetails)
+                                            </td>                                           
+                                            <td class="p-0">
+                                                <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+
+                                                    @*<a href="@Url.Action("Display", "Employee", new { EmpCode = item.EmpCode }))" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+                                                        <i class="fa fa-eye btn btn-icon"></i>
+                                                    </a>*@
+                                                    <a href="@Url.Action("Edit", "Holiday", new { HolidayID = item.HolidayID,HolidayDate = item.HolidayDate,HolidayDetails = item.HolidayDetails })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                        <i class="fa fa-pencil-square-o btn btn-icon "></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        }                                            
+                                        </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<form enctype="multipart/form-data" method="post">
+        <dl>
+            <dt>
+                <label asp-for="FileUpload.FormFile"></label>
+            </dt>
+            <dd>
+                <input asp-for="FileUpload.FormFile" type="file">
+                <span asp-validation-for="FileUpload.FormFile"></span>
+            </dd>
+        </dl>
+        <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
+    </form>*@
+
+
+@*<form method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-4">
+                <input type="file" id="fUpload" name="files" class="form-control" />
+            </div>
+            <div class="col-md-8">
+                <input type="button" id="btnUpload" value="Upload" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8" style="padding-top:10px;">
+                <button asp-page-handler="Export">Export</button>
+            </div>
+        </div>
+        <br />
+        <div id="dvData"></div>
+    </form>*@

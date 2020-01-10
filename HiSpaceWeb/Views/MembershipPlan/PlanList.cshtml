@@ -1,0 +1,86 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<HiSpaceModels.ClientMembershipPlan>
+
+@{
+    ViewBag.Title = "Membership";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-20">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Membership Plans<span class="action-text"></span></h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Membership List</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+        <!--pricing-contant 2-start-->
+        <div class="row even-div">
+            @foreach (var item in Model)
+            {
+                ViewBag.ActiveClass1 = "card card-statistics text-center card-pricing";
+                ViewBag.ActiveClass2 = "pricing-content-card";
+                ViewBag.ActiveClass3 = "";
+                ViewBag.ActiveText = "";
+
+
+                if (item.IsActive != null)
+                {
+                    if (item.IsActive.Value)
+                    {
+                        ViewBag.ActiveClass1 = "card card-statistics text-center card-pricing pricing-highlight";
+                        ViewBag.ActiveClass2 = "pricing-content-card pricing-active";
+                        ViewBag.ActiveClass3 = "ribbon ribbon-top-left";
+                        ViewBag.ActiveText = "Active";
+                    }
+                }
+
+                <div class="col-xl-4">
+                    <div class="@ViewBag.ActiveClass1">
+                        <div class="card-body pricing-content">
+                            <div class="@ViewBag.ActiveClass2">
+                                <h5 class="text-shadow">@item.MembershipName</h5>
+                                <h2 class="text-primary pt-3 text-shadow">&#8377;@item.Price</h2>
+                                <p class="text-primary pb-3">/@item.MembershipDuration @item.MembershipDurationType</p>
+                                <ul class="py-2 even-column">
+                                    <li><i class="fa fa-check" aria-hidden="true"></i>24/7 Open</li>
+                                    <li><i class="fa fa-check" aria-hidden="true"></i>Free Coffee, Wifi</li>
+                                    <li><i class="fa fa-check" aria-hidden="true"></i>Printer and Scanner</li>
+                                    <li><i class="fa fa-check" aria-hidden="true"></i>Premium Amenities</li>
+                                </ul>
+                                <div class="pt-2"><a onclick="loadPlanDetails(@item.ClientMembershipPlanID,'@item.MembershipName', '@item.MembershipDuration', '@item.MembershipDurationType', '@item.Price', '@DateTime.Now.ToString("dd-MMM-yyyy")');" href="javascript:void(0)" class="btn btn-inverse-primary btn-round btn-sm" title="Details" data-toggle="modal" data-target="#plan-details">go premium</a></div>
+                            </div>
+
+                            <div class="@ViewBag.ActiveClass3"><span>@ViewBag.ActiveText</span></div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+        </div>
+        <!--pricing-contant 2-end-->
+    </div>
+</div>

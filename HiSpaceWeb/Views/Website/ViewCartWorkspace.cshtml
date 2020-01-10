@@ -1,0 +1,93 @@
+﻿@{
+	ViewData["Title"] = "ViewCartWorkspace";
+	Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+}
+
+<!-- page title style3 START -->
+<section class="page-title style3" data-path="../img/headers/header1.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="strong text-uppercase"><i class="fas fa-shopping-cart"></i> Workspace</h1>
+				<ol class="breadcrumb hidden-xs">
+					<li><a href="@Url.Action( "Index","Website")"><i class="fa fa-home"></i></a></li>
+					<li><a href="@Url.Action( "ListWorkspace","Website")"> List Workspace </a></li>
+					<li><a href="@Url.Action( "WorkspaceDetail","Website")"> List Workspace </a></li>
+					<li class="active">View Cart</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- page title style3 END -->
+<!-- page content START -->
+<div class="" id="ws-cart">
+
+	<!-- section START -->
+	<section class="">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Cart View</h2>
+						<small class="text-uppercase strong base-color">Your selected space <br>are in detail </small>
+					</div>
+					<hr class="spacer-10">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section END -->
+	<!-- section START -->
+	<section class="section no-padding mb--50 wsc">
+		<div class="container font-w-400">
+			<div class="card-body">
+				<div class="wsb-floors__space-seatList">
+					<table class="table table-striped wsc-table">
+						<thead>
+							<tr>
+								<th>Client</th>
+								<th>Seat Details</th>
+								<th class="text-right">Quantity</th>
+								<th class="text-right">Price</th>
+								@*<th>Remove</th>*@
+							</tr>
+						</thead>
+						<tbody>
+							@*<tr>
+								<td class="wsc-table__client">
+									<h3>Highbrow Diligence Services</h3>
+								</td>
+								<td class="wsc-table__deta">
+									<p>
+										This is an example of a multi-line ellipsis. We just set the number of lines we want to display before the ellipsis takes into effect and make some changes to the CSS and the ellipsis should
+									</p>
+								</td>
+								<td class="wsc-table__quantity">1</td>
+								<td class="wsc-table__price">&#8377;200</td>
+								<td class="removeRow" onclick="removeRow(this)"><i class="fas fa-trash-alt"></i></td>
+							</tr>*@
+						</tbody>
+						<tfoot>
+							<tr>
+								<th></th>
+								<th></th>
+								<th class="wsc-table__quantity">Total</th>
+								<th class="wsc-table__price" id="wsc_total">&#8377;00</th>
+							</tr><tr>
+								<th></th>
+								<th></th>
+								<th colspan="2" class="wsc-table__quantity">
+									<a href="javascript:void(0);" class="btn btn-primary cst-btn-nine full-width" title="Checkout"  data-toggle="modal" data-target="#checkout"><span>Checkout</span></a>
+								</th>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section END -->
+</div>
+<!-- page content End -->

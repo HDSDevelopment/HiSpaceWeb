@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<HiSpaceModels.ClientMembershipPlan>
+@{
+    ViewBag.Title = "Membership";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-20">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Membership Plans<span class="action-text"></span></h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Membership Plans</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+        <!-- begin row -->
+        <!--Client table view-->
+        <div class="row" id="table_view">
+            <div class="col-lg-12">
+                <div class="card card-statistics">
+                    <div class="card-body">
+                        <div class="datatable-wrapper table-responsive">
+                            <a href="@Url.Action( "Create","MembershipPlan")">
+                                <div id="show_add_view" class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </a>
+                            <table id="membershipTable" class="display compact table table-striped mdtable">
+                                <thead>
+                                    <tr>
+                                        <th>Plan-ID</th>
+                                        <th>Name</th>
+                                        <th>Duration</th>
+                                        <th>Price</th>
+                                        <th>Renewal Alert</th>
+                                        <th align="center">Status</th>
+                                        <th align="center">Recommented</th>
+                                        <th class="text-center" width="106px">
+                                            Action
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        @if (item.IsActive == null)
+                                        {
+                                            ViewBag.Status = "text-danger fa fa-ban btn btn-icon icon-status";
+                                        }
+                                        else if (item.IsActive.Value)
+                                        {
+                                            ViewBag.Status = "text-success fa fa-check btn btn-icon icon-status";
+                                        }
+                                        else
+                                        {
+                                            ViewBag.Status = "text-danger fa fa-ban btn btn-icon icon-status";
+                                        }
+
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ClientMembershipPlanID)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MembershipName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MembershipDuration)
+                                            @Html.DisplayFor(modelItem => item.MembershipDurationType)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.RenewalAlertDays) days before
+                                        </td>
+                                        <td>
+                                            <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
+                                                <i class="@ViewBag.Status"></i>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @if (item.IsRecommented == null)
+                                            {<span>No</span>}
+                                            else
+                                            {
+                                                @if (item.IsRecommented.Value)
+                                                {<span>Yes</span>}
+                                                else
+                                                {<span>No</span>}
+                                            }
+                                        </td>
+                                        <td class="p-0">
+                                            <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+
+                                                <a href="@Url.Action("Display", "MembershipPlan", new { ClientMembershipPlanID = @item.ClientMembershipPlanID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+                                                    <i class="fa fa-eye btn btn-icon"></i>
+                                                </a>
+                                                <a href="@Url.Action("Edit", "MembershipPlan", new { ClientMembershipPlanID = @item.ClientMembershipPlanID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fa fa-pencil-square-o btn btn-icon "></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

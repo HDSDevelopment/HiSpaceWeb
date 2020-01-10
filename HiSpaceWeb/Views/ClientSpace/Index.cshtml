@@ -1,0 +1,217 @@
+﻿@model IEnumerable<HiSpaceService.ViewModel.SpaceBookingResponse>
+
+@{
+    ViewBag.Title = "Space";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-20">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Client Space<span class="action-text"></span></h1>
+                    </div>
+                    <div class="cr-floor">Step 3. <span>Insert Workspace <i class="fa fa-pie-chart" aria-hidden="true"></i></span> </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","Client")">Clients</a>
+                                </li>
+                                <li class="breadcrumb-item">
+                                    <a href="@Url.Action( "Index","ClientLocation")">Client Location</a>
+                                </li>
+                                @*<li class="breadcrumb-item">
+                        <a href="@Url.Action( "Index","ClientFloor")">Client Floor</a>
+                    </li>*@
+                                @*<li class="breadcrumb-item">
+                        <a href="@Url.Action( "Index","ClientSpace")">Client Space</a>
+                    </li>*@
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Client Space</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+
+				<!--Form wizard start-->
+				<div class="wizard">
+					<div class="wizard-inner">
+						<div class=""></div>
+						<ul class="nav nav-tabs" role="tablist">
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-map-marker" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Location</div>
+							</li>
+
+							<li role="presentation" class="">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-building" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Floor</div>
+							</li>
+							<li role="presentation" class="active">
+								<a href="JavaScript:Void(0);">
+									<span class="round-tab">
+										<i class="fa fa-pie-chart" aria-hidden="true"></i>
+									</span>
+								</a>
+								<div class="wz-location">Space</div>
+							</li>
+
+						</ul>
+					</div>
+				</div>
+				<!--Form wizard end-->
+            </div>
+        </div>
+        <!-- end row -->
+        <!--Space table view-->
+        <div class="row" id="table_view">
+            <div class="col-lg-12">
+                <div class="card card-statistics">
+                    <div class="card-body">
+                        <div class="datatable-wrapper table-responsive">
+
+                            
+
+                            <a href="@Url.Action( "Create","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID, ClientFloorID = ViewBag.ClientFloorID})">
+                                <div id="show_add_view" class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add">
+                                    <i class="fa fa-plus"></i>
+                                </div>
+                            </a>
+                            <table id="clientSpaceTable" class="display compact table table-striped mdtable">
+                                <thead>
+                                    <tr>
+                                        @if (ViewBag.Type == 1)
+                                        {
+                                            <th>Client</th>
+                                        }
+                                        @if (ViewBag.Type != 4)
+                                        {
+                                            <th>Location</th>
+                                        }
+                                        <th>Space Name</th>
+                                        <th>Floor</th>
+                                        <th>Number of seats</th>
+                                        <th>Price</th>
+                                        <th>Rows</th>
+                                        <th>Columns</th>
+                                        <th>Status</th>
+                                        <th>Verify</th>
+                                        @if (ViewBag.Type == 1)
+                                        {
+                                        <th>Approve</th>
+                                        }
+                                        <th class="text-center" width="106px">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        @if (item.Status == "Available")
+                                        {
+                                            ViewBag.Status = "text-success fa fa-check btn btn-icon icon-status";
+                                        }
+                                        else
+                                        {
+                                            ViewBag.Status = "text-danger fa fa-ban btn btn-icon icon-status";
+                                        }
+                                    <tr>
+                                        @if (ViewBag.Type == 1)
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ClientName)
+                                            </td>
+                                        }
+                                        @if (ViewBag.Type != 4)
+                                        {
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ClientLocationName)
+                                            </td>
+                                        }
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SpaceName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Floor)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumberOfColumns)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumberOfRows)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumberOfColumns)
+                                        </td>
+                                        <td>
+                                            <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
+                                                <i class="@ViewBag.Status"></i>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Verification)
+                                        </td>
+                                        @if (ViewBag.Type == 1)
+                                        {
+                                            <td class="p-0">
+                                                <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+                                                    @if (item.Verification == "Pending" || item.Verification == "Reject")
+                                                    {
+                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approve", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Approve" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve">
+                                                            <i class="fa fa-thumbs-up btn btn-icon text-success"></i>
+                                                        </a>
+                                                    }
+                                                    @if (item.Verification == "Pending" || item.Verification == "Approve")
+                                                    {
+                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approve", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Rejected" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reject">
+                                                            <i class="fa fa-times btn btn-icon"></i>
+                                                        </a>
+                                                    }
+                                                </div>
+                                            </td>}
+                                        <td class="p-0">
+                                            <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+
+                                                <a href="@Url.Action( "Display","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID, ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, ClientFloorID = ViewBag.ClientFloorID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+                                                    <i class="fa fa-eye btn btn-icon"></i>
+                                                </a>
+                                                <a href="@Url.Action( "Edit","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID, ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, ClientFloorID = ViewBag.ClientFloorID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                    <i class="fa fa-pencil-square-o btn btn-icon "></i>
+                                                </a>                                                
+
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

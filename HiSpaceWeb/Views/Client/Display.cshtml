@@ -1,0 +1,381 @@
+﻿@model HiSpaceModels.ClientMaster
+
+@{
+    ViewBag.Title = "Client";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    @if (Model.Active)
+    {
+        ViewBag.Status = "Active";
+        ViewBag.className = "text-success font-weight-bold";
+    }
+    else
+    {
+        ViewBag.Status = "Inactive";
+        ViewBag.className = "text-danger font-weight-bold";
+    }
+}
+
+
+@using (Html.BeginForm("Display", "Client", FormMethod.Post, new { id = "", @class = "", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <!-- begin app-main -->
+    <div class="app-main" id="main">
+        <!-- begin container-fluid -->
+        <div class="container-fluid">
+            <!-- begin row -->
+            <div class="row">
+                <div class="col-md-12 m-b-10">
+                    <!-- begin page title -->
+                    <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                        <div class="page-title mb-2 mb-sm-0">
+                            <h1>Client <span class="action-text"> - Display</span></h1>
+                        </div>
+                        <div class="ml-auto d-flex align-items-center">
+                            <nav>
+                                <ol class="breadcrumb p-0 m-b-0">
+                                    <li class="breadcrumb-item">
+                                        <a href="@Url.Action("Index", "Home")"><i class="ti ti-home"></i></a>
+                                    </li>
+                                    <li class="breadcrumb-item active text-primary" aria-current="page">Client</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                </div>
+            </div>
+            <!-- end row -->
+            <!-- begin row -->
+            <!--Client table Edit view-->
+            <div class="row" id="Display_view">
+
+                <div class="col-12 mb-3">
+                    <p><a href="@Url.Action( "Index","Client")" class="go-to-table"> <i class="fa fa-angle-left" aria-hidden="true"></i> <span>Go Back</span></a></p>
+                </div>
+
+                <div class="col-md-12" id="accordion" aria-multiselectable="true">
+
+                    <!--section 1-->
+                    <div class="card card-statistics">
+                        <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                            <div class="card-heading">
+                                <h4 class="card-title">Client Info</h4>
+                            </div>
+                        </div>
+                        <div class="card-body panel-collapse collapse show" id="collapse-1" aria-labelledby="heading-1">
+                            <!--row 1-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientName, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientName, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientNumber, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientNumber, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.Email, new { })
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 2-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.GSTIN, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.GSTIN, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PAN, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.PAN, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.UAN, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.UAN, new { })
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 3-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Fax, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.Fax, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.Description, new { })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <!--section 2-->
+                    <div class="card card-statistics">
+                        <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-2" aria-expanded="true" aria-controls="collapse-2">
+                            <div class="card-heading">
+                                <h4 class="card-title">Client Address</h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show" id="collapse-2" aria-labelledby="heading-2">
+                            <!--row 1-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.Address, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.City, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.City, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.State, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.State, new { })
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 2-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Country, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.Country, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Pincode, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.Pincode, new { })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--section 3-->
+                    <div class="card card-statistics">
+                        <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#c_add_contact" aria-expanded="true" aria-controls="c_add_contact">
+                            <div class="card-heading">
+                                <h4 class="card-title">Client Contact</h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show" id="c_add_contact" aria-labelledby="heading-3">
+                            <!--row 1-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PrimaryContactName, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.PrimaryContactName, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PrimaryContactNumber, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.PrimaryContactNumber, new { })
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.PrimaryContactEmail, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.PrimaryContactEmail, new { })
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 2-->
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.ClientUsername, new { @class = "control-label" })
+                                        @Html.DisplayFor(m => m.ClientUsername, new { })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--section 4-->
+                    <div class="card card-statistics">
+                        <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-4" aria-expanded="true" aria-controls="collapse-4">
+                            <div class="card-heading">
+                                <h4 class="card-title">Client Documents</h4>
+                            </div>
+                        </div>
+                        <div class="card-body collapse show magnific-wrapper" id="collapse-4" aria-labelledby="heading-4">
+                            <!--row 1-->
+                            <div class="row m-b-30">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">Registration Certificate</p>
+                                        @if (Model.Doc_RCCopy != null)
+                                        {
+                                            <div class="gallery">
+                                                <a href="@Url.Content(Model.Doc_RCCopy)" class="view1"><img src="@Url.Content(Model.Doc_RCCopy)" class="img-fluid" alt="RCCopy"></a>
+                                                <p><a href="@Url.Content(Model.Doc_RCCopy)" target="_blank">@Model.Doc_RCCopy</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="font-15 text-danger">Registration Copy Not Uploaded!</p>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">PAN</p>
+                                        @if (Model.Doc_PANCopy != null)
+                                        {
+                                            <div class="gallery">
+                                                <a href="@Url.Content(Model.Doc_PANCopy)" class="view1"><img src="@Url.Content(Model.Doc_PANCopy)" class="img-fluid" alt="PAN"></a>
+                                                <p><a href="@Url.Content(Model.Doc_PANCopy)" target="_blank">@Model.Doc_PANCopy</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="font-15 text-danger">PAN Copy Not Uploaded!</p>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">GST</p>
+                                        @if (Model.Doc_GSTCopy != null)
+                                        {
+                                            <div class="gallery">
+                                                <a href="@Url.Content(Model.Doc_GSTCopy)" class="view1"><img src="@Url.Content(Model.Doc_GSTCopy)" class="img-fluid" alt="GST"></a>
+                                                <p><a href="@Url.Content(Model.Doc_GSTCopy)" target="_blank">@Model.Doc_GSTCopy</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="font-15 text-danger">GST Copy Not Uploaded!</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 2-->
+                            <div class="row m-b-30">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">Membership Agreement</p>
+                                        @if (Model.Doc_MembershipAgreementCopy != null)
+                                        {
+                                            <div class="gallery">
+                                                <a href="@Url.Content(Model.Doc_MembershipAgreementCopy)" class="view1"><img src="@Url.Content(Model.Doc_MembershipAgreementCopy)" class="img-fluid" alt="Membership copy"></a>
+                                                <p><a href="@Url.Content(Model.Doc_MembershipAgreementCopy)" target="_blank">@Model.Doc_MembershipAgreementCopy</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="font-15 text-danger">Membership Agreement Copy Not Uploaded!</p>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">Primay Contact PAN</p>
+                                        @if (Model.Doc_ContactPersonPAN != null)
+                                        {
+                                            <div class="gallery">
+                                                <a href="@Url.Content(Model.Doc_ContactPersonPAN)" class="view1"><img src="@Url.Content(Model.Doc_ContactPersonPAN)" class="img-fluid" alt="Person PAN"></a>
+                                                <p><a href="@Url.Content(Model.Doc_ContactPersonPAN)" target="_blank">@Model.Doc_ContactPersonPAN</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="font-15 text-danger">Contact PAN Copy Not Uploaded!</p>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+
+                                    <p class="label-head mb-10">Primary Contact Aadhar</p>
+                                    @if (Model.Doc_ContactPersonAadhaar != null)
+                                    {
+                                        <div class="gallery">
+                                            <a href="@Url.Content(Model.Doc_ContactPersonAadhaar)" class="view1"><img src="@Url.Content(Model.Doc_ContactPersonAadhaar)" class="img-fluid" alt="Person Aadhar"></a>
+                                            <p><a href="@Url.Content(Model.Doc_ContactPersonAadhaar)" target="_blank">@Model.Doc_ContactPersonAadhaar</a></p>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <p class="font-15 text-danger">Contact Aadhaar Copy Not Uploaded!</p>
+                                    }
+
+                                </div>
+                            </div>
+                            <!--row 3-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <p class="label-head mb-10">Client Logo</p>
+                                        @if (Model.ClientLogo != null)
+                                        {
+                                            <div class="gallery">
+                                                <a href="@Url.Content(Model.ClientLogo)" class="view1"><img src="@Url.Content(Model.ClientLogo)" class="img-fluid" alt="ClientLogo"></a>
+                                                <p><a href="@Url.Content(Model.ClientLogo)" target="_blank">@Model.ClientLogo</a></p>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <p class="font-15 text-danger">Client Logo Not Uploaded!</p>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <!--row 4-->
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Active, new { @class = "control-label" })
+                                        <span class="@ViewBag.className">@ViewBag.Status</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--section 5-->
+                    <!--submit section-->
+                    <div class="card card-statistics">
+                        <div class="card-body">
+                            <!--row 1-->
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-between">
+                                    <div>
+                                        <a href="@Url.Action("Index","Client")" class="btn btn-primary text-uppercase go-to-table">Back</a>
+                                    </div>
+                                    @*<input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase" value="Submit Verify" />*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+}
+
+
