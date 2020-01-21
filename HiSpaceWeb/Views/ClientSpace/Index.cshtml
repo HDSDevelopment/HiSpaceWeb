@@ -176,15 +176,15 @@
                                         {
                                             <td class="p-0">
                                                 <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
-                                                    @if (item.Verification == "Pending" || item.Verification == "Reject")
+                                                    @if (item.Verification == "Pending" || item.Verification == "Rejected")
                                                     {
-                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approve", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Approve" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve">
+                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approved", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Approved" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve">
                                                             <i class="fa fa-thumbs-up btn btn-icon text-success"></i>
                                                         </a>
                                                     }
-                                                    @if (item.Verification == "Pending" || item.Verification == "Approve")
+                                                    @if (item.Verification == "Pending" || item.Verification == "Approved")
                                                     {
-                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approve", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Rejected" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reject">
+                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approved", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Rejected" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reject">
                                                             <i class="fa fa-times btn btn-icon"></i>
                                                         </a>
                                                     }

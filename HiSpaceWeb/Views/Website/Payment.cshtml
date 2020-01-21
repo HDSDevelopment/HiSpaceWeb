@@ -1,0 +1,98 @@
+﻿@{
+	ViewData["Title"] = "Payment";
+	Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+}
+
+<!-- page title style3 START -->
+<section class="page-title style3" data-path="../img/headers/header1.jpg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="strong text-uppercase"><i class="fa fa-credit-card" aria-hidden="true"></i> </i> Payment</h1>
+				<ol class="breadcrumb hidden-xs">
+					<li><a href="@Url.Action( "Index","Website")"><i class="fa fa-home"></i></a></li>
+					<li class="active">Payment</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- page title style3 END -->
+<!-- page content START -->
+<div class="content" id="content">
+
+	<!-- section testimonial START -->
+	<section class="gray-bg">
+		<div class="container">
+			<div class="creditCardForm">
+				<div class="row">
+					<div class="col-lg-12">
+						<hr class="spacer-10">
+						<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+							<h2 class="strong heading">Card Details</h2>
+						</div>
+					</div>
+				</div>
+				<div class="payment">
+					<form>
+						<div class="row">
+
+							<div class="form-group col-md-12 col-sm-12" id="card-number-field">
+								<label for="cardNumber">Card Number</label>
+								<input type="text" class="form-control" id="cardNumber">
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group owner col-md-9 col-sm-12">
+								<label for="owner">Name</label>
+								<input type="text" class="form-control" id="owner">
+							</div>
+							<div class="form-group CVV col-md-3 col-sm-12">
+								<label for="cvv">CVV</label>
+								<input type="text" class="form-control" id="cvv">
+							</div>
+						</div>
+						<div class="row d-flex">
+							<div class="form-group col-md-6 col-sm-12" id="expiration-date">
+								<label>Expiration Date</label>
+								<select>
+									<option value="01">January</option>
+									<option value="02">February </option>
+									<option value="03">March</option>
+									<option value="04">April</option>
+									<option value="05">May</option>
+									<option value="06">June</option>
+									<option value="07">July</option>
+									<option value="08">August</option>
+									<option value="09">September</option>
+									<option value="10">October</option>
+									<option value="11">November</option>
+									<option value="12">December</option>
+								</select>
+								<select>
+									<option value="16"> 2016</option>
+									<option value="17"> 2017</option>
+									<option value="18"> 2018</option>
+									<option value="19"> 2019</option>
+									<option value="20"> 2020</option>
+									<option value="21"> 2021</option>
+								</select>
+							</div>
+							<div class="form-group col-md-6 col-sm-12 align-self-end text-right" id="credit_cards">
+								<img src="../img/payment/visa.jpg" id="visa">
+								<img src="../img/payment/mastercard.jpg" id="mastercard">
+								<img src="../img/payment/amex.jpg" id="amex">
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-md-12 col-sm-12 mtb--10" id="">
+								@*<button type="submit" class="btn btn-success cst-btn-nine full-width" id="">Confirm</button>*@
+								<a href="javascript:void(0);" class="btn btn-success btn-xs cst-btn-nine checkout" title="Payment" data-toggle="modal" data-target="#paymentAlert">Confirm</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

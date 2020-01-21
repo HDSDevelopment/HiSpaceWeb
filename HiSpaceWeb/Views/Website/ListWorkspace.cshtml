@@ -1,340 +1,339 @@
 ﻿@{
 	ViewData["Title"] = "ListWorkspace";
 	Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
-    @using Microsoft.AspNetCore.Http
-    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+	@using Microsoft.AspNetCore.Http
+	@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 }
 
 @model HiSpaceWeb.ViewModel.ListWorkSpaceViewModel
 <!-- page title style3 START -->
 <section class="page-title style3" data-path="../img/headers/header1.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="strong text-uppercase"><i class="fas fa-list-ul"></i> Workspace</h1>
-                <ol class="breadcrumb hidden-xs">
-                    <li><a href="@Url.Action("Index", "Website")"><i class="fa fa-home"></i></a></li>
-                    <li class="active">List Workspace</li>
-                </ol>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="strong text-uppercase"><i class="fas fa-list-ul"></i> Workspace</h1>
+				<ol class="breadcrumb hidden-xs">
+					<li><a href="@Url.Action("Index", "Website")"><i class="fa fa-home"></i></a></li>
+					<li class="active">List Workspace</li>
+				</ol>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- page title style3 END -->
 <!-- page content START -->
 <div class="content" id="content">
 
-    <!-- section START -->
-    <section class="">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <hr class="spacer-20">
-                    <div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
-                        <h2 class="strong">List of Workspace</h2>
-                        <small class="text-uppercase strong base-color">Some of our clients <br>Shared there reviews </small>
-                    </div>
-                    <hr class="spacer-20">
-                </div>
-            </div>
-            <div class="row mb-30">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ws-filter gray-bg">
-                    <div class="row">
-                        <!-- search widget START -->
-                        <div class="accordion ws-accordion" id="acc_search">
-                            <div class="card">
-                                <div class="card-header" id="heading_1">
-                                    <h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" aria-controls="collapse_1">
-                                        Location Search
-                                    </h5>
-                                </div>
+	<!-- section START -->
+	<section class="">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-20">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">List of Workspace</h2>
+						<small class="text-uppercase strong base-color">Some of our clients <br>Shared there reviews </small>
+					</div>
+					<hr class="spacer-20">
+				</div>
+			</div>
+			<div class="row mb-30">
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 ws-filter gray-bg">
+					<div class="row">
+						<!-- search widget START -->
+						<div class="accordion ws-accordion" id="acc_search">
+							<div class="card">
+								<div class="card-header" id="heading_1">
+									<h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" aria-controls="collapse_1">
+										Location Search
+									</h5>
+								</div>
 
-                                <div id="collapse_1" class="collapse in" aria-labelledby="heading_1" data-parent="#acc_search">
-                                    <div class="card-body">
-                                        <form class="search-form">
-                                            <div class="form-group">
-                                                <input type="text" class="form-control" id="searchBlog" placeholder="Location...">
-                                                <button type="submit" class="btn btn-default cst-btn-nine"><i class="fa fa-search"></i></button>
-                                            </div>
-                                        </form> <div class="widget style1">
-                                            @foreach (var item in Model.ClientLocationSearchList)
+								<div id="collapse_1" class="collapse in" aria-labelledby="heading_1" data-parent="#acc_search">
+									<div class="card-body">
+										<form class="search-form">
+											<div class="form-group">
+												<input type="text" class="form-control" id="searchBlog" placeholder="Location...">
+												<button type="submit" class="btn btn-default cst-btn-nine"><i class="fa fa-search"></i></button>
+											</div>
+										</form> <div class="widget style1">
+											@foreach (var item in Model.ClientLocationSearchList)
 											{
 
-                                                <div class="checkbox checked">
-                                                    <label>
-                                                        <input type="checkbox" value=@item.ClientLocationID>
-                                                        @item.ClientLocationName
-                                                        <span class="count"> (@item.ClientLocationInUseCount)</span>
-                                                    </label>
-                                                </div>
+												<div class="checkbox checked">
+													<label>
+														<input type="checkbox" value=@item.ClientLocationID>
+														@item.ClientLocationName
+														<span class="count"> (@item.ClientLocationInUseCount)</span>
+													</label>
+												</div>
 											}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- search widget END -->
-                        <!-- price widget START -->
-                        <div class="accordion ws-accordion wsf-price" id="acc_price">
-                            <div class="card">
-                                <div class="card-header" id="heading_3">
-                                    <h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_3" aria-expanded="false" aria-controls="collapse_3">
-                                        Price
-                                    </h5>
-                                </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- search widget END -->
+						<!-- price widget START -->
+						<div class="accordion ws-accordion wsf-price" id="acc_price">
+							<div class="card">
+								<div class="card-header" id="heading_3">
+									<h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_3" aria-expanded="false" aria-controls="collapse_3">
+										Price
+									</h5>
+								</div>
 
-                                <div id="collapse_3" class="collapse show" aria-labelledby="heading_3" data-parent="#acc_search">
-                                    <div class="card-body">
-                                        <div class="widget style1">
-                                            <form class="form-inline">
-                                                <div class="form-group d-flex">
-                                                    <input type="text" class="form-control input-sm" id="min_amount" placeholder="Min">
-                                                    <input type="text" class="form-control input-sm" id="max_amount" placeholder="Max">
-                                                    <button type="submit" class="btn btn-primary btn-sm cst-btn-nine"><i class="fa fa-search"></i></button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- price widget END -->
-                        <!-- amenities widget START -->
-                        <div class="accordion ws-accordion wsf-amenities" id="acc_amenities">
-                            <div class="card">
-                                <div class="card-header" id="heading_5">
-                                    <h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" aria-controls="collapse_5">
-                                        Amenities
-                                    </h5>
-                                </div>
+								<div id="collapse_3" class="collapse show" aria-labelledby="heading_3" data-parent="#acc_search">
+									<div class="card-body">
+										<div class="widget style1">
+											<form class="form-inline">
+												<div class="form-group d-flex">
+													<input type="text" class="form-control input-sm" id="min_amount" placeholder="Min">
+													<input type="text" class="form-control input-sm" id="max_amount" placeholder="Max">
+													<button type="submit" class="btn btn-primary btn-sm cst-btn-nine"><i class="fa fa-search"></i></button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- price widget END -->
+						<!-- amenities widget START -->
+						<div class="accordion ws-accordion wsf-amenities" id="acc_amenities">
+							<div class="card">
+								<div class="card-header" id="heading_5">
+									<h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_5" aria-expanded="false" aria-controls="collapse_5">
+										Amenities
+									</h5>
+								</div>
 
-                                <div id="collapse_5" class="collapse show" aria-labelledby="heading_5" data-parent="#acc_amenities">
-                                    <div class="card-body">
-                                        <div class="widget style1">
-                                            @foreach (var item in Model.AmenitySearchList)
+								<div id="collapse_5" class="collapse show" aria-labelledby="heading_5" data-parent="#acc_amenities">
+									<div class="card-body">
+										<div class="widget style1">
+											@foreach (var item in Model.AmenitySearchList)
 											{
-                                                <div class="checkbox checked">
-                                                    <label>
-                                                        <input type="checkbox" value=@item.FacilityID>
-                                                        @*<i class="flaticon-parking-1"></i>*@
-                                                        @item.FacilityName
-                                                        <span class="count"> (@item.FacilityInUseCount)</span>
-                                                    </label>
-                                                </div>
+												<div class="checkbox checked">
+													<label>
+														<input type="checkbox" value=@item.FacilityID>
+														@*<i class="flaticon-parking-1"></i>*@
+														@item.FacilityName
+														<span class="count"> (@item.FacilityInUseCount)</span>
+													</label>
+												</div>
 											}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- amenities widget END -->
-                        <!-- star widget START -->
-                        <div class="accordion ws-accordion" id="acc_rating">
-                            <div class="card">
-                                <div class="card-header" id="heading_2">
-                                    <h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_2" aria-expanded="false" aria-controls="collapse_2">
-                                        Star Rating
-                                    </h5>
-                                </div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- amenities widget END -->
+						<!-- star widget START -->
+						<div class="accordion ws-accordion" id="acc_rating">
+							<div class="card">
+								<div class="card-header" id="heading_2">
+									<h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_2" aria-expanded="false" aria-controls="collapse_2">
+										Star Rating
+									</h5>
+								</div>
 
-                                <div id="collapse_2" class="collapse show" aria-labelledby="heading_2" data-parent="#acc_rating">
-                                    <div class="card-body">
-                                        <div class="widget style1">
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" value="5">
-                                                    <span class="ws-review-content-rating">
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <a href="#" class="rating-review">5.0</a>
-                                                        <span class="count"> (50)</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" value="4">
-                                                    <span class="ws-review-content-rating">
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star empty"></span>
-                                                        <a href="#" class="rating-review">4.0</a>
-                                                        <span class="count"> (75)</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" value="3">
-                                                    <span class="ws-review-content-rating">
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star empty"></span>
-                                                        <span class="star empty"></span>
-                                                        <a href="#" class="rating-review">3.0</a>
-                                                        <span class="count"> (25)</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" value="2">
-                                                    <span class="ws-review-content-rating">
-                                                        <span class="star"></span>
-                                                        <span class="star"></span>
-                                                        <span class="star empty"></span>
-                                                        <span class="star empty"></span>
-                                                        <span class="star empty"></span>
-                                                        <a href="#" class="rating-review">2.0</a>
-                                                        <span class="count"> (60)</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" value="1">
-                                                    <span class="ws-review-content-rating">
-                                                        <span class="star"></span>
-                                                        <span class="star empty"></span>
-                                                        <span class="star empty"></span>
-                                                        <span class="star empty"></span>
-                                                        <span class="star empty"></span>
-                                                        <a href="#" class="rating-review">1.0</a>
-                                                        <span class="count"> (45)</span>
-                                                    </span>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- star widget END -->
-                        <!-- Space type widget START -->
-                        <div class="accordion ws-accordion wsf-space-type" id="acc_space__type">
-                            <div class="card">
-                                <div class="card-header" id="heading_4">
-                                    <h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_4" aria-expanded="false" aria-controls="collapse_4">
-                                        Space Type
-                                    </h5>
-                                </div>
+								<div id="collapse_2" class="collapse show" aria-labelledby="heading_2" data-parent="#acc_rating">
+									<div class="card-body">
+										<div class="widget style1">
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" value="5">
+													<span class="ws-review-content-rating">
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star"></span>
+														<a href="#" class="rating-review">5.0</a>
+														<span class="count"> (50)</span>
+													</span>
+												</label>
+											</div>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" value="4">
+													<span class="ws-review-content-rating">
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star empty"></span>
+														<a href="#" class="rating-review">4.0</a>
+														<span class="count"> (75)</span>
+													</span>
+												</label>
+											</div>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" value="3">
+													<span class="ws-review-content-rating">
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star empty"></span>
+														<span class="star empty"></span>
+														<a href="#" class="rating-review">3.0</a>
+														<span class="count"> (25)</span>
+													</span>
+												</label>
+											</div>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" value="2">
+													<span class="ws-review-content-rating">
+														<span class="star"></span>
+														<span class="star"></span>
+														<span class="star empty"></span>
+														<span class="star empty"></span>
+														<span class="star empty"></span>
+														<a href="#" class="rating-review">2.0</a>
+														<span class="count"> (60)</span>
+													</span>
+												</label>
+											</div>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" value="1">
+													<span class="ws-review-content-rating">
+														<span class="star"></span>
+														<span class="star empty"></span>
+														<span class="star empty"></span>
+														<span class="star empty"></span>
+														<span class="star empty"></span>
+														<a href="#" class="rating-review">1.0</a>
+														<span class="count"> (45)</span>
+													</span>
+												</label>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- star widget END -->
+						<!-- Space type widget START -->
+						<div class="accordion ws-accordion wsf-space-type" id="acc_space__type">
+							<div class="card">
+								<div class="card-header" id="heading_4">
+									<h5 class="page-header card-accordion" data-toggle="collapse" data-target="#collapse_4" aria-expanded="false" aria-controls="collapse_4">
+										Space Type
+									</h5>
+								</div>
 
-                                <div id="collapse_4" class="collapse show" aria-labelledby="heading_4" data-parent="#acc_space__type">
-                                    <div class="card-body">
-                                        <div class="widget style1">
-                                            @foreach (var item in Model.WorkSpaceTypeSearchList)
+								<div id="collapse_4" class="collapse show" aria-labelledby="heading_4" data-parent="#acc_space__type">
+									<div class="card-body">
+										<div class="widget style1">
+											@foreach (var item in Model.WorkSpaceTypeSearchList)
 											{
-                                                <div class="checkbox checked">
-                                                    <label>
-                                                        <input type="checkbox" value=@item.WSpaceTypeID>
-                                                        @item.WSpaceTypeName
-                                                        <span class="count"> (@item.WSpaceTypeInUseCount)</span>
-                                                    </label>
-                                                </div>
+												<div class="checkbox checked">
+													<label>
+														<input type="checkbox" value=@item.WSpaceTypeID>
+														@item.WSpaceTypeName
+														<span class="count"> (@item.WSpaceTypeInUseCount)</span>
+													</label>
+												</div>
 											}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Space type widget END -->
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 ws-list">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Space type widget END -->
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 ws-list">
 					@{var count = 0;}
-                    @foreach (var item in Model.WorkSpaceSearchList)
+					@foreach (var item in Model.WorkSpaceSearchList)
 					{
-						
-                        <div class="row list-workspace">
-                            <div class="col-sm-4">
-                                <div class="ws-image">
+
+						<div class="row list-workspace">
+							<div class="col-sm-4">
+								<div class="ws-image">
 									@if (count == 0)
 									{
 										<img src="~/img/officeTypes/hotdesk.jpg" alt="">
 									}
-									else if(count == 1)
-                                    {
+									else if (count == 1)
+									{
 										<img src="~/img/officeTypes/coworkingspace.jpg" alt="">
 									}
-									else if(count == 2)
-                                    {
+									else if (count == 2)
+									{
 										<img src="~/img/officeTypes/dedicateddesk.jpg" alt="">
 									}
-                                </div>
-                                <div class="ws-listing-badge-new">New</div>
-                                <div class="ws-like-icon"></div>
+								</div>
+								<div class="ws-listing-badge-new">New</div>
+								<div class="ws-like-icon"></div>
+							</div>
+							<div class="col-sm-8">
+								@*<div class="list-space-name">
+										<ul class="">
+											<li class=""><a href="#" class="btn btn-info btn-xs cst-btn-nine"><span>Co-Workspace</span></a></li>
+											<li class=""><a href="#" class="btn btn-success btn-xs cst-btn-nine"><span>Meeting Room</span></a></li>
+											<li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Outdoor Space</span></a></li>
+											<li class=""><a href="#" class="btn btn-warning btn-xs cst-btn-nine"><span>Virtual Office</span></a></li>
+											<li class=""><a href="#" class="btn btn-danger btn-xs cst-btn-nine"><span>Private Office</span></a></li>
+											<li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Creative Office</span></a></li>
+											<li class=""><a href="#" class="btn btn-default btn-xs cst-btn-nine"><span>Hot Desk</span></a></li>
+										</ul>
+									</div>*@
+								<div class="ws-title">
+									<h3>@item.space.SpaceName</h3>
+								</div>
+								<div class="ws-desc">
+									<div class="">
+										@item.space.SpaceDescription
+									</div>
+								</div>
+								<div class="ws-amenities row">
+									@*<ul class="">
+											@foreach (var sub_item in item.facilities)
+											{
+												<li class=""><i class="fas fa-coffee" data-toggle="tooltip" title="" data-original-title=@sub_item.FacilityName></i></li>
+											}
+										</ul>*@
+									<div class="col-sm-6 text-success font-w-500">
+										<div class="">
+											@item.location.Address/@item.location.City
+										</div>
+									</div>
+									<div class="col-sm-6 text-right">
+										<a class="btn btn-primary btn-xs cst-btn-two amenities-more" onclick="allAmenities(this,@item.space.ClientSpaceFloorPlanID)"><span>Amenities (@item.AvailableFacilities)</span></a>
+									</div>
+								</div>
+								<div class="ws-bottom">
+									<a href="@Url.Action("WorkspaceDetail", "Website", new { ClientSpaceFloorPlanID=item.space.ClientSpaceFloorPlanID })" class="btn btn-primary cst-btn-nine" title="Let's Start">Explore</a>
+									<div>
+										<div class="list-avilable text-right">
+											<span class="text-info">Total Seats: @item.space.NumberOfSeats</span> | <span class="text-danger">Occupied: @item.OccupiedSeats</span> | <span class="text-success">
+												Available:
 
-                            </div>
-                            <div class="col-sm-8">
-                                @*<div class="list-space-name">
-                                        <ul class="">
-                                            <li class=""><a href="#" class="btn btn-info btn-xs cst-btn-nine"><span>Co-Workspace</span></a></li>
-                                            <li class=""><a href="#" class="btn btn-success btn-xs cst-btn-nine"><span>Meeting Room</span></a></li>
-                                            <li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Outdoor Space</span></a></li>
-                                            <li class=""><a href="#" class="btn btn-warning btn-xs cst-btn-nine"><span>Virtual Office</span></a></li>
-                                            <li class=""><a href="#" class="btn btn-danger btn-xs cst-btn-nine"><span>Private Office</span></a></li>
-                                            <li class=""><a href="#" class="btn btn-primary btn-xs cst-btn-nine"><span>Creative Office</span></a></li>
-                                            <li class=""><a href="#" class="btn btn-default btn-xs cst-btn-nine"><span>Hot Desk</span></a></li>
-                                        </ul>
-                                    </div>*@
-                                <div class="ws-title">
-                                    <h3>@item.space.SpaceName</h3>
-                                </div>
-                                <div class="ws-desc">
-                                    <div class="">
-                                        @item.space.SpaceDescription
-                                    </div>
-                                </div>
-                                <div class="ws-amenities row">
-                                    @*<ul class="">
-                                        @foreach (var sub_item in item.facilities)
-                                        {
-                                            <li class=""><i class="fas fa-coffee" data-toggle="tooltip" title="" data-original-title=@sub_item.FacilityName></i></li>
-                                        }
-                                    </ul>*@
-                                    <div class="col-sm-6 text-success font-w-500">
-                                        <div class="">
-                                            @item.location.Address/@item.location.City
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 text-right">
-                                    <a class="btn btn-primary btn-xs cst-btn-two amenities-more" onclick="allAmenities(this,@item.space.ClientSpaceFloorPlanID)"><span>Amenities (@item.AvailableFacilities)</span></a>
-
-                                    </div>
-                                </div>
-                                <div class="ws-bottom">
-                                    <a href="@Url.Action("WorkspaceDetail", "Website", new { ClientSpaceFloorPlanID=item.space.ClientSpaceFloorPlanID })" class="btn btn-primary cst-btn-nine" title="Lest Start">Explore</a>
-                                    <div>
-                                        <span class="text-info">Total Seats: @item.space.NumberOfSeats</span> | <span class="text-danger">Occupaid: @item.OccupiedSeats</span> | <span class="text-success">
-                                            Available:
-                                            
-                                                @(item.space.NumberOfSeats - item.OccupiedSeats)
-                                            
-                                        </span>
-                                        <div class="ws-review-content-rating">
-                                            <span class="star"></span>
-                                            <span class="star"></span>
-                                            <span class="star"></span>
-                                            <span class="star"></span>
-                                            <span class="star empty"></span>
-                                            <a href="#" class="rating-review">4.0</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+												@(item.space.NumberOfSeats - item.OccupiedSeats)
+											</span>
+										</div>
+										<div class="ws-review-content-rating">
+											<span class="star"></span>
+											<span class="star"></span>
+											<span class="star"></span>
+											<span class="star"></span>
+											<span class="star empty"></span>
+											<a href="#" class="rating-review">4.0</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						count++;
 					}
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- section END -->
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section END -->
 </div>
 <!-- page content END -->

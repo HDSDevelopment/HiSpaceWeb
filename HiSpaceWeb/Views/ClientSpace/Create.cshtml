@@ -178,7 +178,9 @@
 												<div class="sch-1">
 													<div class="radio">
 														<label class="radio-active">
-															<input type="radio" name="space_scheduler" checked="checked" value="24/7" /><i class="helper"></i>24 / 7 Available
+															<input type="radio" id="AllTimeCheck_radio" name="ClientSpaceFloorPlan.Is24" value="true" checked="checked" radio-attr = "24/7"/><i class="helper"></i>24 / 7 Available
+															@Html.EditorFor(m => m.AllTimeCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" checked="checked" id="AllTimeCheck" name="AllTimeCheck" value="true" class="hidden"/>*@
 														</label>
 													</div>
 												</div>
@@ -186,7 +188,9 @@
 												<div class="sch-2">
 													<div class="radio m-0">
 														<label>
-															<input type="radio" name="space_scheduler" value="weekdays" /><i class="helper"></i>Weekdays
+															<input type="radio" id="MonToFriCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr = "weekdays"/><i class="helper"></i>Weekdays	
+															@Html.EditorFor(m => m.MonToFriCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" id="MonToFriCheck" name="MonToFriCheck" value="true" class="hidden"/>*@
 														</label>
 													</div>
 													<div class="sch-weekdays cursor-no-drop">
@@ -200,7 +204,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="MonToFri_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -211,68 +215,16 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="MonToFri_Open" name="MonToFriOpen" asp-for="MonToFriOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="MonToFri_Close" name="MonToFriClose" asp-for="MonToFriClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
@@ -286,7 +238,9 @@
 												<div class="sch-3">
 													<div class="radio m-0">
 														<label>
-															<input type="radio" name="space_scheduler" value="weeksaturday" /><i class="helper"></i>Weekdays with Saturday
+															<input type="radio" id="MonToSatCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr = "weeksaturday"/><i class="helper" ></i>Weekdays with Saturday
+															@Html.EditorFor(m => m.MonToSatCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" id="MonToSatCheck" name="MonToSatCheck" value="true" class="hidden"/>*@
 														</label>
 													</div>
 													<div class="sch-weeksaturday cursor-no-drop">
@@ -300,7 +254,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="MonToFriNotSat_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -311,75 +265,23 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="MonToFriNotSat_Open" name="MonToFriNotSatOpen" asp-for="MonToFriNotSatOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFriNotSat_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="MonToFriNotSat_Close" name="MonToFriNotSatClose" asp-for="MonToFriNotSatClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFriNotSat_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
-															<!--sat-->
+															<!--saturday-->
 															<div class="row">
 																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
 																	Saturday
@@ -388,7 +290,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="MonToFriWithSat_Avail" name="ClientSpaceFloorPlan.SatAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -399,68 +301,16 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="MonToFri_Sat_Open" name="MonToFriWithSatOpen" asp-for="MonToFriWithSatOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Sat_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="MonToFri_Sat_Close" name="MonToFriWithSatClose" asp-for="MonToFriWithSatClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Sat_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
@@ -474,100 +324,17 @@
 												<div class="sch-4">
 													<div class="radio m-0">
 														<label>
-															<input type="radio" name="space_scheduler" value="custom" /><i class="helper"></i>Custom Available
+															<input type="radio" id="CustomCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr = "custom"/><i class="helper"></i>Custom Available
+															@Html.EditorFor(m => m.CustomCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" id="CustomCheck" name="CustomCheck" value="true" class="hidden"/>*@
 														</label>
 													</div>
 
 													<!--time selection-->
 													<div class="sch-custom cursor-no-drop">
 														<div class="pointer-event-none">
-															<div class="row">
-																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
-																	Sunday
-																</div>
-																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
-																	<div class="form-group m-0">
-																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
-																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
-																				<span></span>
-																				<strong>Closed</strong>
-																			</label>
-																		</div>
-																	</div>
-																</div>
-
-																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
-																	<div class="row">
-																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
-																				<i class="bar"></i>
-																			</div>
-																		</div>
-																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
-																				<i class="bar"></i>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
+															
+															<!--monday-->
 															<div class="row">
 																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
 																	Monday
@@ -576,7 +343,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="CustomMon_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -587,74 +354,23 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomMon_Open" name="ClientSpaceFloorPlan.MonOpen" asp-for="ClientSpaceFloorPlan.MonOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomMon_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomMon_Close" name="ClientSpaceFloorPlan.MonClose" asp-for="ClientSpaceFloorPlan.MonClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomMon_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
+															<!--tuesday-->
 															<div class="row">
 																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
 																	Tuesday
@@ -663,7 +379,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="ClientSpaceFloorPlan_TueAvail" name="ClientSpaceFloorPlan.TueAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -674,74 +390,23 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomTue_Open" name="ClientSpaceFloorPlan.TueOpen" asp-for="ClientSpaceFloorPlan.TueOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomTue_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomTue_Close" name="ClientSpaceFloorPlan.TueClose" asp-for="ClientSpaceFloorPlan.TueClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomTue_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
+															<!--wednesday-->
 															<div class="row">
 																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
 																	Wednesday
@@ -750,7 +415,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="ClientSpaceFloorPlan_WedAvail" name="ClientSpaceFloorPlan.WedAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -761,74 +426,23 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomWed_Open" name="ClientSpaceFloorPlan.WedOpen" asp-for="ClientSpaceFloorPlan.WedOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomWed_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomWed_Close" name="ClientSpaceFloorPlan.WedClose" asp-for="ClientSpaceFloorPlan.WedClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomWed_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
+															<!--thursday-->
 															<div class="row">
 																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
 																	Thursday
@@ -837,7 +451,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="ClientSpaceFloorPlan_ThuAvail" name="ClientSpaceFloorPlan.ThuAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -848,74 +462,23 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomThu_Open" name="ClientSpaceFloorPlan.ThuOpen" asp-for="ClientSpaceFloorPlan.ThuOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomThu_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomThu_Close" name="ClientSpaceFloorPlan.ThuClose" asp-for="ClientSpaceFloorPlan.ThuClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomThu_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
+															<!--friday-->
 															<div class="row">
 																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
 																	Friday
@@ -924,7 +487,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="ClientSpaceFloorPlan_FriAvail" name="ClientSpaceFloorPlan.FriAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -935,74 +498,23 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomFri_Open" name="ClientSpaceFloorPlan.FriOpen" asp-for="ClientSpaceFloorPlan.FriOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomFri_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomFri_Close" name="ClientSpaceFloorPlan.FriClose" asp-for="ClientSpaceFloorPlan.FriClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomFri_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
+															<!--saturday-->
 															<div class="row">
 																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
 																	Saturday
@@ -1011,7 +523,7 @@
 																	<div class="form-group m-0">
 																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
 																			<label class="p-0">
-																				<input class="sch-status" type="checkbox" />
+																				<input id="ClientSat_Avail" name="ClientSpaceFloorPlan.SatAvail" class="sch-status" type="checkbox" value="true" />
 																				<span></span>
 																				<strong>Closed</strong>
 																			</label>
@@ -1022,68 +534,52 @@
 																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
 																	<div class="row">
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_open" name="">
-																					<option selected disabled="disabled" value="0">Opens at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomSat_Open" name="ClientSpaceFloorPlan.SatOpen" asp-for="ClientSpaceFloorPlan.SatOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSat_Open" class="control-label">From</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
 																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
-																			<div class="form-group m-0">
-																				<select id="" class="selectpicker sch_close" name="">
-																					<option selected disabled="disabled" value="0">Closes at</option>
-																					<option value="1">24 hours</option>
-																					<option value="2">12:00 am</option>
-																					<option value="3">01:00 am</option>
-																					<option value="4">02:00 am</option>
-																					<option value="5">03:00 am</option>
-																					<option value="6">04:00 am</option>
-																					<option value="7">05:00 am</option>
-																					<option value="8">06:00 am</option>
-																					<option value="9">07:00 am</option>
-																					<option value="10">08:00 am</option>
-																					<option value="11">09:00 am</option>
-																					<option value="12">10:00 am</option>
-																					<option value="13">11:00 am</option>
-																					<option value="14">12:00 pm</option>
-																					<option value="15">01:00 pm</option>
-																					<option value="16">02:00 pm</option>
-																					<option value="17">03:00 pm</option>
-																					<option value="18">04:00 pm</option>
-																					<option value="19">05:00 pm</option>
-																					<option value="20">06:00 pm</option>
-																					<option value="21">07:00 pm</option>
-																					<option value="22">08:00 pm</option>
-																					<option value="23">09:00 pm</option>
-																					<option value="24">10:00 pm</option>
-																					<option value="25">11:00 pm</option>
-																				</select>
+																			<div class="form-group">
+																				<select id="CustomSat_Close" name="ClientSpaceFloorPlan.SatClose" asp-for="ClientSpaceFloorPlan.SatClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSat_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--sunday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Sunday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="ClientSpaceFloorPlan_SunAvail" name="ClientSpaceFloorPlan.SunAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomSun_Open" name="ClientSpaceFloorPlan.SunOpen" asp-for="ClientSpaceFloorPlan.SunOpen"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSun_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomSun_Close" name="ClientSpaceFloorPlan.SunClose" asp-for="ClientSpaceFloorPlan.SunClose"
+																asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSun_Close" class="control-label">To</label>
 																				<i class="bar"></i>
 																			</div>
 																		</div>
@@ -1400,6 +896,7 @@
 							<div class="card-body">
 								<div class="row hi-btn-event">
 									<div class="col-12">
+										@Html.HiddenFor(m => m.ClientFloorID)
 										<a href="javascript:void(0);" onclick="tabNavigation(0);" class="btn btn-primary text-uppercase tab-back-btn">Back</a>
 										<a href="javascript:void(0);" onclick="tabNavigation(1);" class="btn btn-primary text-uppercase tab-next-btn float-right">Next</a>
 										<input href="javascript:void(0);" type="submit" class="btn btn-success text-uppercase tab-submit float-right" value="Submit" />

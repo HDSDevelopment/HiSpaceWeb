@@ -310,7 +310,7 @@ $(window).load(function () {
 		fullWidth: true,
 		onHoverPause: false,
 		video: {
-			autoPlay: true
+			autoPlay: false
 		}
 	});
 
@@ -1113,8 +1113,8 @@ $(window).load(function () {
 		layoutMode: 'grid',
 		defaultFilter: '*',
 		animationType: 'fadeOutTop',
-		gapHorizontal: 0,
-		gapVertical: 0,
+		gapHorizontal: 50,
+		gapVertical: 50,
 		gridAdjustment: 'responsive',
 		mediaQueries: [{
 			width: 1600,

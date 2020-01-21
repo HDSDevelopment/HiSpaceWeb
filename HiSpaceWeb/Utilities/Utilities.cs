@@ -604,7 +604,90 @@ namespace HiSpaceWeb.Utilities
 
             return empLst;
         }
-    }
+
+		public static List<ScheduleTime> GetScheduleTime()
+		{
+			List<ScheduleTime> time = new List<ScheduleTime>();
+			time.Add(new ScheduleTime() { ScheduleTimeID = 0, ScheduleTimeView = "-select-" });
+			
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 1,  ScheduleTimeSpan = TimeSpan.Parse("00:00:00"), ScheduleTimeView = "12:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 2, ScheduleTimeSpan = TimeSpan.Parse("00:30:00"), ScheduleTimeView = "12:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 3, ScheduleTimeSpan = TimeSpan.Parse("01:00:00"), ScheduleTimeView = "01:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 4, ScheduleTimeSpan = TimeSpan.Parse("01:30:00"), ScheduleTimeView = "01:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 5, ScheduleTimeSpan = TimeSpan.Parse("02:00:00"), ScheduleTimeView = "02:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 6, ScheduleTimeSpan = TimeSpan.Parse("02:30:00"), ScheduleTimeView = "02:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 7, ScheduleTimeSpan = TimeSpan.Parse("03:00:00"), ScheduleTimeView = "03:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 8, ScheduleTimeSpan = TimeSpan.Parse("03:30:00"), ScheduleTimeView = "03:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 9, ScheduleTimeSpan = TimeSpan.Parse("04:00:00"), ScheduleTimeView = "04:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 10, ScheduleTimeSpan = TimeSpan.Parse("04:30:00"), ScheduleTimeView = "04:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 11, ScheduleTimeSpan = TimeSpan.Parse("05:00:00"), ScheduleTimeView = "05:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID =12, ScheduleTimeSpan = TimeSpan.Parse("05:30:00"), ScheduleTimeView = "05:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 13, ScheduleTimeSpan = TimeSpan.Parse("06:00:00"), ScheduleTimeView = "06:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 14, ScheduleTimeSpan = TimeSpan.Parse("06:30:00"), ScheduleTimeView = "06:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 15, ScheduleTimeSpan = TimeSpan.Parse("07:00:00"), ScheduleTimeView = "07:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 16, ScheduleTimeSpan = TimeSpan.Parse("07:30:00"), ScheduleTimeView = "07:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 17, ScheduleTimeSpan = TimeSpan.Parse("08:00:00"), ScheduleTimeView = "08:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 18, ScheduleTimeSpan = TimeSpan.Parse("08:30:00"), ScheduleTimeView = "08:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 19, ScheduleTimeSpan = TimeSpan.Parse("09:00:00"), ScheduleTimeView = "09:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 20, ScheduleTimeSpan = TimeSpan.Parse("09:30:00"), ScheduleTimeView = "09:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 21, ScheduleTimeSpan = TimeSpan.Parse("10:00:00"), ScheduleTimeView = "10:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 22, ScheduleTimeSpan = TimeSpan.Parse("10:30:00"), ScheduleTimeView = "10:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 23, ScheduleTimeSpan = TimeSpan.Parse("11:00:00"), ScheduleTimeView = "11:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 24, ScheduleTimeSpan = TimeSpan.Parse("11:30:00"), ScheduleTimeView = "11:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 25, ScheduleTimeSpan = TimeSpan.Parse("12:00:00"), ScheduleTimeView = "12:00 am" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 26, ScheduleTimeSpan = TimeSpan.Parse("12:30:00"), ScheduleTimeView = "12:30 am" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 27, ScheduleTimeSpan = TimeSpan.Parse("13:00:00"), ScheduleTimeView = "01:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 28, ScheduleTimeSpan = TimeSpan.Parse("13:30:00"), ScheduleTimeView = "01:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 29, ScheduleTimeSpan = TimeSpan.Parse("14:00:00"), ScheduleTimeView = "02:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 30, ScheduleTimeSpan = TimeSpan.Parse("14:30:00"), ScheduleTimeView = "02:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 31, ScheduleTimeSpan = TimeSpan.Parse("15:00:00"), ScheduleTimeView = "03:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 32, ScheduleTimeSpan = TimeSpan.Parse("15:30:00"), ScheduleTimeView = "03:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 33, ScheduleTimeSpan = TimeSpan.Parse("16:00:00"), ScheduleTimeView = "04:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 34, ScheduleTimeSpan = TimeSpan.Parse("16:30:00"), ScheduleTimeView = "04:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 35, ScheduleTimeSpan = TimeSpan.Parse("17:00:00"), ScheduleTimeView = "05:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 36, ScheduleTimeSpan = TimeSpan.Parse("17:30:00"), ScheduleTimeView = "05:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 37, ScheduleTimeSpan = TimeSpan.Parse("18:00:00"), ScheduleTimeView = "06:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 38, ScheduleTimeSpan = TimeSpan.Parse("18:30:00"), ScheduleTimeView = "06:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 39, ScheduleTimeSpan = TimeSpan.Parse("19:00:00"), ScheduleTimeView = "07:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 40, ScheduleTimeSpan = TimeSpan.Parse("19:30:00"), ScheduleTimeView = "07:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 41, ScheduleTimeSpan = TimeSpan.Parse("20:00:00"), ScheduleTimeView = "08:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 42, ScheduleTimeSpan = TimeSpan.Parse("20:30:00"), ScheduleTimeView = "08:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 43, ScheduleTimeSpan = TimeSpan.Parse("21:00:00"), ScheduleTimeView = "09:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 44, ScheduleTimeSpan = TimeSpan.Parse("21:30:00"), ScheduleTimeView = "09:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 45, ScheduleTimeSpan = TimeSpan.Parse("22:00:00"), ScheduleTimeView = "10:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 46, ScheduleTimeSpan = TimeSpan.Parse("22:30:00"), ScheduleTimeView = "10:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 47, ScheduleTimeSpan = TimeSpan.Parse("23:00:00"), ScheduleTimeView = "11:00 pm" });
+			time.Add(new ScheduleTime() { ScheduleTimeID = 48, ScheduleTimeSpan = TimeSpan.Parse("23:30:00"), ScheduleTimeView = "11:30 pm" });
+
+			time.Add(new ScheduleTime() { ScheduleTimeID = 49, ScheduleTimeSpan = TimeSpan.Parse("23:59:59"), ScheduleTimeView = "11:59 pm" });
+
+			return time;
+		}
+	}
 
     public static class SelectedSeats
     {
@@ -633,4 +716,13 @@ namespace HiSpaceWeb.Utilities
     {
         public string MembershipDurationType { set; get; }
     }
+
+	public class ScheduleTime
+	{
+		public int ScheduleTimeID { set; get; }
+		public string ScheduleTimeView { set; get; }
+		public TimeSpan? ScheduleTimeSpan { set; get; }
+	}
+
+
 }

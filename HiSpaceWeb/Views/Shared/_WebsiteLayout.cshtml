@@ -1,6 +1,6 @@
 ﻿@{
-    @using Microsoft.AspNetCore.Http
-    @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+	@using Microsoft.AspNetCore.Http
+	@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 
 }
 
@@ -13,296 +13,320 @@
 <!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>HiSpace Web - @ViewBag.Title</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.ico">
-    <!-- style.css is main stylesheet and all other sylesheets are being
-     imported in this file. -->
-    <link rel="stylesheet" href="~/css/website/style.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>HiSpace Web - @ViewBag.Title</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="shortcut icon" type="image/x-icon" href="~/img/favicon.ico">
+	<!-- style.css is main stylesheet and all other sylesheets are being
+	 imported in this file. -->
+	<link rel="stylesheet" href="~/css/website/style.css">
 	<link rel="stylesheet" href="~/css/summernote.css">
 	<link rel="stylesheet" href="~/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="~/css/animate.css">
+	<link rel="stylesheet" href="~/css/animate.css">
 	<link rel="stylesheet" href="~/css/bootstrap-datetimepicker.css">
-    <link rel="stylesheet" href="~/css/bootstrap-datetimepicker-standalone.css">
-    <link rel="stylesheet" href="~/css/website/custom.css">
-    <link rel="stylesheet" href="~/css/Comman.css">
-    <script src="~/js/website/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+	<link rel="stylesheet" href="~/css/bootstrap-datetimepicker-standalone.css">
+	<link rel="stylesheet" href="~/css/website/custom.css">
+	<link rel="stylesheet" href="~/css/Comman.css">
+	<script src="~/js/website/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 </head>
 
-<body>
-    <!--[if lt IE 8]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <!-- preloader START -->
-    <div class="preloader">
-        <div class="spinner-wrap">
-            <div class="spinner spinner-wave">
-                <div class="rect1"></div>
-                <div class="rect2"></div>
-                <div class="rect3"></div>
-                <div class="rect4"></div>
-                <div class="rect5"></div>
-            </div>
-        </div>
-    </div>
-    <!-- preloader END -->
-    <!-- main navigation START -->
-    <nav class="navbar navbar-custom transparent-nav navbar-fixed-top mega-menu" role="navigation">
-        <div class="container">
+<body class="workspace-details">
+	<!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+	<!-- preloader START -->
+	<div class="preloader">
+		<div class="spinner-wrap">
+			<div class="spinner spinner-wave">
+				<div class="rect1"></div>
+				<div class="rect2"></div>
+				<div class="rect3"></div>
+				<div class="rect4"></div>
+				<div class="rect5"></div>
+			</div>
+		</div>
+	</div>
+	<!-- preloader END -->
+	<!-- main navigation START -->
+	<nav class="navbar navbar-custom transparent-nav navbar-fixed-top mega-menu" role="navigation">
+		<div class="container">
 
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="@Url.Action( "Index","Website")"><img src="../img/logos/logo.png" alt="BookMyWorkspace"></a>
-                @*<span class="ws_caption">Move into your space, with us</span>*@
-            </div>
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="@Url.Action( "Index","Website")"><img src="../img/logos/logo.png" alt="BookMyWorkspace"></a>
+				@*<span class="ws_caption">Move into your space, with us</span>*@
+			</div>
 
-            <ul class="nav navbar-nav navbar-right search-cart">
-                <li class="nav-btn"><a href="@Url.Action( "ListWorkspace","Website")" class="btn btn-info btn-xs round cst-btn-nine"><span>I Need Workspace</span></a></li>
-                <li class="nav-btn"><a href="@Url.Action( "Login","Authentication")" class="btn btn-success btn-xs round cst-btn-nine"><span>I Share MySpace</span></a></li>
-                <li class="dropdown cart ws-cart">
+			<ul class="nav navbar-nav navbar-right search-cart">
+				<li class="nav-btn"><a href="@Url.Action( "ListWorkspace","Website")" class="btn btn-info btn-xs round cst-btn-nine"><span>I Need <span class="need">Workspace</span></span></a></li>
+				<li class="nav-btn"><a href="@Url.Action( "Login","Authentication")" class="btn btn-success btn-xs round cst-btn-nine"><span>I Share <span class="share">MySpace</span></span></a></li>
+				<li class="dropdown cart ws-cart">
 
-                    @Html.Partial("_WebsiteCart")
-                </li>
-                <li class="dropdown login">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        <i class="ion-ios-contact-outline"></i>
-                        @if (ViewBag.Username != null)
-                        {
-                            <span class="login-active"></span>
-                        }
-                        else
-                        {
-                            <span class="login-disactive"></span>
-                        }
-                    </a>
-                    @if (ViewBag.Username != null)
-                    {
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="before-none"><a><i class="ion-android-person"></i> @ViewBag.Username</a></li>
-                            <li class="before-none"><a href="@Url.Action( "Index","Home")"><i class="ion-android-apps"></i> Dashboard</a></li>
-                            <li class="before-none"><a href="@Url.Action( "Logout","Website")"><i class="ion-log-out"></i> Logout</a></li>
-                        </ul>
-                    }
-                    else
-                    {
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="before-none"><a href="@Url.Action( "Login","Authentication")"><i class="ion-log-in"></i> Login</a></li>
-                        </ul>
-                    }
-                </li>
-            </ul>
+					@Html.Partial("_WebsiteCart")
+				</li>
+				<li class="dropdown login">
+					<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						<i class="ion-ios-contact-outline"></i>
+						@if (ViewBag.Username != null)
+						{
+							<span class="login-active"></span>
+						}
+						else
+						{
+							<span class="login-disactive"></span>
+						}
+					</a>
+					@if (ViewBag.Username != null)
+					{
+						<ul class="dropdown-menu" role="menu">
+							<li class="before-none"><a><i class="ion-android-person"></i> @ViewBag.Username</a></li>
+							<li class="before-none"><a href="@Url.Action( "Index","Home")"><i class="ion-android-apps"></i> Dashboard</a></li>
+							<li class="before-none"><a href="@Url.Action( "Logout","Website")"><i class="ion-log-out"></i> Logout</a></li>
+						</ul>
+					}
+					else
+					{
+						<ul class="dropdown-menu" role="menu">
+							<li class="before-none"><a href="@Url.Action( "Login","Authentication")"><i class="ion-log-in"></i> Login</a></li>
+						</ul>
+					}
+				</li>
+			</ul>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="@Url.Action( "Index","Website")">Home</a></li>
-                    <li><a href="@Url.Action( "About","Website")">About</a></li>
-                    @*<li><a href="">Contact</a></li>*@
-                    <li><a href="">FAQ</a></li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container -->
-    </nav>
-    <!-- main navigation END -->
-    <!--statring the body section-->
-    @RenderBody()
-    <!--end the body section-->
-    <!-- footer START -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-sm-12">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="@Url.Action( "Index","Website")">Home</a></li>
+					<li><a href="@Url.Action( "About","Website")">About</a></li>
+					@*<li><a href="">Contact</a></li>*@
+					@*<li><a href="">FAQ</a></li>*@
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container -->
+	</nav>
+	<!-- main navigation END -->
+	<!--statring the body section-->
+	@RenderBody()
+	<!--end the body section-->
+	<!-- footer START -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-4 col-sm-9 col-xs-8">
 
-                    <h4 class="strong">About HiSpace</h4>
-                    <p>We pride ourselves on being able to apply our creativity to every brief to deliver the right message. Ready to start a project want to learn more about our process and how we work with clients?</p>
-                    <a href="#" title="Contact Us" class="btn btn-default btn-icon contact-btn"><i class="livicon" data-name="mail" data-color="#fff" data-hovercolor="false" data-size="18"></i> Contact Us</a>
-                </div>
-                <div class="col-lg-2 col-sm-4 col-lg-offset-2">
+					<h4 class="strong">About HiSpace</h4>
+					<p>We pride ourselves on being able to apply our creativity to every brief to deliver the right message. Ready to start a project want to learn more about our process and how we work with clients?</p>
+					<a href="#" title="Contact Us" class="btn btn-default btn-icon contact-btn"><i class="livicon" data-name="mail" data-color="#fff" data-hovercolor="false" data-size="18"></i> Contact Us</a>
+				</div>
+				<div class="col-lg-2 col-md-offset-1 col-md-2 col-sm-3 col-lg-offset-1 col-xs-4">
 
-                    <h4 class="strong">HiSpace</h4>
-                    <ul class="ft-list">
-                        <li><a href="javascript:void(0);" title="Link title here">Home</a></li>
-                        <li><a href="javascript:void(0);" title="Link title here">What We Do</a></li>
-                        <li><a href="javascript:void(0);" title="Link title here">Contact</a></li>
-                        <li><a href="javascript:void(0);" title="Link title here">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4 col-sm-4 enquireUs">
-                    <h4 class="strong text-center">Enquire Us</h4>
-                    <div class="row">
-                        <form class="">
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label for="name" class="control-label">Name</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control input-sm" id="name" name="name" placeholder="Enter Name">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label for="email" class="control-label">Email</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control input-sm" id="email" name="email" placeholder="Enter email">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label for="email" class="control-label">Phone</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control input-sm" id="phone" name="phone" placeholder="Enter Phone">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4">
-                                    <label for="comment" class="control-label">Comments</label>
-                                </div>
-                                <div class="col-sm-8">
-                                    <textarea class="form-control" rows="3" id="comment" placeholder="Text here..."></textarea>
-                                </div>
-                            </div>
-                            <div class="col-sm-offset-4 col-sm-8">
-                                <a href="#" title="Enquire Us" class="btn btn-default btn-icon contact-btn no-margin"><i class="livicon" data-name="mail" data-color="#fff" data-hovercolor="false" data-size="18"></i> Enquire Us</a>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="row d-flex align-items-center">
-                <div class="col-sm-4 footerCopyRight">
-                    <p>&copy; Copyright 2019. All rights reserved.</p>
-                </div>
-                <div class="col-sm-5 footerCopyRight">
-                    <p>Hand-crafted made with <i class="fa fa-heart text-danger mx-1"></i> by Highbrow Diligence Services</p>
-                </div>
-                <div class="col-sm-3">
-
-                    <div class="ft-social text-right">
-                        <a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-pinterest-p"></i><span>p</span></a>
-                        <a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-facebook"></i><span>f</span></a>
-                        <a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-linkedin"></i><span>in</span></a>
-                        <a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-twitter"></i><span>t</span></a>
-                        <a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-dribbble"></i><span>d</span></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer style1 END -->
-
-    <!-- Modal -->
-    <div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">WELCOME TO CHECKOUT</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="modal-image"><i class="flaticon-work-table"></i></div>
-                    <div class="modal-text">
-                        <p>Your seats has been selected successfully to checkout the seats.</p>
-                        <p>Please Login to complete the process...</p>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <div class="mtb--10 d-inline-block float-left">New User 
-						<a href="@Url.Action("Signup", "Authentication",new { IsBooking = true })" class="btn btn-primary cst-btn-nine btn-xs"><span>Signup </span></a>
+					<h4 class="strong">HiSpace</h4>
+					<ul class="ft-list">
+						<li><a href="javascript:void(0);" title="Link title here">Home</a></li>
+						<li><a href="javascript:void(0);" title="Link title here">What We Do</a></li>
+						<li><a href="javascript:void(0);" title="Link title here">Contact</a></li>
+						<li><a href="javascript:void(0);" title="Link title here">FAQ</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-5 col-md-5 col-sm-10 col-xs-12 enquireUs">
+					<h4 class="strong text-center">Enquire Us</h4>
+					<div class="row">
+						<form class="">
+							<div class="form-group">
+								<div class="col-sm-4">
+									<label for="name" class="control-label">Name</label>
+								</div>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-sm" id="name" name="name" placeholder="Enter Name">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4">
+									<label for="email" class="control-label">Email</label>
+								</div>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-sm" id="email" name="email" placeholder="Enter email">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4">
+									<label for="email" class="control-label">Phone</label>
+								</div>
+								<div class="col-sm-8">
+									<input type="text" class="form-control input-sm" id="phone" name="phone" placeholder="Enter Phone">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4">
+									<label for="comment" class="control-label">Comments</label>
+								</div>
+								<div class="col-sm-8">
+									<textarea class="form-control" rows="3" id="comment" placeholder="Text here..."></textarea>
+								</div>
+							</div>
+							<div class="col-sm-offset-4 col-sm-8">
+								<a href="#" title="Enquire Us" class="btn btn-default btn-icon contact-btn no-margin"><i class="livicon" data-name="mail" data-color="#fff" data-hovercolor="false" data-size="18"></i> Enquire Us</a>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row align-items-center">
+				<div class="col-md-4 col-sm-6 col-xs-6 footerCopyRight">
+					<p>&copy; Copyright 2019. All rights reserved.</p>
+				</div>
+				<div class="col-md-4 col-sm-6 col-xs-6 footerCopyRight">
+					<p>Hand-crafted with <i class="fa fa-heart text-danger mx-1"></i> by Highbrow Diligence Services</p>
+				</div>
+				<div class="col-md-4 col-sm-12 col-xs-12">
+					<div class="ft-social text-right">
+						<a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-pinterest-p"></i><span>p</span></a>
+						<a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-facebook"></i><span>f</span></a>
+						<a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-linkedin"></i><span>in</span></a>
+						<a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-twitter"></i><span>t</span></a>
+						<a class="cst-btn-ten" href="javascript:void(0);"><i class="fa fa-dribbble"></i><span>d</span></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer style1 END -->
+	<!-- Modal -->
+	<div class="modal fade" id="checkout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">WELCOME TO CHECKOUT</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body d-flex align-items-center">
+					<div class="modal-image"><i class="flaticon-work-table"></i></div>
+					<div class="modal-text">
+						<p>Your seats has been selected successfully to checkout the seats.</p>
+						<p>Please Login to complete the process...</p>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<div class="mtb--10 d-inline-block float-left">
+						New User
+						<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cst-btn-nine btn-xs" title="Check User Option" data-toggle="modal" data-target="#checkUser"><span>Signup </span></a>
 						<a href="@Url.Action("payment", "Website")" class="btn btn-success cst-btn-nine btn-xs"><span>Payment </span></a>
 					</div>
-                    <a href="javascript:void(0);" class="btn btn-default cst-btn-nine" data-dismiss="modal"><span>Close </span></a>
-                    <a href="@Url.Action( "Login","Authentication", new { IsBooking = true })" class="btn btn-success cst-btn-nine"><span>Login </span></a>
-                </div>
-            </div>
-        </div>
-    </div>
+					<a href="javascript:void(0);" class="btn btn-default cst-btn-nine" data-dismiss="modal"><span>Close </span></a>
+					<a href="@Url.Action( "Login","Authentication", new { IsBooking = true })" class="btn btn-success cst-btn-nine"><span>Login </span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Modal for new user-->
+	<div class="modal fade" id="checkUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelForCheckUser" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabelForCheckUser">CHECK THE OPTION</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body d-flex align-items-center">
+					<div class="modal-image"><i class="flaticon-work-table"></i></div>
+					<div class="modal-text col-md-12">
+						<div class="row">
+							<div class="col-md-6">
+								<a href="@Url.Action("Signup", "Authentication",new { IsBooking = true, NewUser = 0 })" class="btn btn-info cst-btn-nine full-width"><span>Guest Signup</span></a>
+								<div class="sm-text">Signup as guest for temporary use</div>
+							</div>
+							<div class="col-md-6">
+								<a href="@Url.Action("Signup", "Authentication",new { IsBooking = true, NewUser = 1 })" class="btn btn-success cst-btn-nine full-width"><span>Member Signup</span></a>
+								<div class="sm-text">Member has some special offers</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<!-- payment success Modal -->
-    <div class="modal fade" id="paymentAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-1" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel-1">PAYMENT SUCCESS</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body d-flex align-items-center">
-                    <div class="modal-image">
+	<div class="modal fade" id="paymentAlert" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-1" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel-1">PAYMENT SUCCESS</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body d-flex align-items-center">
+					<div class="modal-image">
 						<i class="fa fa-check-circle-o" aria-hidden="true"></i>
 						<p>success</p>
 					</div>
+				</div>
+				<div class="modal-footer">
+					<a href="@Url.Action("Index", "Website")" class="btn btn-default cst-btn-nine" data-dismiss="modal"><span>Close </span></a>
+				</div>
+			</div>
+		</div>
+	</div>
 
-                </div>
-                <div class="modal-footer">
-                    <a href="@Url.Action("Index", "Website")" class="btn btn-default cst-btn-nine" data-dismiss="modal"><span>Close </span></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-	
-
-    <!-- jQuery plugins -->
-    <script src="~/js/website/vendor/jquery.js"></script>
-    <script src="~/js/jquery-ui.js"></script>
-    <script src="~/js/website/vendor/bootstrap.js"></script>
+	<!-- jQuery plugins -->
+	<script src="~/js/website/vendor/jquery.js"></script>
+	<script src="~/js/jquery-ui.js"></script>
+	<script src="~/js/website/vendor/bootstrap.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <script src="~/js/website/easing.js"></script>
-    <script src="~/js/website/scrollbar.js"></script>
-    <script src="~/js/website/retina.js"></script>
-    <script src="~/js/website/raphael.js"></script>
-    <script src="~/js/website/tabs.js"></script>
-    <script src="~/js/website/livicons.js"></script>
-    <script src="~/js/website/icheck.js"></script>
-    <script src="~/js/website/mousewheel.js"></script>
-    <script src="~/js/website/selectik.js"></script>
-    <script src="~/js/website/spinedit.js"></script>
-    <script src="~/js/website/testimonial.min.js"></script>
-    <script src="~/js/website/wow.js"></script>
-    <script src="~/js/website/hover-dropdown.js"></script>
-    <script src="~/js/website/classie.js"></script>
-    <script src="~/plugins/cloudslider/js/cloudslider.jquery.min.js"></script>
-    <script src="~/cubeportfolio/js/jquery.cubeportfolio.js"></script>
-    <script src="~/plugins/nivo-lightbox/nivo-lightbox.min.js"></script>
-    <script src="~/js/website/appear.js"></script>
-    <script src="~/js/website/pie-chart.js"></script>
-    <script src="~/js/website/vide.js"></script>
-    <script src="~/js/website/fitvids.js"></script>
-    <script src="~/plugins/owl-carousel/owl.carousel.min.js"></script>
-    <script src="~/js/website/jflickrfeed.js"></script>
-    <script src="~/js/website/tweecool.js"></script>
-    <script src="~/js/website/chart.js"></script>
-    <script src="~/js/website/totop.js"></script>
-    <script src="~/js/website/smooth-scroll.js"></script>
-    <script src="~/js/website/ajaxchimp.js"></script>
-    <script src="~/js/website/contact.js"></script>
-    <script src="~/js/website/form.js"></script>
-    <script src="~/js/website/validate.js"></script>
-    <script src="~/js/website/countdown.js"></script>
-    <script src="~/js/website/tempo.js"></script>
-    <script src="~/js/website/main.js"></script>
+	<script src="~/js/website/easing.js"></script>
+	<script src="~/js/website/scrollbar.js"></script>
+	@*<script src="~/js/website/retina.js"></script>*@
+	<script src="~/js/website/raphael.js"></script>
+	<script src="~/js/website/tabs.js"></script>
+	<script src="~/js/website/livicons.js"></script>
+	<script src="~/js/website/icheck.js"></script>
+	<script src="~/js/website/mousewheel.js"></script>
+	<script src="~/js/website/selectik.js"></script>
+	<script src="~/js/website/spinedit.js"></script>
+	<script src="~/js/website/testimonial.min.js"></script>
+	<script src="~/js/website/wow.js"></script>
+	<script src="~/js/website/hover-dropdown.js"></script>
+	<script src="~/js/website/classie.js"></script>
+	<script src="~/plugins/cloudslider/js/cloudslider.jquery.min.js"></script>
+	<script src="~/cubeportfolio/js/jquery.cubeportfolio.js"></script>
+	<script src="~/plugins/nivo-lightbox/nivo-lightbox.min.js"></script>
+	<script src="~/js/website/appear.js"></script>
+	<script src="~/js/website/pie-chart.js"></script>
+	<script src="~/js/website/vide.js"></script>
+	<script src="~/js/website/fitvids.js"></script>
+	<script src="~/plugins/owl-carousel/owl.carousel.min.js"></script>
+	<script src="~/js/website/jflickrfeed.js"></script>
+	<script src="~/js/website/tweecool.js"></script>
+	<script src="~/js/website/chart.js"></script>
+	<script src="~/js/website/totop.js"></script>
+	<script src="~/js/website/smooth-scroll.js"></script>
+	<script src="~/js/website/ajaxchimp.js"></script>
+	<script src="~/js/website/contact.js"></script>
+	<script src="~/js/website/form.js"></script>
+	<script src="~/js/website/validate.js"></script>
+	<script src="~/js/website/countdown.js"></script>
+	<script src="~/js/website/tempo.js"></script>
+	<script src="~/js/website/main.js"></script>
 	<script src="~/js/summernote.js"></script>
 	<script src="~/js/bootstrap-select.min.js"></script>
-    <script src="~/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="~/js/website/custom.js"></script>
-    <script src="~/js/Comman.js"></script>
-    <script src="~/js/website/websiteSeatBooking.js"></script>
+	<script src="~/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="~/js/website/custom.js"></script>
+	<script src="~/js/Comman.js"></script>
+	<script src="~/js/website/websiteSeatBooking.js"></script>
 </body>
 </html>
-

@@ -42,43 +42,42 @@
 						</div>
 					</div>
 					<!-- end page title -->
-
 					<!--Form wizard start-->
-				<div class="wizard">
-					<div class="wizard-inner">
-						<div class=""></div>
-						<ul class="nav nav-tabs" role="tablist">
+					<div class="wizard">
+						<div class="wizard-inner">
+							<div class=""></div>
+							<ul class="nav nav-tabs" role="tablist">
 
-							<li role="presentation" class="">
-								<a href="JavaScript:Void(0);">
-									<span class="round-tab">
-										<i class="fa fa-map-marker" aria-hidden="true"></i>
-									</span>
-								</a>
-								<div class="wz-location">Location</div>
-							</li>
+								<li role="presentation" class="">
+									<a href="JavaScript:Void(0);">
+										<span class="round-tab">
+											<i class="fa fa-map-marker" aria-hidden="true"></i>
+										</span>
+									</a>
+									<div class="wz-location">Location</div>
+								</li>
 
-							<li role="presentation" class="">
-								<a href="JavaScript:Void(0);">
-									<span class="round-tab">
-										<i class="fa fa-building" aria-hidden="true"></i>
-									</span>
-								</a>
-								<div class="wz-location">Floor</div>
-							</li>
-							<li role="presentation" class="active">
-								<a href="JavaScript:Void(0);">
-									<span class="round-tab">
-										<i class="fa fa-pie-chart" aria-hidden="true"></i>
-									</span>
-								</a>
-								<div class="wz-location">Space</div>
-							</li>
+								<li role="presentation" class="">
+									<a href="JavaScript:Void(0);">
+										<span class="round-tab">
+											<i class="fa fa-building" aria-hidden="true"></i>
+										</span>
+									</a>
+									<div class="wz-location">Floor</div>
+								</li>
+								<li role="presentation" class="active">
+									<a href="JavaScript:Void(0);">
+										<span class="round-tab">
+											<i class="fa fa-pie-chart" aria-hidden="true"></i>
+										</span>
+									</a>
+									<div class="wz-location">Space</div>
+								</li>
 
-						</ul>
+							</ul>
+						</div>
 					</div>
-				</div>
-				<!--Form wizard end-->
+					<!--Form wizard end-->
 				</div>
 			</div>
 			<!-- end row -->
@@ -96,16 +95,19 @@
 									<a class="nav-link active show" id="head-1" data-id="1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true"> <span>1.</span> Info </a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="head-2" data-id="2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><span>2.</span> Seat Price </a>
+									<a class="nav-link" id="head-2" data-id="2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false"><span>2.</span> scheduler </a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="head-3" data-id="3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"> <span>3.</span> Floor Plan </a>
+									<a class="nav-link" id="head-3" data-id="3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false"><span>3.</span> Seat Price </a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="head-4" data-id="4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"> <span>4.</span> Matrix Input </a>
+									<a class="nav-link" id="head-4" data-id="4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false"> <span>4.</span> Floor Plan </a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="head-5" data-id="5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false"> <span>5.</span> Preview </a>
+									<a class="nav-link" id="head-5" data-id="5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false"> <span>5.</span> Matrix Input </a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="head-6" data-id="6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6" aria-selected="false"> <span>6.</span> Preview </a>
 								</li>
 							</ul>
 						</div>
@@ -137,7 +139,7 @@
 												</div>
 												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
 													<div class="form-group">
-														@Html.DisplayFor(m => m.ClientSpaceFloorPlan.ClientFloorID, new { @class = "control-label" })
+														@*@Html.DisplayFor(m => m.ClientSpaceFloorPlan.ClientFloorID, new { @class = "control-label" })*@
 														<select disabled id="ClientFloorID" name="ClientFloorID" asp-for="ClientFloorID"
 																asp-items="@(new SelectList(ViewBag.ListOfFloors,"ClientFloorID", "FloorNumber"))"></select>
 														<label class="control-label">Floor Number</label>
@@ -155,19 +157,440 @@
 											<div class="row">
 												<div class="col-lg-12 col-md-6 col-sm-6 col-12">
 													@*<div class="form-group">
-														@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { htmlAttributes = new { @placeholder = "Enter text..." } })
-														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label" })
-														<i class="bar"></i>
-													</div>*@
-													<div class = "form-group" > 
+															@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { htmlAttributes = new { @placeholder = "Enter text..." } })
+															@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label" })
+															<i class="bar"></i>
+														</div>*@
+													<div class="form-group">
 														@Html.LabelFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { @class = "control-label texteditor-label" })
-														@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { placeholder = "", @class = "form-control textarea-editor"}) 
-													</div> 
+														@Html.TextAreaFor(m => m.ClientSpaceFloorPlan.SpaceDescription, new { placeholder = "", @class = "form-control textarea-editor" })
+													</div>
 												</div>
 											</div>
 										</div>
 										<!--tab 2-->
 										<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="head-2">
+
+											<div class="form-radio m-0">
+												<!--radio 1-->
+												<div class="sch-1">
+													<div class="radio">
+														<label class="">
+															<input type="radio" id="AllTimeCheck_radio" name="ClientSpaceFloorPlan.Is24" value="true" radio-attr="24/7" /><i class="helper"></i>24 / 7 Available
+															@Html.EditorFor(m => m.AllTimeCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" id="AllTimeCheck" name="AllTimeCheck" class="hidden"/>*@
+														</label>
+													</div>
+												</div>
+												<!--radio 2 mon-fri-->
+												<div class="sch-2">
+													<div class="radio m-0">
+														<label>
+															<input type="radio" id="MonToFriCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr="weekdays" /><i class="helper"></i>Weekdays
+															@Html.EditorFor(m => m.MonToFriCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" id="MonToFriCheck" name="MonToFriCheck" class="hidden"/>*@
+														</label>
+													</div>
+													<div class="sch-weekdays cursor-no-drop">
+														<div class="pointer-event-none">
+															<!--mon-fri-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Monday - Friday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="MonToFri_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="MonToFri_Open" name="MonToFriOpen" asp-for="MonToFriOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="MonToFri_Close" name="MonToFriClose" asp-for="MonToFriClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--radio 3 mon-sat-->
+												<div class="sch-3">
+													<div class="radio m-0">
+														<label>
+															<input type="radio" id="MonToSatCheck_radio" name="ClientSpaceFloorPlan.Is24" value="flase" radio-attr="weeksaturday" /><i class="helper"></i>Weekdays with Saturday
+															@Html.EditorFor(m => m.MonToSatCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" id="MonToSatCheck" name="MonToSatCheck" class="hidden"/>*@
+														</label>
+													</div>
+													<div class="sch-weeksaturday cursor-no-drop">
+														<div class="pointer-event-none">
+															<!--mon-fri-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Monday - Friday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="MonToFriNotSat_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="MonToFriNotSat_Open" name="MonToFriNotSatOpen" asp-for="MonToFriNotSatOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFriNotSat_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="MonToFriNotSat_Close" name="MonToFriNotSatClose" asp-for="MonToFriNotSatClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFriNotSat_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--saturday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Saturday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="MonToFriWithSat_Avail" name="ClientSpaceFloorPlan.SatAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="MonToFri_Sat_Open" name="MonToFriWithSatOpen" asp-for="MonToFriWithSatOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Sat_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="MonToFri_Sat_Close" name="MonToFriWithSatClose" asp-for="MonToFriWithSatClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="MonToFri_Sat_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--radio 4-->
+												<div class="sch-4">
+													<div class="radio m-0">
+														<label>
+															<input type="radio" id="CustomCheck_radio" name="ClientSpaceFloorPlan.Is24" value="false" radio-attr="custom" /><i class="helper"></i>Custom Available
+															@Html.EditorFor(m => m.CustomCheck, new { htmlAttributes = new { @class = "hidden" } })
+															@*<input type="checkbox" id="CustomCheck" name="CustomCheck"  class="hidden"/>*@
+														</label>
+													</div>
+
+													<!--time selection-->
+													<div class="sch-custom cursor-no-drop">
+														<div class="pointer-event-none">
+
+															<!--monday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Monday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="CustomMon_Avail" name="ClientSpaceFloorPlan.MonAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomMon_Open" name="ClientSpaceFloorPlan.MonOpen" asp-for="ClientSpaceFloorPlan.MonOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomMon_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomMon_Close" name="ClientSpaceFloorPlan.MonClose" asp-for="ClientSpaceFloorPlan.MonClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomMon_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--tuesday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Tuesday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="ClientSpaceFloorPlan_TueAvail" name="ClientSpaceFloorPlan.TueAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomTue_Open" name="ClientSpaceFloorPlan.TueOpen" asp-for="ClientSpaceFloorPlan.TueOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomTue_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomTue_Close" name="ClientSpaceFloorPlan.TueClose" asp-for="ClientSpaceFloorPlan.TueClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomTue_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--wednesday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Wednesday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="ClientSpaceFloorPlan_WedAvail" name="ClientSpaceFloorPlan.WedAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomWed_Open" name="ClientSpaceFloorPlan.WedOpen" asp-for="ClientSpaceFloorPlan.WedOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomWed_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomWed_Close" name="ClientSpaceFloorPlan.WedClose" asp-for="ClientSpaceFloorPlan.WedClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomWed_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--thursday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Thursday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="ClientSpaceFloorPlan_ThuAvail" name="ClientSpaceFloorPlan.ThuAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomThu_Open" name="ClientSpaceFloorPlan.ThuOpen" asp-for="ClientSpaceFloorPlan.ThuOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomThu_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomThu_Close" name="ClientSpaceFloorPlan.ThuClose" asp-for="ClientSpaceFloorPlan.ThuClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomThu_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--friday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Friday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="ClientSpaceFloorPlan_FriAvail" name="ClientSpaceFloorPlan.FriAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomFri_Open" name="ClientSpaceFloorPlan.FriOpen" asp-for="ClientSpaceFloorPlan.FriOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomFri_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomFri_Close" name="ClientSpaceFloorPlan.FriClose" asp-for="ClientSpaceFloorPlan.FriClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomFri_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--saturday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Saturday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="ClientSat_Avail" name="ClientSpaceFloorPlan.SatAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomSat_Open" name="ClientSpaceFloorPlan.SatOpen" asp-for="ClientSpaceFloorPlan.SatOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSat_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomSat_Close" name="ClientSpaceFloorPlan.SatClose" asp-for="ClientSpaceFloorPlan.SatClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSat_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--sunday-->
+															<div class="row">
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 sch-days">
+																	Sunday
+																</div>
+																<div class="col-lg-2 col-md-3 col-sm-3 col-6 align-self-center sch-checkbox">
+																	<div class="form-group m-0">
+																		<div class="checkbox checbox-switch switch-primary checbox-switch-small">
+																			<label class="p-0">
+																				<input id="ClientSpaceFloorPlan_SunAvail" name="ClientSpaceFloorPlan.SunAvail" class="sch-status" type="checkbox" value="true" />
+																				<span></span>
+																				<strong>Closed</strong>
+																			</label>
+																		</div>
+																	</div>
+																</div>
+
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6 sch-time align-self-center">
+																	<div class="row">
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomSun_Open" name="ClientSpaceFloorPlan.SunOpen" asp-for="ClientSpaceFloorPlan.SunOpen"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSun_Open" class="control-label">From</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																		<div class="col-lg-6 col-md-6 col-sm-6 col-6">
+																			<div class="form-group">
+																				<select id="CustomSun_Close" name="ClientSpaceFloorPlan.SunClose" asp-for="ClientSpaceFloorPlan.SunClose"
+																						asp-items="@(new SelectList(ViewBag.ListOfScheduleTime,"ScheduleTimeSpan", "ScheduleTimeView"))" class="selectpicker sch_open"></select><label for="CustomSun_Close" class="control-label">To</label>
+																				<i class="bar"></i>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--tab 3-->
+										<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="head-3">
 											<!--row 1-->
 											<div class="row align-items-center">
 												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -193,8 +616,8 @@
 												</div>
 											</div>
 										</div>
-										<!--tab 3-->
-										<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="head-3">
+										<!--tab 4-->
+										<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="head-4">
 											<!--row 1-->
 											@Html.HiddenFor(m => m.ClientSpaceFloorPlan.FloorPlanFilePath)
 											<div class="row align-items-center">
@@ -218,8 +641,8 @@
 												</div>
 											</div>
 										</div>
-										<!--tab 4-->
-										<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="head-4">
+										<!--tab 5-->
+										<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="head-5">
 											<!--row 1-->
 											<div class="row align-items-center">
 												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
@@ -270,8 +693,8 @@
 												</div>
 											</div>
 										</div>
-										<!--tab 5-->
-										<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="head-5">
+										<!--tab 6-->
+										<div class="tab-pane fade" id="tab-6" role="tabpanel" aria-labelledby="head-6">
 											<div class="card-body wsb-floors__space" id="matrixBody">
 												<!--row 1-->
 												<div class="row align-items-center">

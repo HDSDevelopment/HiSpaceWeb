@@ -1,1035 +1,1391 @@
-﻿
-@{
-    ViewData["Title"] = "WorkspaceDetail";
-    Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
+﻿@{
+	ViewData["Title"] = "WorkspaceDetail";
+	Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
 
-@Model HiSpaceWeb.ViewModel.WorkspaceDetailViewModel
+<div class="hidden">@Model HiSpaceWeb.ViewModel.WorkspaceDetailViewModel</div>
 
 <!-- page title style3 START -->
 <section class="page-title style3" data-path="../img/headers/header1.jpg">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="strong text-uppercase"><i class="fas fa-info-circle"></i> Workspace</h1>
-                <ol class="breadcrumb hidden-xs">
-                    <li><a href="@Url.Action( "Index","Website")"><i class="fa fa-home"></i></a></li>
-                    <li><a href="@Url.Action( "ListWorkspace","Website")"> List Workspace </a></li>
-                    <li class="active">Detail Workspace</li>
-                </ol>
-            </div>
-        </div>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<h1 class="strong text-uppercase"><i class="fas fa-info-circle"></i> Workspace</h1>
+				<ol class="breadcrumb hidden-xs">
+					<li><a href="@Url.Action( "Index","Website")"><i class="fa fa-home"></i></a></li>
+					<li><a href="@Url.Action( "ListWorkspace","Website")"> List Workspace </a></li>
+					<li class="active">Detail Workspace</li>
+				</ol>
+			</div>
+		</div>
+	</div>
 </section>
 <!-- page title style3 END -->
 <!-- page content START -->
 <div class="" id="wsd">
 
-    <!-- section START -->
-    <section class="">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <hr class="spacer-10">
-                    <div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
-                        <h2 class="strong">Workspace Detail</h2>
-                        <small class="text-uppercase strong base-color">Some of our clients <br>Shared there reviews </small>
-                    </div>
-                    <hr class="spacer-10">
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- section END -->
-    <!-- section START -->
-    <section class="section no-padding mb--50">
-        <div class="container font-w-400">
-            <!--Slider section-->
-            <div class="row">
-                <div class="col-lg-12">
+	<!-- section START -->
+	<section class="">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Workspace Detail</h2>
+						<small class="text-uppercase strong base-color">Some of our clients <br>Shared there reviews </small>
+					</div>
+					<hr class="spacer-10">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- section END -->
+	<!-- section START -->
+	<section class="section no-padding mb--50">
+		<div class="container font-w-400">
+			<!--Slider section-->
+			<div class="row">
+				<div class="col-lg-12">
 
-                    <!-- slideshow START -->
-                    <!-- NOTE: see jquery settings at the bottom of the page -->
-                    <div class="wsd-carousel">
-                        <div class="item">
-                            <img src="~/cubeportfolio/img/project/1.jpg" alt="Thumbnail">
-                        </div>
-                        @*<div class="item">
-                            <img src="~/cubeportfolio/img/project/2.jpg" alt="Thumbnail">
-                            </div>*@
-                        <div class="item">
-                            <img src="~/cubeportfolio/img/project/3.jpg" alt="Thumbnail">
-                        </div>
-                    </div>
-                    <!-- slideshow END -->
+					<!-- slideshow START -->
+					<!-- NOTE: see jquery settings at the bottom of the page -->
+					<div class="wsd-carousel">
+						<div class="item">
+							<img src="~/cubeportfolio/img/project/1.jpg" alt="Thumbnail">
+						</div>
+						@*<div class="item">
+							<img src="~/cubeportfolio/img/project/2.jpg" alt="Thumbnail">
+							</div>*@
+						<div class="item">
+							<img src="~/cubeportfolio/img/project/3.jpg" alt="Thumbnail">
+						</div>
+					</div>
+					<!-- slideshow END -->
 
-                    <hr class="spacer-30">
-                </div>
-            </div>
-            <!--Slider section end-->
-            <!--Details section-->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="horizontalTab1">
-                        <ul class="resp-tabs-list hor_1">
-                            <li><i class="far fa-file-alt"></i><span>Description</span></li>
-                            <li><i class="fas fa-gift"></i><span>Amenities</span></li>
-                            <li><i class="fas fa-comments"></i><span>Reviews</span></li>
-                            <li><i class="fas fa-map-marked-alt"></i><span>Location / Contact</span></li>
-                        </ul>
-                        <div class="resp-tabs-container hor_1">
-                            <div class="wsd-description">
-                                <p>@Model.WorkSpaceDetails.selectedSpace.SpaceDescription</p>
+					<hr class="spacer-30">
+				</div>
+			</div>
+			<!--Slider section end-->
+			<!--Details section-->
+			<div class="row">
+				<div class="col-lg-12">
+					<div id="horizontalTab1">
+						<ul class="resp-tabs-list hor_1">
+							<li><i class="far fa-file-alt"></i><span>Description</span></li>
+							<li><i class="fas fa-gift"></i><span>Amenities</span></li>
+							<li><i class="fas fa-comments"></i><span>Reviews</span></li>
+							<li><i class="fas fa-map-marked-alt"></i><span>Location / Contact</span></li>
+						</ul>
+						<div class="resp-tabs-container hor_1">
+							<div class="wsd-description">
+								<p>@Model.WorkSpaceDetails.selectedSpace.SpaceDescription</p>
 
-                                <p>Nunc sit amet dui id lacus vehicula dictum non eu ante. Morbi rhoncus mollis magna congue viverra. Nunc ligula lorem, interdum eget consequat eget, commodo in turpis. Duis ultricies ut felis eget aliquam. Suspendisse cursus pulvinar odio vitae accumsan. Fusce vitae orci non mauris imperdiet lobortis. Donec vel ultrices turpis. Sed quis nibh iaculis, pulvinar nisl nec, fringilla tellus. Pellentesque venenatis rutrum rhoncus. Morbi eu varius nunc. Nullam aliquam consectetur magna at pellentesque. Cras dictum sapien sed sagittis sodales.</p>
-                            </div>
-                            <div class="wsd-amenities">
-                                <div>
-                                    <h5 class="page-header page-header-line">Common Amenities</h5>
-                                    <ul class="ul-list">
-                                        <li>
-                                            <i class="fas fa-coffee"></i>
-                                            <span>Coffee</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-wifi"></i>
-                                            <span>Wifi</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-phone"></i>
-                                            <span>Phone</span>
-                                        </li>
+								<p>Nunc sit amet dui id lacus vehicula dictum non eu ante. Morbi rhoncus mollis magna congue viverra. Nunc ligula lorem, interdum eget consequat eget, commodo in turpis. Duis ultricies ut felis eget aliquam. Suspendisse cursus pulvinar odio vitae accumsan. Fusce vitae orci non mauris imperdiet lobortis. Donec vel ultrices turpis. Sed quis nibh iaculis, pulvinar nisl nec, fringilla tellus. Pellentesque venenatis rutrum rhoncus. Morbi eu varius nunc. Nullam aliquam consectetur magna at pellentesque. Cras dictum sapien sed sagittis sodales.</p>
+							</div>
+							<div class="wsd-amenities">
+								<div>
+									<h5 class="page-header page-header-line">Common Amenities</h5>
+									<ul class="ul-list">
+										<li>
+											<i class="fas fa-coffee"></i>
+											<span>Coffee</span>
+										</li>
+										<li>
+											<i class="fas fa-wifi"></i>
+											<span>Wifi</span>
+										</li>
+										<li>
+											<i class="fas fa-phone"></i>
+											<span>Phone</span>
+										</li>
 
-                                        <li>
-                                            <i class="fas fa-shield-alt"></i>
-                                            <span>Security</span>
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-extinguisher"></i>
-                                            <span>Extinguisher</span>
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-parking-1"></i>
-                                            <span>Parking</span>
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-no-fire"></i>
-                                            <span>No fire</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="spacer-40">
-                                    <h5 class="page-header page-header-line">Premium Amenities</h5>
-                                    <ul class="ul-list ul-list-premium-amenities">
-                                        <li>
-                                            <i class="fas fa-print"></i>
-                                            <span>scanner</span>
-                                        </li>
-                                        <li>
-                                            <i class="fas fa-server"></i>
-                                            <span>Server</span>
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-air-conditioner"></i>
-                                            <span>AC</span>
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-microwave-oven"></i>
-                                            <span>Oven</span>
-                                        </li>
-                                        <li>
-                                            <i class="flaticon-customer-service"></i>
-                                            <span>Service</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="ul-list-nearby-amenities">
-                                    <h5 class="page-header page-header-line">Near to me</h5>
-                                    <ul class="ul-list">
-                                        <li>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" checked value="">
-                                                    <span>Bus Stop</span>
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" checked value="">
-                                                    Railway station
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" checked value="">
-                                                    Airport
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" checked value="">
-                                                    Star Hotels
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" checked value="">
-                                                    Park
-                                                </label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="checkbox checked">
-                                                <label>
-                                                    <input type="checkbox" checked value="">
-                                                    Hospital
-                                                </label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="wsd-reviews">
+										<li>
+											<i class="fas fa-shield-alt"></i>
+											<span>Security</span>
+										</li>
+										<li>
+											<i class="flaticon-extinguisher"></i>
+											<span>Extinguisher</span>
+										</li>
+										<li>
+											<i class="flaticon-parking-1"></i>
+											<span>Parking</span>
+										</li>
+										<li>
+											<i class="flaticon-no-fire"></i>
+											<span>No fire</span>
+										</li>
+									</ul>
+								</div>
+								<div class="spacer-40">
+									<h5 class="page-header page-header-line">Premium Amenities</h5>
+									<ul class="ul-list ul-list-premium-amenities">
+										<li>
+											<i class="fas fa-print"></i>
+											<span>scanner</span>
+										</li>
+										<li>
+											<i class="fas fa-server"></i>
+											<span>Server</span>
+										</li>
+										<li>
+											<i class="flaticon-air-conditioner"></i>
+											<span>AC</span>
+										</li>
+										<li>
+											<i class="flaticon-microwave-oven"></i>
+											<span>Oven</span>
+										</li>
+										<li>
+											<i class="flaticon-customer-service"></i>
+											<span>Service</span>
+										</li>
+									</ul>
+								</div>
+								<div class="ul-list-nearby-amenities">
+									<h5 class="page-header page-header-line">Near to me</h5>
+									<ul class="ul-list">
+										<li>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" checked value="">
+													<span>Bus Stop</span>
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" checked value="">
+													Railway station
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" checked value="">
+													Airport
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" checked value="">
+													Star Hotels
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" checked value="">
+													Park
+												</label>
+											</div>
+										</li>
+										<li>
+											<div class="checkbox checked">
+												<label>
+													<input type="checkbox" checked value="">
+													Hospital
+												</label>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="wsd-reviews">
 
-                                <div class="row">
-                                    <div class="col-md-4 col-md-12 align-self-center text-center">
-                                        <div class="spacer-50">
-                                            <div class="wsd-reviews__rate">4.0/5.0</div>
-                                            <div class="ws-review-content-rating wsd-reviews__star">
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star empty"></span>
-                                            </div>
-                                            <div class="wsd-reviews__total">Total Reviews <span class="text-success"> (20)</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-8 col-md-12">
-                                        <h5 class="page-header page-header-line">Leave a review</h5>
-                                        <form method="post" id="review" role="form">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="yourName" class="control-label">Your name <sup data-toggle="tooltip" title="This field is required">*</sup></label>
-                                                        <input type="text" class="form-control" id="yourName" name="name" placeholder="Your Name" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="email" class="control-label">Email <sup data-toggle="tooltip" title="This field is required">*</sup></label>
-                                                        <input type="text" class="form-control" id="email" name="email" placeholder="Email id" required>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="widget style1">
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="review-star" value="5">
-                                                                <span class="ws-review-content-rating">
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="review-star" value="4">
-                                                                <span class="ws-review-content-rating">
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star empty"></span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="review-star" value="3">
-                                                                <span class="ws-review-content-rating">
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star empty"></span>
-                                                                    <span class="star empty"></span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="review-star" value="2">
-                                                                <span class="ws-review-content-rating">
-                                                                    <span class="star"></span>
-                                                                    <span class="star"></span>
-                                                                    <span class="star empty"></span>
-                                                                    <span class="star empty"></span>
-                                                                    <span class="star empty"></span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                        <div class="radio">
-                                                            <label>
-                                                                <input type="radio" name="review-star" value="1">
-                                                                <span class="ws-review-content-rating">
-                                                                    <span class="star"></span>
-                                                                    <span class="star empty"></span>
-                                                                    <span class="star empty"></span>
-                                                                    <span class="star empty"></span>
-                                                                    <span class="star empty"></span>
-                                                                </span>
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="textarea" class="control-label">Your message <sup data-toggle="tooltip" title="This field is required">*</sup></label>
+								<div class="row">
+									<div class="col-md-4 col-md-12 align-self-center text-center">
+										<div class="spacer-50">
+											<div class="wsd-reviews__rate">4.0/5.0</div>
+											<div class="ws-review-content-rating wsd-reviews__star">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star empty"></span>
+											</div>
+											<div class="wsd-reviews__total">Total Reviews <span class="text-success"> (20)</span></div>
+										</div>
+									</div>
+									<div class="col-md-8 col-md-12">
+										<h5 class="page-header page-header-line">Leave a review</h5>
+										<form method="post" id="review" role="form">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="yourName" class="control-label">Your name <sup data-toggle="tooltip" title="This field is required">*</sup></label>
+														<input type="text" class="form-control" id="yourName" name="name" placeholder="Your Name" required>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="email" class="control-label">Email <sup data-toggle="tooltip" title="This field is required">*</sup></label>
+														<input type="text" class="form-control" id="email" name="email" placeholder="Email id" required>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="widget style1">
+														<div class="radio">
+															<label>
+																<input type="radio" name="review-star" value="5">
+																<span class="ws-review-content-rating">
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star"></span>
+																</span>
+															</label>
+														</div>
+														<div class="radio">
+															<label>
+																<input type="radio" name="review-star" value="4">
+																<span class="ws-review-content-rating">
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star empty"></span>
+																</span>
+															</label>
+														</div>
+														<div class="radio">
+															<label>
+																<input type="radio" name="review-star" value="3">
+																<span class="ws-review-content-rating">
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star empty"></span>
+																	<span class="star empty"></span>
+																</span>
+															</label>
+														</div>
+														<div class="radio">
+															<label>
+																<input type="radio" name="review-star" value="2">
+																<span class="ws-review-content-rating">
+																	<span class="star"></span>
+																	<span class="star"></span>
+																	<span class="star empty"></span>
+																	<span class="star empty"></span>
+																	<span class="star empty"></span>
+																</span>
+															</label>
+														</div>
+														<div class="radio">
+															<label>
+																<input type="radio" name="review-star" value="1">
+																<span class="ws-review-content-rating">
+																	<span class="star"></span>
+																	<span class="star empty"></span>
+																	<span class="star empty"></span>
+																	<span class="star empty"></span>
+																	<span class="star empty"></span>
+																</span>
+															</label>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div class="form-group">
+														<label for="textarea" class="control-label">Your message <sup data-toggle="tooltip" title="This field is required">*</sup></label>
 <textarea class="form-control" rows="5" id="textarea" name="message" required></textarea>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-12">
-                                                    <div class="form-group">
-                                                        <button class="btn btn-success pull-right cst-btn-nine" id="send">Submit Review</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+													</div>
+												</div>
+												<div class="col-lg-12">
+													<div class="form-group">
+														<button class="btn btn-success pull-right cst-btn-nine" id="send">Submit Review</button>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
 
-                                <div class="mt--50">
-                                    <h5 class="page-header page-header-line mlr--10">Reviews</h5>
-                                    <!--review details section start-->
-                                    <div class="media wsd-reviews__details">
-                                        <div class="media-left">
-                                            <a href="javascript:void(0);">
-                                                <img src="~/img/placeholder.png" class="media-object img-circle" alt="user image">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading font-w-500">Mr. customer 1 </h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique mauris quis nisi elementum suscipit gerat. Integer luctus a nunc eu rhoncus. Integer mollis ante a consequat condimentum etiam etmi magna.</p>
-                                            <div class="ws-review-content-rating">
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star empty"></span>
-                                                <a href="#" class="rating-review">4.0</a>
-                                                <span class="ml--10 font-w-600" title="date posted">June 13</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="media wsd-reviews__details">
-                                        <div class="media-left">
-                                            <a href="javascript:void(0);">
-                                                <img src="~/img/placeholder.png" class="media-object img-circle" alt="user image">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading font-w-500">Mr. customer 2 </h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique mauris quis nisi elementum suscipit gerat. Integer luctus a nunc eu rhoncus. Integer mollis ante a consequat condimentum etiam etmi magna.</p>
-                                            <div class="ws-review-content-rating">
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star empty"></span>
-                                                <a href="#" class="rating-review">4.0</a>
-                                                <span class="ml--10 font-w-600" title="date posted">June 13</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="media wsd-reviews__details">
-                                        <div class="media-left">
-                                            <a href="javascript:void(0);">
-                                                <img src="~/img/placeholder.png" class="media-object img-circle" alt="user image">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading font-w-500">Mr. customer 3 </h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique mauris quis nisi elementum suscipit gerat. Integer luctus a nunc eu rhoncus. Integer mollis ante a consequat condimentum etiam etmi magna.</p>
-                                            <div class="ws-review-content-rating">
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star"></span>
-                                                <span class="star empty"></span>
-                                                <a href="#" class="rating-review">4.0</a>
-                                                <span class="ml--10 font-w-600" title="date posted">June 13</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--review details section end-->
-                                </div>
-                            </div>
-                            <div class="wsd-location">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="icon-box style1">
-                                            <i class="livicon" data-name="phone" data-color="#2ECC71" data-hovercolor="false" data-size="48" data-onparent="true"></i>
-                                            <h4 class="box-title strong">Call Us</h4>
-                                            <p>+91 9089898988 <br>+91 5656565656</p>
-                                        </div>
-                                        <div class="icon-box style1">
-                                            <i class="livicon" data-name="mail" data-color="#F1C40F" data-hovercolor="false" data-size="48" data-onparent="true"></i>
-                                            <h4 class="box-title strong">Email</h4>
-                                            <p>test@gamil.com <br> test2@gmail.com</p>
-                                        </div>
-                                        <div class="icon-box style1">
-                                            <i class="livicon" data-name="home" data-color="#E74C3C" data-hovercolor="false" data-size="48" data-onparent="true"></i>
-                                            <h4 class="box-title strong">Address</h4>
-                                            <p>795 Folsom Ave, Suite 600 <br>Perungudi Chennai -96</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <div id="horizontalTab2" class="tab-theme-2">
-                                            <ul class="resp-tabs-list hor_2">
-                                                <li><i class="fas fa-map-marker-alt"></i><span>Map</span></li>
-                                                <li><i class="fas fa-envelope"></i><span>Contact us</span></li>
-                                            </ul>
-                                            <div class="resp-tabs-container hor_2">
-                                                <div class="ws-map">
-                                                    <iframe id="ws-map" width="100%" height="450" frameborder="0" style="border:0" src="about:blank"></iframe>
-                                                </div>
-                                                <div>
-                                                    <form method="post" id="contact-form" role="form">
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="yourName" class="control-label">Your name <sup data-toggle="tooltip" title="This field is required">*</sup></label>
-                                                                    <input type="text" class="form-control" id="yourName" name="name" placeholder="Your Name" required>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="form-group">
-                                                                    <label for="email" class="control-label">Email <sup data-toggle="tooltip" title="This field is required">*</sup></label>
-                                                                    <input type="text" class="form-control" id="email" name="email" placeholder="Email id" required>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group">
-                                                                    <label for="textarea" class="control-label">Your message <sup data-toggle="tooltip" title="This field is required">*</sup></label>
+								<div class="mt--50">
+									<h5 class="page-header page-header-line mlr--10">Reviews</h5>
+									<!--review details section start-->
+									<div class="media wsd-reviews__details">
+										<div class="media-left">
+											<a href="javascript:void(0);">
+												<img src="~/img/placeholder.png" class="media-object img-circle" alt="user image">
+											</a>
+										</div>
+										<div class="media-body">
+											<h4 class="media-heading font-w-500">Mr. customer 1 </h4>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique mauris quis nisi elementum suscipit gerat. Integer luctus a nunc eu rhoncus. Integer mollis ante a consequat condimentum etiam etmi magna.</p>
+											<div class="ws-review-content-rating">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star empty"></span>
+												<a href="#" class="rating-review">4.0</a>
+												<span class="ml--10 font-w-600" title="date posted">June 13</span>
+											</div>
+										</div>
+									</div>
+									<div class="media wsd-reviews__details">
+										<div class="media-left">
+											<a href="javascript:void(0);">
+												<img src="~/img/placeholder.png" class="media-object img-circle" alt="user image">
+											</a>
+										</div>
+										<div class="media-body">
+											<h4 class="media-heading font-w-500">Mr. customer 2 </h4>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique mauris quis nisi elementum suscipit gerat. Integer luctus a nunc eu rhoncus. Integer mollis ante a consequat condimentum etiam etmi magna.</p>
+											<div class="ws-review-content-rating">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star empty"></span>
+												<a href="#" class="rating-review">4.0</a>
+												<span class="ml--10 font-w-600" title="date posted">June 13</span>
+											</div>
+										</div>
+									</div>
+									<div class="media wsd-reviews__details">
+										<div class="media-left">
+											<a href="javascript:void(0);">
+												<img src="~/img/placeholder.png" class="media-object img-circle" alt="user image">
+											</a>
+										</div>
+										<div class="media-body">
+											<h4 class="media-heading font-w-500">Mr. customer 3 </h4>
+											<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique mauris quis nisi elementum suscipit gerat. Integer luctus a nunc eu rhoncus. Integer mollis ante a consequat condimentum etiam etmi magna.</p>
+											<div class="ws-review-content-rating">
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star"></span>
+												<span class="star empty"></span>
+												<a href="#" class="rating-review">4.0</a>
+												<span class="ml--10 font-w-600" title="date posted">June 13</span>
+											</div>
+										</div>
+									</div>
+									<!--review details section end-->
+								</div>
+							</div>
+							<div class="wsd-location">
+								<div class="row">
+									<div class="col-lg-4">
+										<div class="icon-box style1">
+											<i class="livicon" data-name="phone" data-color="#2ECC71" data-hovercolor="false" data-size="48" data-onparent="true"></i>
+											<h4 class="box-title strong">Call Us</h4>
+											<p>+91 9089898988 <br>+91 5656565656</p>
+										</div>
+										<div class="icon-box style1">
+											<i class="livicon" data-name="mail" data-color="#F1C40F" data-hovercolor="false" data-size="48" data-onparent="true"></i>
+											<h4 class="box-title strong">Email</h4>
+											<p>test@gamil.com <br> test2@gmail.com</p>
+										</div>
+										<div class="icon-box style1">
+											<i class="livicon" data-name="home" data-color="#E74C3C" data-hovercolor="false" data-size="48" data-onparent="true"></i>
+											<h4 class="box-title strong">Address</h4>
+											<p>795 Folsom Ave, Suite 600 <br>Perungudi Chennai -96</p>
+										</div>
+									</div>
+									<div class="col-lg-8">
+										<div id="horizontalTab2" class="tab-theme-2">
+											<ul class="resp-tabs-list hor_2">
+												<li><i class="fas fa-map-marker-alt"></i><span>Map</span></li>
+												<li><i class="fas fa-envelope"></i><span>Contact us</span></li>
+											</ul>
+											<div class="resp-tabs-container hor_2">
+												<div class="ws-map">
+													<iframe id="ws-map" width="100%" height="450" frameborder="0" style="border:0" src="about:blank"></iframe>
+												</div>
+												<div>
+													<form method="post" id="contact-form" role="form">
+														<div class="row">
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label for="yourName" class="control-label">Your name <sup data-toggle="tooltip" title="This field is required">*</sup></label>
+																	<input type="text" class="form-control" id="yourName" name="name" placeholder="Your Name" required>
+																</div>
+															</div>
+															<div class="col-md-6">
+																<div class="form-group">
+																	<label for="email" class="control-label">Email <sup data-toggle="tooltip" title="This field is required">*</sup></label>
+																	<input type="text" class="form-control" id="email" name="email" placeholder="Email id" required>
+																</div>
+															</div>
+															<div class="col-lg-12">
+																<div class="form-group">
+																	<label for="textarea" class="control-label">Your message <sup data-toggle="tooltip" title="This field is required">*</sup></label>
 <textarea class="form-control" rows="5" id="textarea" name="message" required></textarea>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-lg-12">
-                                                                <div class="form-group">
-                                                                    <button class="btn btn-info pull-right cst-btn-nine" id="send">Submit Message</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--Details section end-->
-        </div>
-    </section>
-    <!-- section END -->
-    <!-- section START -->
-    <section class="section gray-bg wsb">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <hr class="spacer-10">
-                    <div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
-                        <h2 class="strong">Booking & Details</h2>
-                        <small class="text-uppercase strong base-color">Book your workspace<br>And achive your dream</small>
-                    </div>
-                    <hr class="spacer-10">
-                </div>
-            </div>
-            <!--Booking section-->
-            <div class="row ws-cbp ">
-                <div class="col-sm-9">
-                    <div id="horizontalTab3" class="wsb-floors ">
-                        <ul class="resp-tabs-list hor_3">
-                            @foreach (var itemFloor in Model.WorkSpaceDetails.clientFloors)
-                            {
-                                <li><i class="far fa-building"></i><span>Floor @itemFloor.clientFloor.FloorNumber</span></li>
-                            }
-                        </ul>
-                        <!--floor section-->
-                        <div class="resp-tabs-container hor_3">
+																</div>
+															</div>
+															<div class="col-lg-12">
+																<div class="form-group">
+																	<button class="btn btn-info pull-right cst-btn-nine" id="send">Submit Message</button>
+																</div>
+															</div>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Details section end-->
+		</div>
+	</section>
+	<!-- section END -->
+	<!-- section START -->
+	<section class="section gray-bg wsb">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
+					<hr class="spacer-10">
+					<div class="section-header alt-style wow fadeInDown" data-wow-delay="0.5s">
+						<h2 class="strong">Booking & Details</h2>
+						<small class="text-uppercase strong base-color">Book your workspace<br>And achive your dream</small>
+					</div>
+					<hr class="spacer-10">
+				</div>
+			</div>
+			<!--Booking section-->
+			<div class="row ws-cbp ">
+				<div class="col-sm-9">
+					<div id="horizontalTab3" class="wsb-floors ">
+						<ul class="resp-tabs-list hor_3">
+							@foreach (var itemFloor in Model.WorkSpaceDetails.clientFloors)
+							{
+								<li><i class="far fa-building"></i><span>Floor @itemFloor.clientFloor.FloorNumber</span></li>
+							}
+						</ul>
+						<!--floor section-->
+						<div class="resp-tabs-container hor_3">
 
-                            @foreach (var itemFloor in Model.WorkSpaceDetails.clientFloors)
-                            {
-                                <div class="ws-floor_padding floor-tab-1">
-                                    <!--floor section deatils start-->
-                                    <div class="row mb--20 bg-white pb--15">
-                                        <h5 class="page-header mb--0 ml--13 no-border">Floor Image</h5>
-                                        <div class="col-md-3 col-sm-6">
+							@foreach (var itemFloor in Model.WorkSpaceDetails.clientFloors)
+							{
+								<div class="ws-floor_padding floor-tab-1">
+									<!--floor section deatils start-->
+									<div class="row mb--20 bg-white pb--15">
+										<h5 class="page-header mb--0 ml--13 no-border">Floor Image</h5>
+										<div class="col-md-3 col-sm-6">
 
-                                            <div id="" class="ws-image-lightbox-1">
-                                                <div class="cbp-item">
-                                                    <a href="~/img/officeTypes/coworkingspace.jpg" class="cbp-caption cbp-lightbox" data-title="">
-                                                        <div class="cbp-caption-defaultWrap">
-                                                            <img src="~/img/officeTypes/coworkingspace.jpg" alt="space image">
-                                                        </div>
-                                                        <div class="cbp-caption-activeWrap">
-                                                            <div class="cbp-l-caption-alignLeft">
-                                                                <div class="cbp-l-caption-body">
-                                                                    <i class="fas fa-search"></i>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <!-- featured projects START -->
-                                            <!-- featured projects END -->
-                                        </div>
-                                        <div class="col-md-9 col-sm-6 ws-scorll ws-floor-desc">
-                                            <p class="mb--10"><span class="font-w-500">Name:</span> @itemFloor.clientFloor.FloorName</p>
-                                            <p>
-                                                <span class="font-w-500">Description: </span>
-                                                @itemFloor.clientFloor.FloorDescription
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!--floor section deatils end-->
-                                    <!--space section-->
-                                    <div id="horizontalTab4" class="wsb-floors__space">
-                                        <ul class="resp-tabs-list hor_4">
-                                            @foreach (var itemSpace in itemFloor.clientFloorSpaces)
-                                            {
-                                                @if (Model.WorkSpaceDetails.selectedSpace.ClientSpaceFloorPlanID == itemSpace.clientFloorSpace.ClientSpaceFloorPlanID)
-                                                {
-                                                    <li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
-                                                }
-                                                else
-                                                {
-                                                    <li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
-                                                }
-                                            }
-                                        </ul>
-                                        <div class="resp-tabs-container hor_4">
-                                            <!--select workspace by its seat-->
-                                            <!--space section-->
+											<div id="" class="ws-image-lightbox-1">
+												<div class="cbp-item">
+													<a href="~/img/officeTypes/coworkingspace.jpg" class="cbp-caption cbp-lightbox" data-title="">
+														<div class="cbp-caption-defaultWrap">
+															<img src="~/img/officeTypes/coworkingspace.jpg" alt="space image">
+														</div>
+														<div class="cbp-caption-activeWrap">
+															<div class="cbp-l-caption-alignLeft">
+																<div class="cbp-l-caption-body">
+																	<i class="fas fa-search"></i>
+																</div>
+															</div>
+														</div>
+													</a>
+												</div>
+											</div>
+											<!-- featured projects START -->
+											<!-- featured projects END -->
+										</div>
+										<div class="col-md-9 col-sm-6 ws-scorll ws-floor-desc">
+											<p class="mb--10"><span class="font-w-500">Name:</span> @itemFloor.clientFloor.FloorName</p>
+											<p>
+												<span class="font-w-500">Description: </span>
+												@itemFloor.clientFloor.FloorDescription
+											</p>
+										</div>
+									</div>
+									<!--floor section deatils end-->
+									<!--space section-->
+									<div id="horizontalTab4" class="wsb-floors__space">
+										<ul class="resp-tabs-list hor_4">
+											@foreach (var itemSpace in itemFloor.clientFloorSpaces)
+											{
+												@if (Model.WorkSpaceDetails.selectedSpace.ClientSpaceFloorPlanID == itemSpace.clientFloorSpace.ClientSpaceFloorPlanID)
+												{
+													<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+												}
+												else
+												{
+													<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+												}
+											}
+										</ul>
+										<div class="resp-tabs-container hor_4">
+											<!--select workspace by its seat-->
+											<!--space section-->
 
-                                            @foreach (var itemSpace in itemFloor.clientFloorSpaces)
-                                            {
-                                                //if (itemSpace.clientFloorSpace.NumberOfRows != null && itemSpace.clientFloorSpace.NumberOfColumns != null && itemSpace.clientFloorSpaceSeatsCount != null)
-                                                if (itemSpace.clientFloorSpace.NumberOfRows > 0 && itemSpace.clientFloorSpace.NumberOfColumns > 0 && itemSpace.clientFloorSpaceSeatsCount > 0)
-                                                {
-                                                    <div class="ws-space__padding space-tab-1">
-                                                        <div class="row wsb-floors__space-sec1">
-                                                            <div class="col-sm-12  mb--10">
-                                                                <div class="row bg-white">
-                                                                    <h5 class="page-header mb--0 ml--13">Space Image</h5> <div class="col-md-4 col-sm-6 wsb-floors__space-image">
+											@foreach (var itemSpace in itemFloor.clientFloorSpaces)
+											{
+												//if (itemSpace.clientFloorSpace.NumberOfRows != null && itemSpace.clientFloorSpace.NumberOfColumns != null && itemSpace.clientFloorSpaceSeatsCount != null)
+												if (itemSpace.clientFloorSpace.NumberOfRows > 0 && itemSpace.clientFloorSpace.NumberOfColumns > 0 && itemSpace.clientFloorSpaceSeatsCount > 0)
+												{
+													<div class="ws-space__padding space-tab-1">
+														<div class="row wsb-floors__space-sec1">
+															<div class="col-sm-12  mb--10">
+																<div class="row bg-white">
+																	<h5 class="page-header mb--0 ml--13">Space Image</h5> <div class="col-md-4 col-sm-6 wsb-floors__space-image">
 
-                                                                        <!--multiple image show start-->
-                                                                        <div class="ws-image-lightbox ws-image__slider">
-                                                                            <div class="featured-projects">
-                                                                                <div class="cbp-item">
-                                                                                    <a href="~/img/officeTypes/businesscentre.jpg" class="cbp-caption cbp-lightbox" data-title="">
-                                                                                        <div class="cbp-caption">
-                                                                                            <div class="cbp-caption-defaultWrap">
-                                                                                                <img src="~/img/officeTypes/businesscentre.jpg" alt="">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="cbp-caption-activeWrap">
-                                                                                            <div class="cbp-l-caption-alignLeft">
-                                                                                                <div class="cbp-l-caption-body">
-                                                                                                    View
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </div>
-                                                                                <div class="cbp-item">
-                                                                                    <a href="~/img/officeTypes/meetingroom.jpg" class="cbp-caption cbp-lightbox" data-title="">
-                                                                                        <div class="cbp-caption">
-                                                                                            <div class="cbp-caption-defaultWrap">
-                                                                                                <img src="~/img/officeTypes/meetingroom.jpg" alt="">
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="cbp-caption-activeWrap">
-                                                                                            <div class="cbp-l-caption-alignLeft">
-                                                                                                <div class="cbp-l-caption-body">
-                                                                                                    View
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--multiple image show end-->
-                                                                    </div>
-                                                                    <div class="col-md-8 col-sm-6 ws-scorll ws-floor-desc">
-                                                                        <p>
-                                                                            <span class="font-w-500">Description: </span>
-                                                                            Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet condimentum, dolor lacus porta quam, in pretium mauris mauris ac quam. Nam eu nibh dui. Nullam facilisis elit mauris, posuere cursus magna placerat sit amet. Pellentesque vel lectus vehicula, viverra justo in, sodales libero. In non gravida metus. Nullam dignissim dui in rhoncus pharetra. Cras iaculis, metus a tincidunt suscipit, eros nibh placerat mauris, quis ornare felis ipsum sit amet nunc. Morbi eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet
-                                                                        </p>
-                                                                    </div>
+																		<!--multiple image show start-->
+																		<div class="ws-image-lightbox ws-image__slider">
+																			<div class="featured-projects">
+																				<div class="cbp-item">
+																					<a href="~/img/officeTypes/businesscentre.jpg" class="cbp-caption cbp-lightbox" data-title="">
+																						<div class="cbp-caption">
+																							<div class="cbp-caption-defaultWrap">
+																								<img src="~/img/officeTypes/businesscentre.jpg" alt="">
+																							</div>
+																						</div>
+																						<div class="cbp-caption-activeWrap">
+																							<div class="cbp-l-caption-alignLeft">
+																								<div class="cbp-l-caption-body">
+																									View
+																								</div>
+																							</div>
+																						</div>
+																					</a>
+																				</div>
+																				<div class="cbp-item">
+																					<a href="~/img/officeTypes/meetingroom.jpg" class="cbp-caption cbp-lightbox" data-title="">
+																						<div class="cbp-caption">
+																							<div class="cbp-caption-defaultWrap">
+																								<img src="~/img/officeTypes/meetingroom.jpg" alt="">
+																							</div>
+																						</div>
+																						<div class="cbp-caption-activeWrap">
+																							<div class="cbp-l-caption-alignLeft">
+																								<div class="cbp-l-caption-body">
+																									View
+																								</div>
+																							</div>
+																						</div>
+																					</a>
+																				</div>
+																			</div>
+																		</div>
+																		<!--multiple image show end-->
+																	</div>
+																	<div class="col-md-8 col-sm-6 ws-scorll ws-floor-desc">
+																		<p>
+																			<span class="font-w-500">Description: </span>
+																			Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet condimentum, dolor lacus porta quam, in pretium mauris mauris ac quam. Nam eu nibh dui. Nullam facilisis elit mauris, posuere cursus magna placerat sit amet. Pellentesque vel lectus vehicula, viverra justo in, sodales libero. In non gravida metus. Nullam dignissim dui in rhoncus pharetra. Cras iaculis, metus a tincidunt suscipit, eros nibh placerat mauris, quis ornare felis ipsum sit amet nunc. Morbi eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet
+																		</p>
+																	</div>
+																</div>
+															</div>
 
-                                                                </div>
-                                                            </div>
+															<!--scheduler section start-->
+															<div class="col-sm-12 ws-schedule">
+																<h5 class="page-header mb--0">Available Time</h5>
+																<div class="col-lg-4 col-md-4 col-sm-6 col-6">
+																	<!--24/7-->
+																	<!--custom mon-sun-->
+																	<div class="ws-schedule-list">
+																		<ul>
 
-                                                            <!--scheduler section start-->
-                                                            <div class="col-sm-12 ws-schedule">
-                                                                <h5 class="page-header mb--0">Available Time</h5>
-                                                                <div class="col-lg-4 col-md-4 col-sm-6 col-6">
-                                                                    <!--24/7-->
-                                                                    <!--custom mon-sun-->
-                                                                    <div class="ws-schedule-list">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                                                                                <div>
-                                                                                    24Hours/7Days
-                                                                                    <span>(24/7)</span>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                                                                                <div>
-                                                                                    Monday - Friday
-                                                                                    <span>(8am - 6pm)</span>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                                                                                <div>
-                                                                                    saturday
-                                                                                    <span>(24hours)</span>
-                                                                                </div>
-                                                                            </li>
-                                                                            <li>
-                                                                                <i class="fa fa-check-circle" aria-hidden="true"></i>
-                                                                                <div>
-                                                                                    Sunday
-                                                                                    <span>(8am - 12pm)</span>
-                                                                                </div>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-lg-8 col-md-8 col-sm-6 col-6">
-                                                                    <div class="row ws-schedule-time">
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <label for="from_date">From: Date(DD/MM/YYY)</label>
-                                                                                <div class='input-group date datetimepicker' id='from_date'>
-                                                                                    <input type='text' class="form-control" />
-                                                                                    <span class="input-group-addon">
-                                                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-2 pl--0">
-                                                                            <div class="form-group">
-                                                                                <label>HH:MM</label>
-                                                                                <div class="input-group">
-                                                                                    <select class="selectpicker">
-                                                                                        <option value="1">All</option>
-                                                                                        <option value="2">12:00 am</option>
-                                                                                        <option value="3">01:00 am</option>
-                                                                                        <option value="4">02:00 am</option>
-                                                                                        <option value="5">03:00 am</option>
-                                                                                        <option value="6">04:00 am</option>
-                                                                                        <option value="7">05:00 am</option>
-                                                                                        <option value="8">06:00 am</option>
-                                                                                        <option value="9">07:00 am</option>
-                                                                                        <option value="10">08:00 am</option>
-                                                                                        <option value="11">09:00 am</option>
-                                                                                        <option value="12">10:00 am</option>
-                                                                                        <option value="13">11:00 am</option>
-                                                                                        <option value="14">12:00 pm</option>
-                                                                                        <option value="15">01:00 pm</option>
-                                                                                        <option value="16">02:00 pm</option>
-                                                                                        <option value="17">03:00 pm</option>
-                                                                                        <option value="18">04:00 pm</option>
-                                                                                        <option value="19">05:00 pm</option>
-                                                                                        <option value="20">06:00 pm</option>
-                                                                                        <option value="21">07:00 pm</option>
-                                                                                        <option value="22">08:00 pm</option>
-                                                                                        <option value="23">09:00 pm</option>
-                                                                                        <option value="24">10:00 pm</option>
-                                                                                        <option value="25">11:00 pm</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <label for="to_date">To: Date(DD/MM/YYYY)</label>
-                                                                                <div class='input-group date datetimepicker' id='to_date'>
-                                                                                    <input type='text' class="form-control" />
-                                                                                    <span class="input-group-addon">
-                                                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-2 pl--0">
-                                                                            <div class="form-group">
-                                                                                <label>HH:MM</label>
-                                                                                <div class="input-group">
-                                                                                    <select class="selectpicker">
-                                                                                        <option value="1">All</option>
-                                                                                        <option value="2">12:00 am</option>
-                                                                                        <option value="3">01:00 am</option>
-                                                                                        <option value="4">02:00 am</option>
-                                                                                        <option value="5">03:00 am</option>
-                                                                                        <option value="6">04:00 am</option>
-                                                                                        <option value="7">05:00 am</option>
-                                                                                        <option value="8">06:00 am</option>
-                                                                                        <option value="9">07:00 am</option>
-                                                                                        <option value="10">08:00 am</option>
-                                                                                        <option value="11">09:00 am</option>
-                                                                                        <option value="12">10:00 am</option>
-                                                                                        <option value="13">11:00 am</option>
-                                                                                        <option value="14">12:00 pm</option>
-                                                                                        <option value="15">01:00 pm</option>
-                                                                                        <option value="16">02:00 pm</option>
-                                                                                        <option value="17">03:00 pm</option>
-                                                                                        <option value="18">04:00 pm</option>
-                                                                                        <option value="19">05:00 pm</option>
-                                                                                        <option value="20">06:00 pm</option>
-                                                                                        <option value="21">07:00 pm</option>
-                                                                                        <option value="22">08:00 pm</option>
-                                                                                        <option value="23">09:00 pm</option>
-                                                                                        <option value="24">10:00 pm</option>
-                                                                                        <option value="25">11:00 pm</option>
-                                                                                    </select>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+																			@*<li>
+																					<i class="fa fa-check-circle" aria-hidden="true"></i>
+																					<div>
+																						24Hours/7Days
+																						<span>(24/7)</span>
+																					</div>
+																				</li>
+																				<li>
+																					<i class="fa fa-check-circle" aria-hidden="true"></i>
+																					<div>
+																						Monday - Friday
+																						<span>(8am - 6pm)</span>
+																					</div>
+																				</li>
+																				<li>
+																					<i class="fa fa-check-circle" aria-hidden="true"></i>
+																					<div>
+																						saturday
+																						<span>(24hours)</span>
+																					</div>
+																				</li>
+																				<li>
+																					<i class="fa fa-check-circle" aria-hidden="true"></i>
+																					<div>
+																						Sunday
+																						<span>(8am - 12pm)</span>
+																					</div>
+																				</li>*@
+																			@{
 
-                                                            </div>
-                                                            <!--scheduler section end-->
-                                                            <div class="col-sm-5 sticky-top wsb-floors__space-floor-plan">
-                                                                <div class="wsb-floors__space-floor">
-                                                                    @*<h5 class="page-header mb--0">Floor Plan</h5>*@
-                                                                    <div class="ws-seathint">
-                                                                        <div class="row">
-                                                                            <div class="col-md-4 col-sm-6">
-                                                                                <span>
-                                                                                    <input title="Available" type="button" class="matrixButton">
-                                                                                    <i class="flaticon-furniture-and-household"></i>
-                                                                                </span>
-                                                                                <span class="ws-seathint__heading">Available</span>
-                                                                            </div>
-                                                                            <div class="col-md-4 col-sm-6 ws-seathint__selected">
-                                                                                <span>
-                                                                                    <input title="Selected" type="button" class="matrixButton">
-                                                                                    <i class="flaticon-furniture-and-household"></i>
-                                                                                </span>
-                                                                                <span class="ws-seathint__heading">Selected</span>
-                                                                            </div>
-                                                                            <div class="col-md-4 col-sm-6 ws-seathint__booked">
-                                                                                <span>
-                                                                                    <input title="Booked" type="button" class="matrixButton">
-                                                                                    <i class="flaticon-furniture-and-household"></i>
-                                                                                </span>
-                                                                                <span class="ws-seathint__heading">Booked</span>
-                                                                            </div>
-                                                                            <div class="col-md-4 col-sm-6 ws-seathint__unavailable">
-                                                                                <span>
-                                                                                    <input title="Unavailable" type="button" class="matrixButton">
-                                                                                    <i class="flaticon-furniture-and-household"></i>
-                                                                                </span>
-                                                                                <span class="ws-seathint__heading">Unavailable</span>
-                                                                            </div>
-                                                                            <div class="col-md-8 col-sm-6 ws-seathint__blocked">
-                                                                                <span>
-                                                                                    <input title="Booked" type="button" class="matrixButton">
-                                                                                    <i class="flaticon-furniture-and-household"></i>
-                                                                                </span>
-                                                                                <span class="ws-seathint__heading">Floor-Space</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    @*<img src="~/img/officeTypes/businesscentre.jpg" alt="space image" />*@
-                                                                    @*<a href="javascript:void(0);" id="hs_matrixView__btn" class="btn btn-success cst-btn-nine full-width"><span>View Cart</span></a>*@
-                                                                    <div id="admin_matrixpreview" class="matrix-preview-panel website_floorplan">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-7 ws-seatDetailsMaster event-opacity-none sticky-top">
-                                                                <h5 class="page-header mb--0">Seat Details</h5>
+																				//Mon
 
-                                                                <div class="" id="">
-                                                                    <div class="ws-seat__details" id="">
-                                                                        <div class="alert alert-success alert-dismissible ws-seatdetail" id="sampleSeatDetail" role="alert">
-                                                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                            <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                    <span class="ws-seatdetail__head">Name:</span>
-                                                                                    <span class="wd_name">Seat Name</span>
-                                                                                </div>
-                                                                                <div class="col-md-12">
-                                                                                    <span class="ws-seatdetail__head">Price:</span>
-                                                                                    <span class="text-primary wd_price" wdPrice="0">&#8377;00</span>
-                                                                                </div>
-                                                                                <div class="col-md-12">
-                                                                                    <span class="ws-seatdetail__head">Description: </span>
-                                                                                    <span class="wd_desc">
-                                                                                        Description
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-12 mt--20 ws-seatList alert-warning">
-                                                                        <div class="row">
-                                                                            <div class="col-md-6 col-sm-12">
-                                                                                Total no. of Seat(s):
-                                                                                <span class="seatSelectedCount">0</span>
-                                                                            </div>
-                                                                            <div class="col-md-6 col-sm-12 text-right">
-                                                                                Sub-total:
-                                                                                <span class="sd_subtotal">&#8377;00</span>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-sm-offset-4 col-sm-8 mt--20">
-                                                                        <a href="javascript:void(0);" title="Add To Cart" class="btn btn-default cst-btn-nine ws-seatdetail__cart btn-cart__action"><i class="ion-android-cart"></i> Add To Cart</a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                }
-                                                //}
-                                                else if (itemSpace.clientFloorSpaceSeatsCount != null)
-                                                {
-                                                    if (itemSpace.clientFloorSpaceSeatsCount == 0)
-                                                    {
-                                                        <div class="ws-space__padding space-tab-2">
-                                                            <div class="row wsb-floors__space-sec1">
-                                                                <div class="col-sm-12  mb--10">
-                                                                    <div class="row bg-white">
-                                                                        <h5 class="page-header mb--0 ml--13">Space Image</h5> <div class="col-md-4 col-sm-6 wsb-floors__space-image">
+																				TimeSpan? monOpen = Model.WorkSpaceDetails.selectedSpace.MonOpen;
+																				string monOpen_s = monOpen.ToString();
+																				DateTime? monOpen_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.MonOpen != null)
+																				{
+																					monOpen_dt = Convert.ToDateTime(monOpen_s);
+																				}
+																				else
+																				{
+																					monOpen_dt.Value.ToString();
+																				}
+																				TimeSpan? monClose = Model.WorkSpaceDetails.selectedSpace.MonClose;
+																				string monClose_s = monClose.ToString();
+																				DateTime? monClose_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.MonClose != null)
+																				{
+																					monClose_dt = Convert.ToDateTime(monClose_s);
+																				}
+																				else
+																				{
+																					monClose_dt.Value.ToString();
+																				}
 
-                                                                            <!--single image show-->
-                                                                            <div id="" class="ws-image-lightbox-1">
-                                                                                <div class="cbp-item">
-                                                                                    <a href="~/img/officeTypes/meetingroom.jpg" class="cbp-caption cbp-lightbox" data-title="">
-                                                                                        <div class="cbp-caption-defaultWrap">
-                                                                                            <img src="~/img/officeTypes/meetingroom.jpg" alt="space floor image">
-                                                                                        </div>
-                                                                                        <div class="cbp-caption-activeWrap">
-                                                                                            <div class="cbp-l-caption-alignLeft">
-                                                                                                <div class="cbp-l-caption-body">
-                                                                                                    Complete Space
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </a>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!--single image show end-->
-                                                                        </div>
-                                                                        <div class="col-md-8 col-sm-6 ws-scorll ws-floor-desc">
-                                                                            <p>
-                                                                                <span class="font-w-500">Description: </span>
-                                                                                Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet condimentum, dolor lacus porta quam, in pretium mauris mauris ac quam. Nam eu nibh dui. Nullam facilisis elit mauris, posuere cursus magna placerat sit amet. Pellentesque vel lectus vehicula, viverra justo in, sodales libero. In non gravida metus. Nullam dignissim dui in rhoncus pharetra. Cras iaculis, metus a tincidunt suscipit, eros nibh placerat mauris, quis ornare felis ipsum sit amet nunc. Morbi eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet
-                                                                            </p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-5 sticky-top wsb-floors__space-floor-plan">
-                                                                    <div class="wsb-floors__space-floor">
-                                                                        <div class="ws-seathint">
-                                                                            <div class="row">
-                                                                                <div class="col-md-4 col-sm-6">
-                                                                                    <span>
-                                                                                        <input title="Available" type="button" class="matrixButton">
-                                                                                        <i class="flaticon-furniture-and-household"></i>
-                                                                                    </span>
-                                                                                    <span class="ws-seathint__heading">Available</span>
-                                                                                </div>
-                                                                                <div class="col-md-4 col-sm-6 ws-seathint__selected">
-                                                                                    <span>
-                                                                                        <input title="Selected" type="button" class="matrixButton">
-                                                                                        <i class="flaticon-furniture-and-household"></i>
-                                                                                    </span>
-                                                                                    <span class="ws-seathint__heading">Selected</span>
-                                                                                </div>
-                                                                                <div class="col-md-4 col-sm-6 ws-seathint__booked">
-                                                                                    <span>
-                                                                                        <input title="Booked" type="button" class="matrixButton">
-                                                                                        <i class="flaticon-furniture-and-household"></i>
-                                                                                    </span>
-                                                                                    <span class="ws-seathint__heading">Booked</span>
-                                                                                </div>
-                                                                                <div class="col-md-4 col-sm-6 ws-seathint__unavailable">
-                                                                                    <span>
-                                                                                        <input title="Unavailable" type="button" class="matrixButton">
-                                                                                        <i class="flaticon-furniture-and-household"></i>
-                                                                                    </span>
-                                                                                    <span class="ws-seathint__heading">Unavailable</span>
-                                                                                </div>
-                                                                                <div class="col-md-8 col-sm-6 ws-seathint__blocked">
-                                                                                    <span>
-                                                                                        <input title="Booked" type="button" class="matrixButton">
-                                                                                        <i class="flaticon-furniture-and-household"></i>
-                                                                                    </span>
-                                                                                    <span class="ws-seathint__heading">Floor-Space</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--single image show-->
-                                                                        <div id="" class="ws-image-lightbox-1">
-                                                                            <div class="cbp-item">
-                                                                                <a href="~/img/officeTypes/meetingroom.jpg" class="cbp-caption cbp-lightbox" data-title="">
-                                                                                    <div class="cbp-caption-defaultWrap">
-                                                                                        <img src="~/img/officeTypes/meetingroom.jpg" alt="space floor image">
-                                                                                    </div>
-                                                                                    <div class="cbp-caption-activeWrap">
-                                                                                        <div class="cbp-l-caption-alignLeft">
-                                                                                            <div class="cbp-l-caption-body">
-                                                                                                Complete Space
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <!--single image show end-->
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-sm-7 sticky-top ws-seatDetailsMaster">
-                                                                    <h5 class="page-header mb--0">Seat Details</h5>
+																				//Tue
+																				TimeSpan? tueOpen = Model.WorkSpaceDetails.selectedSpace.TueOpen;
+																				string tueOpen_s = tueOpen.ToString();
+																				DateTime? tueOpen_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.TueOpen != null)
+																				{
+																					tueOpen_dt = Convert.ToDateTime(tueOpen_s);
+																				}
+																				else
+																				{
+																					tueOpen_dt.Value.ToString();
+																				}
+																				TimeSpan? tueClose = Model.WorkSpaceDetails.selectedSpace.TueClose;
+																				string tueClose_s = tueClose.ToString();
+																				DateTime? tueClose_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.TueClose != null)
+																				{
+																					tueClose_dt = Convert.ToDateTime(tueClose_s);
+																				}
+																				else
+																				{
+																					tueClose_dt.Value.ToString();
+																				}
 
-                                                                    <div class="" id="">
-                                                                        <div class="ws-seat__details">
-                                                                            <div memberBookingSpaceID=@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID seatmatrix="0:0" id="detail-seat_0_0" seatid="seat_0_0 " class="alert alert-success alert-dismissible ws-seatdetail ws-seatdetail_show animated zoomIn" role="alert">
-                                                                                @*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                                    <span aria-hidden="true">&times;</span>
-                                                                                    </button>*@
-                                                                                <div class="row">
-                                                                                    <div class="col-md-12">
-                                                                                        <span class="ws-seatdetail__head">Name:</span>
-                                                                                        <span class="wd_name">@itemSpace.clientFloorSpace.SpaceName ( Book Complete space)</span>
-                                                                                    </div>
-                                                                                    <div class="col-md-12 hide">
-                                                                                        <span class="ws-seatdetail__head">ClientSpaceSeatID:</span>
-                                                                                        <span class="wd_clientspaceseatid">0</span>
-                                                                                    </div>
-                                                                                    <div class="col-md-12">
-                                                                                        <span class="ws-seatdetail__head">Price:</span>
-                                                                                        <span class="text-primary wd_price" wdPrice=@itemSpace.clientFloorSpace.Price>&#8377;@itemSpace.clientFloorSpace.Price</span>
-                                                                                    </div>
-                                                                                    <div class="col-md-12">
-                                                                                        <span class="ws-seatdetail__head">Description: </span>
-                                                                                        <span class="wd_desc">@itemSpace.clientFloorSpace.SpaceDescription</span>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-12 mt--20 ws-seatList alert-warning">
-                                                                            <div class="row">
-                                                                                <div class="col-md-6 col-sm-12">
-                                                                                    Total no. of Seat(s):
-                                                                                    <span class="seatSelectedCount">@itemSpace.clientFloorSpace.NumberOfSeats</span>
-                                                                                </div>
-                                                                                <div class="col-md-6 col-sm-12 text-right">
-                                                                                    Sub-total:
-                                                                                    <span class="sd_subtotal">&#8377;@itemSpace.clientFloorSpace.Price</span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-offset-4 col-sm-8 mt--20">
-                                                                            <a href="javascript:void(0);" title="Add To Cart" class="btn btn-default cst-btn-nine ws-seatdetail__cart btn-cart__action"><i class="ion-android-cart"></i> Add To Cart</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    }
-                                                }
-                                            }
-                                            <!--Space section end-->
-                                        </div>
-                                    </div>
-                                    <!--Space section end-->
-                                </div>
-                            }
-                        </div>
-                        <!--floor section end-->
-                    </div>
-                </div>
-                <div class="col-sm-3 wsb-floors__space-cart sticky-top">
-                    <h3 class="page-header mb--0">Cart</h3>
-                    <div class="wsb-floors__space-sec3">
-                        <!--cart -selected seat-->
-                        <div class="accordion" id="acc_seats">
-                            <div class="card">
-                                <div class="card-header" id="headingOne">
-                                    <h5 class="mb-0">
-                                        <button class="btn btn-default btn-xs cst-btn-nine full-width" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            Selected Seats
-                                        </button>
-                                    </h5>
-                                </div>
+																				//wed
+																				TimeSpan? wedOpen = Model.WorkSpaceDetails.selectedSpace.WedOpen;
+																				string wedOpen_s = wedOpen.ToString();
+																				DateTime? wedOpen_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.WedOpen != null)
+																				{
+																					wedOpen_dt = Convert.ToDateTime(wedOpen_s);
+																				}
+																				else
+																				{
+																					wedOpen_dt.Value.ToString();
+																				}
+																				TimeSpan? wedClose = Model.WorkSpaceDetails.selectedSpace.WedClose;
+																				string wedClose_s = wedClose.ToString();
+																				DateTime? wedClose_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.WedClose != null)
+																				{
+																					wedClose_dt = Convert.ToDateTime(wedClose_s);
+																				}
+																				else
+																				{
+																					wedClose_dt.Value.ToString();
+																				}
 
-                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#acc_seats">
-                                    <div class="card-body">
-                                        <div class="wsb-floors__space-seatList">
-                                            <table class="table table-striped cartSeatDetails" id="cartSeatDetails">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Seat</th>
-                                                        <th>Quantity</th>
-                                                        <th>Price</th>
-                                                        @*<th>Delete</th>*@
-                                                    </tr>
-                                                </thead>
-                                                <tbody></tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>SubTotal</th>
-                                                        <th id="cart_subTotal" class="text-right">&#8377; 00</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--cart selected seat end-->
-                        <div class="wsb-floors__space-seatTotal">
-                            Total: <span id="cart_total">&#8377; 00</span>
-                        </div>
-                        <a href="@Url.Action("ViewCartWorkspace", "Website")" class="btn btn-success cst-btn-nine full-width "><span>View Cart</span></a>
-                    </div>
-                </div>
-            </div>
-            <!--Booking section end-->
-        </div>
-    </section>
-    <!-- section END -->
+																				//Thu
+																				TimeSpan? thuOpen = Model.WorkSpaceDetails.selectedSpace.ThuOpen;
+																				string thuOpen_s = thuOpen.ToString();
+																				DateTime? thuOpen_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.ThuOpen != null)
+																				{
+																					thuOpen_dt = Convert.ToDateTime(thuOpen_s);
+																				}
+																				else
+																				{
+																					thuOpen_dt.Value.ToString();
+																				}
+																				TimeSpan? thuClose = Model.WorkSpaceDetails.selectedSpace.ThuClose;
+																				string thuClose_s = thuClose.ToString();
+																				DateTime? thuClose_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.ThuClose != null)
+																				{
+																					thuClose_dt = Convert.ToDateTime(thuClose_s);
+																				}
+																				else
+																				{
+																					thuClose_dt.Value.ToString();
+																				}
+
+																				//Fri
+																				TimeSpan? friOpen = Model.WorkSpaceDetails.selectedSpace.FriOpen;
+																				string friOpen_s = friOpen.ToString();
+																				DateTime? friOpen_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.FriOpen != null)
+																				{
+																					friOpen_dt = Convert.ToDateTime(friOpen_s);
+																				}
+																				else
+																				{
+																					friOpen_dt.Value.ToString();
+																				}
+																				TimeSpan? friClose = Model.WorkSpaceDetails.selectedSpace.FriClose;
+																				string friClose_s = friClose.ToString();
+																				DateTime? friClose_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.FriClose != null)
+																				{
+																					friClose_dt = Convert.ToDateTime(friClose_s);
+																				}
+																				else
+																				{
+																					friClose_dt.Value.ToString();
+																				}
+
+																				//Sat
+																				TimeSpan? satOpen = Model.WorkSpaceDetails.selectedSpace.SatOpen;
+																				string satOpen_s = satOpen.ToString();
+																				DateTime? satOpen_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.SatOpen != null)
+																				{
+																					satOpen_dt = Convert.ToDateTime(satOpen_s);
+																				}
+																				else
+																				{
+																					satOpen_dt.Value.ToString();
+																				}
+																				TimeSpan? satClose = Model.WorkSpaceDetails.selectedSpace.SatClose;
+																				string satClose_s = satClose.ToString();
+																				DateTime? satClose_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.SatClose != null)
+																				{
+																					satClose_dt = Convert.ToDateTime(satClose_s);
+																				}
+																				else
+																				{
+																					satClose_dt.Value.ToString();
+																				}
+
+																				//Sun
+																				TimeSpan? sunOpen = Model.WorkSpaceDetails.selectedSpace.SunOpen;
+																				string sunOpen_s = sunOpen.ToString();
+																				DateTime? sunOpen_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.SunOpen != null)
+																				{
+																					sunOpen_dt = Convert.ToDateTime(sunOpen_s);
+																				}
+																				else
+																				{
+																					sunOpen_dt.Value.ToString();
+																				}
+																				TimeSpan? sunClose = Model.WorkSpaceDetails.selectedSpace.SunClose;
+																				string sunClose_s = sunClose.ToString();
+																				DateTime? sunClose_dt = new DateTime();
+																				if(Model.WorkSpaceDetails.selectedSpace.SunClose != null)
+																				{
+																					sunClose_dt = Convert.ToDateTime(sunClose_s);
+																				}
+																				else
+																				{
+																					sunClose_dt.Value.ToString();
+																				}
+
+																				//24/7 time
+																				if (Model.WorkSpaceDetails.selectedSpace.Is24 == true)
+																				{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							24Hours/7Days
+																							<span>(24/7)</span>
+																						</div>
+																					</li>
+																				}
+																				else if ((Model.WorkSpaceDetails.selectedSpace.Is24 == false) && (Model.WorkSpaceDetails.selectedSpace.MonAvail == true) && (Model.WorkSpaceDetails.selectedSpace.TueAvail == true) && (Model.WorkSpaceDetails.selectedSpace.WedAvail == true) && (Model.WorkSpaceDetails.selectedSpace.ThuAvail == true) && (Model.WorkSpaceDetails.selectedSpace.FriAvail == true) && (Model.WorkSpaceDetails.selectedSpace.SatAvail == false) && (Model.WorkSpaceDetails.selectedSpace.SunAvail == false) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonOpen, Model.WorkSpaceDetails.selectedSpace.TueOpen, Model.WorkSpaceDetails.selectedSpace.WedOpen, Model.WorkSpaceDetails.selectedSpace.ThuOpen, Model.WorkSpaceDetails.selectedSpace.FriOpen }.Contains(monOpen)) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonClose, Model.WorkSpaceDetails.selectedSpace.TueClose, Model.WorkSpaceDetails.selectedSpace.WedClose, Model.WorkSpaceDetails.selectedSpace.ThuClose, Model.WorkSpaceDetails.selectedSpace.FriClose }.Contains(monClose)))
+																				{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Monday - Friday
+																							<span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Saturday <span> Closed</span>
+																						</div>
+																					</li>
+																					<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Sunday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																					else if ((Model.WorkSpaceDetails.selectedSpace.Is24 == false) && (Model.WorkSpaceDetails.selectedSpace.MonAvail == true) && (Model.WorkSpaceDetails.selectedSpace.TueAvail == true) && (Model.WorkSpaceDetails.selectedSpace.WedAvail == true) && (Model.WorkSpaceDetails.selectedSpace.ThuAvail == true) && (Model.WorkSpaceDetails.selectedSpace.FriAvail == true) && (Model.WorkSpaceDetails.selectedSpace.SatAvail == true) && (Model.WorkSpaceDetails.selectedSpace.SunAvail == false) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonOpen, Model.WorkSpaceDetails.selectedSpace.TueOpen, Model.WorkSpaceDetails.selectedSpace.WedOpen, Model.WorkSpaceDetails.selectedSpace.ThuOpen, Model.WorkSpaceDetails.selectedSpace.FriOpen }.Contains(monOpen)) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonClose, Model.WorkSpaceDetails.selectedSpace.TueClose, Model.WorkSpaceDetails.selectedSpace.WedClose, Model.WorkSpaceDetails.selectedSpace.ThuClose, Model.WorkSpaceDetails.selectedSpace.FriClose }.Contains(monClose)))
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Monday - Friday
+																							<span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Saturday <span>( @satOpen_dt.Value.ToString("hh:mm tt") - @satClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Sunday <span> Closed</span>
+																						</div>
+																					</li>
+
+																				}
+																				else
+																				{
+																					//mon
+																					if (Model.WorkSpaceDetails.selectedSpace.MonAvail == true)
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Monday <span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					}
+																					else{
+																						<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Monday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																					//tue
+																					if (Model.WorkSpaceDetails.selectedSpace.TueAvail == true)
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Tuesday <span>( @tueOpen_dt.Value.ToString("hh:mm tt") - @tueClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					}
+																					else{
+																						<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Tuesday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																					//wed
+																					if (Model.WorkSpaceDetails.selectedSpace.WedAvail == true)
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Wednesday <span>( @wedOpen_dt.Value.ToString("hh:mm tt") - @wedClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					}
+																					else{
+																						<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Wednesday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																					//thu
+																					if (Model.WorkSpaceDetails.selectedSpace.ThuAvail == true)
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Thursday <span>( @thuOpen_dt.Value.ToString("hh:mm tt") - @thuClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					}
+																					else{
+																						<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Thursday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																					//fri
+																					if (Model.WorkSpaceDetails.selectedSpace.FriAvail == true)
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Friday <span>( @friOpen_dt.Value.ToString("hh:mm tt") - @friClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					}
+																					else{
+																						<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Friday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																					//sat
+																					if (Model.WorkSpaceDetails.selectedSpace.SatAvail == true)
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Saturday <span>( @satOpen_dt.Value.ToString("hh:mm tt") - @satClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					}
+																					else{
+																						<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Saturday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																					//sun
+																					if (Model.WorkSpaceDetails.selectedSpace.SunAvail == true)
+																					{
+																					<li>
+																						<i class="fa fa-check-circle" aria-hidden="true"></i>
+																						<div>
+																							Sunday <span>( @sunOpen_dt.Value.ToString("hh:mm tt") - @sunClose_dt.Value.ToString("hh:mm tt") )</span>
+																						</div>
+																					</li>
+																					}
+																					else{
+																						<li>
+																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																						<div>
+																							Sunday <span> Closed</span>
+																						</div>
+																					</li>
+																					}
+																				}
+
+																				}
+																		</ul>
+																	</div>
+																</div>
+																<div class="col-lg-8 col-md-8 col-sm-6 col-6">
+																	<div class="row ws-schedule-time">
+																		<div class="col-sm-4">
+																			<div class="form-group">
+																				<label for="from_date">From: Date <span class="font-10"> (DD/MM/YYYY)</span></label>
+																				<div class='input-group date datetimepicker' id='from_date'>
+																					<input type='text' class="form-control" />
+																					<span class="input-group-addon">
+																						<span class="glyphicon glyphicon-calendar"></span>
+																					</span>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-sm-2 pl--0">
+																			<div class="form-group">
+																				<label>HH:MM</label>
+																				<div class="input-group">
+																					<select class="selectpicker">
+																						<option value="1">All</option>
+																						<option value="2">12:00 am</option>
+																						<option value="3">01:00 am</option>
+																						<option value="4">02:00 am</option>
+																						<option value="5">03:00 am</option>
+																						<option value="6">04:00 am</option>
+																						<option value="7">05:00 am</option>
+																						<option value="8">06:00 am</option>
+																						<option value="9">07:00 am</option>
+																						<option value="10">08:00 am</option>
+																						<option value="11">09:00 am</option>
+																						<option value="12">10:00 am</option>
+																						<option value="13">11:00 am</option>
+																						<option value="14">12:00 pm</option>
+																						<option value="15">01:00 pm</option>
+																						<option value="16">02:00 pm</option>
+																						<option value="17">03:00 pm</option>
+																						<option value="18">04:00 pm</option>
+																						<option value="19">05:00 pm</option>
+																						<option value="20">06:00 pm</option>
+																						<option value="21">07:00 pm</option>
+																						<option value="22">08:00 pm</option>
+																						<option value="23">09:00 pm</option>
+																						<option value="24">10:00 pm</option>
+																						<option value="25">11:00 pm</option>
+																					</select>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-sm-4">
+																			<div class="form-group">
+																				<label for="to_date">To: Date <span class="font-10"> (DD/MM/YYYY)</span></label>
+																				<div class='input-group date datetimepicker' id='to_date'>
+																					<input type='text' class="form-control" />
+																					<span class="input-group-addon">
+																						<span class="glyphicon glyphicon-calendar"></span>
+																					</span>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-sm-2 pl--0">
+																			<div class="form-group">
+																				<label>HH:MM</label>
+																				<div class="input-group">
+																					<select class="selectpicker">
+																						<option value="1">All</option>
+																						<option value="2">12:00 am</option>
+																						<option value="3">01:00 am</option>
+																						<option value="4">02:00 am</option>
+																						<option value="5">03:00 am</option>
+																						<option value="6">04:00 am</option>
+																						<option value="7">05:00 am</option>
+																						<option value="8">06:00 am</option>
+																						<option value="9">07:00 am</option>
+																						<option value="10">08:00 am</option>
+																						<option value="11">09:00 am</option>
+																						<option value="12">10:00 am</option>
+																						<option value="13">11:00 am</option>
+																						<option value="14">12:00 pm</option>
+																						<option value="15">01:00 pm</option>
+																						<option value="16">02:00 pm</option>
+																						<option value="17">03:00 pm</option>
+																						<option value="18">04:00 pm</option>
+																						<option value="19">05:00 pm</option>
+																						<option value="20">06:00 pm</option>
+																						<option value="21">07:00 pm</option>
+																						<option value="22">08:00 pm</option>
+																						<option value="23">09:00 pm</option>
+																						<option value="24">10:00 pm</option>
+																						<option value="25">11:00 pm</option>
+																					</select>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--scheduler section end-->
+															<div class="col-sm-5 sticky-top wsb-floors__space-floor-plan">
+																<div class="wsb-floors__space-floor">
+																	@*<h5 class="page-header mb--0">Floor Plan</h5>*@
+																	<div class="ws-seathint">
+																		<div class="row">
+																			<div class="col-md-4 col-sm-6 col-xs-6">
+																				<span>
+																					<input title="Available" type="button" class="matrixButton">
+																					<i class="flaticon-furniture-and-household"></i>
+																				</span>
+																				<span class="ws-seathint__heading">Available</span>
+																			</div>
+																			<div class="col-md-4 col-sm-6 col-xs-6 ws-seathint__selected">
+																				<span>
+																					<input title="Selected" type="button" class="matrixButton">
+																					<i class="flaticon-furniture-and-household"></i>
+																				</span>
+																				<span class="ws-seathint__heading">Selected</span>
+																			</div>
+																			<div class="col-md-4 col-sm-6 col-xs-6 ws-seathint__booked">
+																				<span>
+																					<input title="Booked" type="button" class="matrixButton">
+																					<i class="flaticon-furniture-and-household"></i>
+																				</span>
+																				<span class="ws-seathint__heading">Booked</span>
+																			</div>
+																			<div class="col-md-4 col-sm-6 col-xs-6 ws-seathint__unavailable">
+																				<span>
+																					<input title="Unavailable" type="button" class="matrixButton">
+																					<i class="flaticon-furniture-and-household"></i>
+																				</span>
+																				<span class="ws-seathint__heading">Unavailable</span>
+																			</div>
+																			<div class="col-md-8 col-sm-6 col-xs-6 ws-seathint__blocked">
+																				<span>
+																					<input title="Booked" type="button" class="matrixButton">
+																					<i class="flaticon-furniture-and-household"></i>
+																				</span>
+																				<span class="ws-seathint__heading">Floor-Space</span>
+																			</div>
+																		</div>
+																	</div>
+																	@*<img src="~/img/officeTypes/businesscentre.jpg" alt="space image" />*@
+																	@*<a href="javascript:void(0);" id="hs_matrixView__btn" class="btn btn-success cst-btn-nine full-width"><span>View Cart</span></a>*@
+																	<div id="admin_matrixpreview" class="matrix-preview-panel website_floorplan">
+																	</div>
+																</div>
+															</div>
+															<div class="col-sm-7 ws-seatDetailsMaster event-opacity-none sticky-top">
+																<h5 class="page-header mb--0">Seat Details</h5>
+
+																<div class="" id="">
+																	<div class="ws-seat__details" id="">
+																		<div class="alert alert-success alert-dismissible ws-seatdetail" id="sampleSeatDetail" role="alert">
+																			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																			</button>
+																			<div class="row">
+																				<div class="col-md-12">
+																					<span class="ws-seatdetail__head">Name:</span>
+																					<span class="wd_name">Seat Name</span>
+																				</div>
+																				<div class="col-md-12">
+																					<span class="ws-seatdetail__head">Price:</span>
+																					<span class="text-primary wd_price" wdPrice="0">00</span>
+																				</div>
+																				<div class="col-md-12">
+																					<span class="ws-seatdetail__head">Description: </span>
+																					<span class="wd_desc">
+																						Description
+																					</span>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-sm-12 mt--20 ws-seatList alert-warning">
+																		<div class="row">
+																			<div class="col-md-6 col-sm-12">
+																				Total no. of Seat(s):
+																				<span class="seatSelectedCount">0</span>
+																			</div>
+																			<div class="col-md-6 col-sm-12 text-right">
+																				Sub-total:
+																				<span class="sd_subtotal">00</span>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="col-sm-offset-4 col-sm-8 mt--20">
+																		<a href="javascript:void(0);" title="Add To Cart" class="btn btn-default cst-btn-nine ws-seatdetail__cart btn-cart__action"><i class="ion-android-cart"></i> Add To Cart</a>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												}
+												//}
+												else if (itemSpace.clientFloorSpaceSeatsCount != null)
+												{
+													if (itemSpace.clientFloorSpaceSeatsCount == 0)
+													{
+														<div class="ws-space__padding space-tab-2">
+															<div class="row wsb-floors__space-sec1">
+																<div class="col-sm-12  mb--10">
+																	<div class="row bg-white">
+																		<h5 class="page-header mb--0 ml--13">Space Image</h5> <div class="col-md-4 col-sm-6 wsb-floors__space-image">
+
+																			<!--single image show-->
+																			<div id="" class="ws-image-lightbox-1">
+																				<div class="cbp-item">
+																					<a href="~/img/officeTypes/meetingroom.jpg" class="cbp-caption cbp-lightbox" data-title="">
+																						<div class="cbp-caption-defaultWrap">
+																							<img src="~/img/officeTypes/meetingroom.jpg" alt="space floor image">
+																						</div>
+																						<div class="cbp-caption-activeWrap">
+																							<div class="cbp-l-caption-alignLeft">
+																								<div class="cbp-l-caption-body">
+																									Complete Space
+																								</div>
+																							</div>
+																						</div>
+																					</a>
+																				</div>
+																			</div>
+																			<!--single image show end-->
+																		</div>
+																		<div class="col-md-8 col-sm-6 ws-scorll ws-floor-desc">
+																			<p>
+																				<span class="font-w-500">Description: </span>
+																				Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet condimentum, dolor lacus porta quam, in pretium mauris mauris ac quam. Nam eu nibh dui. Nullam facilisis elit mauris, posuere cursus magna placerat sit amet. Pellentesque vel lectus vehicula, viverra justo in, sodales libero. In non gravida metus. Nullam dignissim dui in rhoncus pharetra. Cras iaculis, metus a tincidunt suscipit, eros nibh placerat mauris, quis ornare felis ipsum sit amet nunc. Morbi eleifend. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas scelerisque, nisi quis aliquet
+																			</p>
+																		</div>
+																	</div>
+																</div>
+																<div class="col-sm-5 sticky-top wsb-floors__space-floor-plan">
+																	<div class="wsb-floors__space-floor">
+																		<div class="ws-seathint">
+																			<div class="row">
+																				<div class="col-md-4 col-sm-6 col-xs-6">
+																					<span>
+																						<input title="Available" type="button" class="matrixButton">
+																						<i class="flaticon-furniture-and-household"></i>
+																					</span>
+																					<span class="ws-seathint__heading">Available</span>
+																				</div>
+																				<div class="col-md-4 col-sm-6 col-xs-6 ws-seathint__selected">
+																					<span>
+																						<input title="Selected" type="button" class="matrixButton">
+																						<i class="flaticon-furniture-and-household"></i>
+																					</span>
+																					<span class="ws-seathint__heading">Selected</span>
+																				</div>
+																				<div class="col-md-4 col-sm-6 col-xs-6 ws-seathint__booked">
+																					<span>
+																						<input title="Booked" type="button" class="matrixButton">
+																						<i class="flaticon-furniture-and-household"></i>
+																					</span>
+																					<span class="ws-seathint__heading">Booked</span>
+																				</div>
+																				<div class="col-md-4 col-sm-6 col-xs-6 ws-seathint__unavailable">
+																					<span>
+																						<input title="Unavailable" type="button" class="matrixButton">
+																						<i class="flaticon-furniture-and-household"></i>
+																					</span>
+																					<span class="ws-seathint__heading">Unavailable</span>
+																				</div>
+																				<div class="col-md-8 col-sm-6 col-xs-6 ws-seathint__blocked">
+																					<span>
+																						<input title="Booked" type="button" class="matrixButton">
+																						<i class="flaticon-furniture-and-household"></i>
+																					</span>
+																					<span class="ws-seathint__heading">Floor-Space</span>
+																				</div>
+																			</div>
+																		</div>
+																		<!--single image show-->
+																		<div id="" class="ws-image-lightbox-1">
+																			<div class="cbp-item">
+																				<a href="~/img/officeTypes/meetingroom.jpg" class="cbp-caption cbp-lightbox" data-title="">
+																					<div class="cbp-caption-defaultWrap">
+																						<img src="~/img/officeTypes/meetingroom.jpg" alt="space floor image">
+																					</div>
+																					<div class="cbp-caption-activeWrap">
+																						<div class="cbp-l-caption-alignLeft">
+																							<div class="cbp-l-caption-body">
+																								Complete Space
+																							</div>
+																						</div>
+																					</div>
+																				</a>
+																			</div>
+																		</div>
+																		<!--single image show end-->
+																	</div>
+																</div>
+																<div class="col-sm-7 sticky-top ws-seatDetailsMaster">
+																	<h5 class="page-header mb--0">Seat Details</h5>
+
+																	<div class="" id="">
+																		<div class="ws-seat__details">
+																			<div memberBookingSpaceID=@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID seatmatrix="0:0" id="detail-seat_0_0" seatid="seat_0_0 " class="alert alert-success alert-dismissible ws-seatdetail ws-seatdetail_show animated zoomIn" role="alert">
+																				@*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+																					<span aria-hidden="true">&times;</span>
+																					</button>*@
+																				<div class="row">
+																					<div class="col-md-12">
+																						<span class="ws-seatdetail__head">Name:</span>
+																						<span class="wd_name">@itemSpace.clientFloorSpace.SpaceName ( Book Complete space)</span>
+																					</div>
+																					<div class="col-md-12 hide">
+																						<span class="ws-seatdetail__head">ClientSpaceSeatID:</span>
+																						<span class="wd_clientspaceseatid">0</span>
+																					</div>
+																					<div class="col-md-12">
+																						<span class="ws-seatdetail__head">Price:</span>
+																						<span class="text-primary wd_price" wdPrice=@itemSpace.clientFloorSpace.Price>@itemSpace.clientFloorSpace.Price</span>
+																					</div>
+																					<div class="col-md-12">
+																						<span class="ws-seatdetail__head">Description: </span>
+																						<span class="wd_desc">@itemSpace.clientFloorSpace.SpaceDescription</span>
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-sm-12 mt--20 ws-seatList alert-warning">
+																			<div class="row">
+																				<div class="col-md-6 col-sm-12">
+																					Total no. of Seat(s):
+																					<span class="seatSelectedCount">@itemSpace.clientFloorSpace.NumberOfSeats</span>
+																				</div>
+																				<div class="col-md-6 col-sm-12 text-right">
+																					Sub-total:
+																					<span class="sd_subtotal">@itemSpace.clientFloorSpace.Price</span>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-sm-offset-4 col-sm-8 mt--20">
+																			<a href="javascript:void(0);" title="Add To Cart" class="btn btn-default cst-btn-nine ws-seatdetail__cart btn-cart__action"><i class="ion-android-cart"></i> Add To Cart</a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													}
+												}
+											}
+											<!--Space section end-->
+										</div>
+									</div>
+									<!--Space section end-->
+								</div>
+							}
+						</div>
+						<!--floor section end-->
+					</div>
+				</div>
+				<div class="col-sm-3 wsb-floors__space-cart sticky-top">
+					<h3 class="page-header mb--0">Cart</h3>
+					<div class="wsb-floors__space-sec3">
+						<!--cart -selected seat-->
+						<div class="accordion" id="acc_seats">
+							<div class="card">
+								<div class="card-header" id="headingOne">
+									<h5 class="mb-0">
+										<button class="btn btn-default btn-xs cst-btn-nine full-width" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Selected Seats
+										</button>
+									</h5>
+								</div>
+
+								<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#acc_seats">
+									<div class="card-body">
+										<div class="wsb-floors__space-seatList">
+											<table class="table table-striped cartSeatDetails" id="cartSeatDetails">
+												<thead>
+													<tr>
+														<th>Seat</th>
+														<th>Quantity</th>
+														<th>Price</th>
+														@*<th>Delete</th>*@
+													</tr>
+												</thead>
+												<tbody></tbody>
+												@*<tfoot>
+														<tr>
+															<th></th>
+															<th>SubTotal</th>
+															<th id="cart_subTotal" class="text-right"> 00</th>
+															<th></th>
+														</tr>
+													</tfoot>*@
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--cart selected seat end-->
+						<div class="wsb-floors__space-seatTotal">
+							Total: <span id="cart_total"> 00</span>
+						</div>
+						<a href="@Url.Action("ViewCartWorkspace", "Website")" class="btn btn-success cst-btn-nine full-width "><span>View Cart</span></a>
+					</div>
+				</div>
+			</div>
+			<!--Booking section end-->
+		</div>
+	</section>
+	<!-- section END -->
 </div>
 <!-- page content END -->

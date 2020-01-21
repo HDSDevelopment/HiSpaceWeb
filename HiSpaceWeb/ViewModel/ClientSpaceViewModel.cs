@@ -15,38 +15,51 @@ using System.ComponentModel.DataAnnotations;
 namespace HiSpaceWeb.ViewModel
 {
 
-    public class ClientSpaceViewModel
-    {
-        private SessionUtility session;
+	public class ClientSpaceViewModel
+	{
+		private SessionUtility session;
 
-        public ClientSpaceViewModel()
-        {
-            ClientSpaceFloorPlan = new ClientWorkSpaceFloorPlan();
-            FacilityList = new List<FacilityVM>();
-            SelectedSeats = new List<ClientSpaceSeat>();
-        }
-        public ClientWorkSpaceFloorPlan ClientSpaceFloorPlan { set; get; }
-              
-        public int? ClientFloorID { set; get; }
-        public int? WSpaceTypeID { set; get; }
-        public int? ChairTypeID { get; set; }
-        public int? ScaleMetricID { get; set; }
-        public string StatusName { get; set; }
-        public int? ApplyToID { set; get; }
-        public int? SeatStatusID { set; get; }
-        public double? SeatPrice { set; get; }
-        public string SeatDescription { set; get; }
-        public List<ClientSpaceSeat> SelectedSeats { set; get; }
+		public ClientSpaceViewModel()
+		{
+			ClientSpaceFloorPlan = new ClientWorkSpaceFloorPlan();
+			FacilityList = new List<FacilityVM>();
+			SelectedSeats = new List<ClientSpaceSeat>();
+		}
+		public ClientWorkSpaceFloorPlan ClientSpaceFloorPlan { set; get; }
 
-        public List<FacilityVM> FacilityList { set; get; }
+		public int? ClientFloorID { set; get; }
 
-        public int SeatXCoord { set; get; }
-        public int SeatYCoord { set; get; }
-        //public string SeatDescription { set; get; }
-        //public double? SeatPrice { set; get; }
-        public string SeatStatus { set; get; }
+		public int? WSpaceTypeID { set; get; }
+		public int? ChairTypeID { get; set; }
+		public int? ScaleMetricID { get; set; }
+		public string StatusName { get; set; }
+		public int? ApplyToID { set; get; }
+		public int? SeatStatusID { set; get; }
+		public double? SeatPrice { set; get; }
+		public string SeatDescription { set; get; }
+		public List<ClientSpaceSeat> SelectedSeats { set; get; }
 
-        public IFormFile FloorPlanFile { set; get; }
-    }
-   
+		public List<FacilityVM> FacilityList { set; get; }
+
+		public int SeatXCoord { set; get; }
+		public int SeatYCoord { set; get; }
+		//public string SeatDescription { set; get; }
+		//public double? SeatPrice { set; get; }
+		public string SeatStatus { set; get; }
+
+		public IFormFile FloorPlanFile { set; get; }
+
+		public bool? AllTimeCheck { set; get; }
+		public bool? MonToFriCheck { set; get; }
+		public bool? MonToSatCheck { set; get; }
+		public bool? CustomCheck { set; get; }
+		public TimeSpan? AllTimeOpen { set; get; }
+		public TimeSpan? MonToFriOpen { set; get; }
+		public TimeSpan? MonToFriClose { set; get; }
+		public TimeSpan? MonToFriNotSatOpen { set; get; }
+		public TimeSpan? MonToFriNotSatClose { set; get; }
+		public TimeSpan? MonToFriWithSatOpen { set; get; }
+		public TimeSpan? MonToFriWithSatClose { set; get; }
+	}
+
 }
