@@ -1093,7 +1093,7 @@ function RenewalMembershipPlan() {
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			//console.log("--" + 6 + "--");
-			alert(xhr.responseText);
+			//alert(xhr.responseText);
 		}
 	});
 }

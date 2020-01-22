@@ -280,7 +280,7 @@ namespace HiSpaceWeb.Controllers
                         readTask.Wait();
                         UserLogin login = readTask.Result;
 
-                        if (login!=null)
+                        if (login != null)
                         {
                             AssignSessionVariables(login);
                             SetSessionVariables();
@@ -322,7 +322,8 @@ namespace HiSpaceWeb.Controllers
 
                             NewMember.ClientID = vModel.WorkSpaceDetails.selectedSpace.ClientID;
                             NewMember.MemberStatus = true;
-                            NewMember.MemberName = newSignupUser.signupUser.Username;
+                            //NewMember.MemberName = newSignupUser.signupUser.Username;
+                            NewMember.MemberName = newSignupUser.signupUser.Firstname + " " + newSignupUser.signupUser.Lastname;
                             NewMember.CreatedBy = 1;
                             NewMember.CreatedDateTime = DateTime.Now;
 

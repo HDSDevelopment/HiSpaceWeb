@@ -300,6 +300,8 @@ namespace HiSpaceWeb.Controllers
                     {
                         vModel.currentPlan = vModel.membershipPlanHistory[0];
                     }
+                    else
+                        vModel.currentPlan = null;
                 }
                 else //web api sent error response 
                 {

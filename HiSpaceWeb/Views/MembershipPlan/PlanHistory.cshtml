@@ -40,100 +40,107 @@
                 <!--section 1-->
                 <div class="card card-statistics">
                     <div class="card-header card-accordion" data-toggle="collapse" data-parent="#accordion" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
-                        <div class="card-heading">
-                            <h4 class="card-title d-inline-block">@Model.currentPlan.MembershipName</h4>
-                            <div class="d-inline-block">
-                                <span class="">From: </span> @Model.currentPlan.StartedDate.Value.ToString("dd-MMM-yyyy")
-                                <span class="">To: </span> @Model.currentPlan.ExpiredDate.Value.ToString("dd-MMM-yyyy")
+
+                        @if (Model.currentPlan != null)
+                        {
+                            <div class="card-heading">
+                                <h4 class="card-title d-inline-block">@Model.currentPlan.MembershipName</h4>
+                                <div class="d-inline-block">
+                                    <span class="">From: </span> @Model.currentPlan.StartedDate.Value.ToString("dd-MMM-yyyy")
+                                    <span class="">To: </span> @Model.currentPlan.ExpiredDate.Value.ToString("dd-MMM-yyyy")
+                                </div>
+                                <div class="d-inline-block plan-status">
+                                    <span>Active</span>
+                                    @if (Model.currentPlan.ExpiredDate.Value < DateTime.Now)
+                                    {
+                                        <blink class="blink">Expired</blink>
+                                    }
+                                    else if (Model.currentPlan.RenewalDate.Value < DateTime.Now)
+                                    {
+                                        <blink class="blink">Expire soon</blink>
+                                    }
+                                </div>
                             </div>
-                            <div class="d-inline-block plan-status">
-                                <span>Active</span>
-                                @if (Model.currentPlan.ExpiredDate.Value < DateTime.Now)
-                                {
-                                    <blink class="blink">Expired</blink>
-                                }
-                                else if (Model.currentPlan.RenewalDate.Value < DateTime.Now)
-                                {
-                                    <blink class="blink">Expire soon</blink>
-                                }
-                            </div>
-                        </div>
+                        }
                     </div>
-                    <div class="card-body panel-collapse collapse show" aria-labelledby="heading-1" data-parent="#accordion">
-                        <div>
-                            <ul class="ul-table">
-                                <li>
-                                    <div class="li-head">
-                                        Plan Name:
-                                    </div>
-                                    <div class="li-text">
-                                        @Model.currentPlan.MembershipName
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="li-head">
-                                        Duration:
-                                    </div>
-                                    <div class="li-text">
-                                        @Model.currentPlan.MembershipDuration @Model.currentPlan.MembershipDurationType (s)
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="li-head">
-                                        Price:
-                                    </div>
-                                    <div class="li-text">
-                                        <span>&#8377;</span>@Model.currentPlan.PriceOnDate
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="li-head">
-                                        Start Date:
-                                    </div>
-                                    <div class="li-text">
-                                        @Model.currentPlan.StartedDate.Value.ToString("dd-MMM-yyyy")
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="li-head">
-                                        End Date:
-                                    </div>
-                                    <div class="li-text">
-                                        @Model.currentPlan.ExpiredDate.Value.ToString("dd-MMM-yyyy")
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="li-head">
-                                        Description:
-                                    </div>
-                                    <div class="li-text">
-                                        @Model.currentPlan.Description
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="hi-table">
-                            <table>
-                                <tr>
-                                    <th>Plan Name</th>
-                                    <th>Started Date</th>
-                                    <th>Expiry Date</th>
-                                    <th>Renewal Alert</th>
-                                    <th>Price</th>
-                                </tr>
-                                @foreach (var item in Model.membershipPlanHistory)
-                                {
+                    @if (Model.currentPlan != null)
+                    {
+                        <div class="card-body panel-collapse collapse show" aria-labelledby="heading-1" data-parent="#accordion">
+                            <div>
+                                <ul class="ul-table">
+                                    <li>
+                                        <div class="li-head">
+                                            Plan Name:
+                                        </div>
+                                        <div class="li-text">
+                                            @Model.currentPlan.MembershipName
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="li-head">
+                                            Duration:
+                                        </div>
+                                        <div class="li-text">
+                                            @Model.currentPlan.MembershipDuration @Model.currentPlan.MembershipDurationType (s)
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="li-head">
+                                            Price:
+                                        </div>
+                                        <div class="li-text">
+                                            <span>&#8377;</span>@Model.currentPlan.PriceOnDate
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="li-head">
+                                            Start Date:
+                                        </div>
+                                        <div class="li-text">
+                                            @Model.currentPlan.StartedDate.Value.ToString("dd-MMM-yyyy")
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="li-head">
+                                            End Date:
+                                        </div>
+                                        <div class="li-text">
+                                            @Model.currentPlan.ExpiredDate.Value.ToString("dd-MMM-yyyy")
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="li-head">
+                                            Description:
+                                        </div>
+                                        <div class="li-text">
+                                            @Model.currentPlan.Description
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="hi-table">
+                                <table>
                                     <tr>
-                                        <td>@Html.DisplayFor(modelItem => item.MembershipName)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.StartedDate)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.ExpiredDate)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.RenewalDate)</td>
-                                        <td>@Html.DisplayFor(modelItem => item.PriceOnDate)</td>
+                                        <th>Plan Name</th>
+                                        <th>Started Date</th>
+                                        <th>Expiry Date</th>
+                                        <th>Renewal Alert</th>
+                                        <th>Price</th>
                                     </tr>
-                                }
-                            </table>
+                                    @foreach (var item in Model.membershipPlanHistory)
+                                    {
+                                        <tr>
+                                            <td>@Html.DisplayFor(modelItem => item.MembershipName)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.StartedDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.ExpiredDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.RenewalDate)</td>
+                                            <td>@Html.DisplayFor(modelItem => item.PriceOnDate)</td>
+                                        </tr>
+                                    }
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
