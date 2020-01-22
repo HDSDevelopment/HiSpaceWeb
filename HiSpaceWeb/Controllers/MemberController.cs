@@ -30,7 +30,7 @@ namespace HiSpaceWeb.Controllers
         public ActionResult Index()
         {
             SetSessionVariables();
-           
+
             IEnumerable<MemberMaster> clients = null;
 
             using (var client = new HttpClient())
@@ -95,58 +95,49 @@ namespace HiSpaceWeb.Controllers
                 string DuplicateName = "";
                 string OriginalName = "";
 
+                string UploadRootPath = "Upload";
+                string uploadsFolder = "\\member\\" + GetSessionObject().MemberID + "\\documents\\";
+                string serverUploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, UploadRootPath);
+                serverUploadsFolder += uploadsFolder;
+                if (!Directory.Exists(serverUploadsFolder))
+                {
+                    Directory.CreateDirectory(serverUploadsFolder);
+                }
+
                 //RCCopy image uploader
                 if (model.RCCopy != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    uploadsFolder += "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.RCCopy.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_RCCopy" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.RCCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.MemberMaster.Doc_RCCopy = "\\" + "img" + "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\" + DuplicateName;
+                    model.MemberMaster.Doc_RCCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //ContactPersonAadhaar image uploader
                 if (model.ContactPersonAadhaar != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    uploadsFolder += "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.ContactPersonAadhaar.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_ContactPersonAadhaar" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.ContactPersonAadhaar.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.MemberMaster.Doc_ContactPersonAadhaar = "\\" + "img" + "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\" + DuplicateName;
+                    model.MemberMaster.Doc_ContactPersonAadhaar = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //ContactPersonPAN image uploader
                 if (model.ContactPersonPAN != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    uploadsFolder += "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.ContactPersonPAN.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_ContactPersonPAN" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.ContactPersonPAN.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.MemberMaster.Doc_ContactPersonPAN = "\\" + "img" + "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\" + DuplicateName;
+                    model.MemberMaster.Doc_ContactPersonPAN = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 using (var client = new HttpClient())
@@ -251,58 +242,47 @@ namespace HiSpaceWeb.Controllers
             string DuplicateName = "";
             string OriginalName = "";
 
+            string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Upload");
+            uploadsFolder += "\\" + "member" + "\\" + GetSessionObject().MemberID + "\\documents\\";
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
+            }
+
             //RCCopy image uploader
             if (model.RCCopy != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                uploadsFolder += "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.RCCopy.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_RCCopy" + extension;
 
                 string filePath = Path.Combine(uploadsFolder, DuplicateName);
                 model.RCCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.MemberMaster.Doc_RCCopy = "\\" + "img" + "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\" + DuplicateName;
+                model.MemberMaster.Doc_RCCopy = uploadsFolder + DuplicateName;
             }
 
             //ContactPersonAadhaar image uploader
             if (model.ContactPersonAadhaar != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                uploadsFolder += "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.ContactPersonAadhaar.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_ContactPersonAadhaar" + extension;
 
                 string filePath = Path.Combine(uploadsFolder, DuplicateName);
                 model.ContactPersonAadhaar.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.MemberMaster.Doc_ContactPersonAadhaar = "\\" + "img" + "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\" + DuplicateName;
+                model.MemberMaster.Doc_ContactPersonAadhaar = uploadsFolder + DuplicateName;
             }
 
             //ContactPersonPAN image uploader
             if (model.ContactPersonPAN != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                uploadsFolder += "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.ContactPersonPAN.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_ContactPersonPAN" + extension;
 
                 string filePath = Path.Combine(uploadsFolder, DuplicateName);
                 model.ContactPersonPAN.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.MemberMaster.Doc_ContactPersonPAN = "\\" + "img" + "\\" + "member" + "\\" + model.MemberMaster.MemberName + "\\" + DuplicateName;
+                model.MemberMaster.Doc_ContactPersonPAN = uploadsFolder + DuplicateName;
             }
 
             using (var client = new HttpClient())

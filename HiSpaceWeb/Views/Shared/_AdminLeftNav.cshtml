@@ -36,7 +36,8 @@ else if (@ViewBag.Type == 2)
                 <li class="nav-static-title">Client</li>
                 <li><a href="@Url.Action("Index", "Home")" aria-expanded="false"><i class="nav-icon fa fa-tachometer"></i><span class="nav-title">Dashboard</span></a> </li>
                 <li><a href="@Url.Action("Index", "Holiday")" aria-expanded="false"><i class="nav-icon fa fa-users"></i><span class="nav-title">Holidays</span></a> </li>
-                <li><a href="@Url.Action("Edit", "Client" , new { ClientID = @ViewBag.ClientID })" aria-expanded="false"><i class="nav-icon fa fa-users"></i>Client Profile<span class="left-nav-indication bg-success">Completed</span></a> </li>
+                @*<li><a href="@Url.Action("Edit", "Client" , new { ClientID = @ViewBag.ClientID })" aria-expanded="false"><i class="nav-icon fa fa-users"></i>Client Profile<span class="left-nav-indication bg-success">Completed</span></a> </li>*@
+                <li><a href="@Url.Action("Edit", "Client" , new { ClientID = @ViewBag.ClientID })" aria-expanded="false"><i class="nav-icon fa fa-users"></i>Client Profile<span class="left-nav-indication bg-warning">Pending</span></a> </li>
                 <li> <a href="@Url.Action("Index", "ClientLocation")"><i class="nav-icon fa fa-building"></i>Share Space <span class="left-nav-indication">3 Steps</span></a> </li>
                 <li> <a href="@Url.Action("Index", "ClientSpace", new { ClientLocationID = 0 })"><i class="nav-icon fa fa-building"></i>My Spaces</a> </li>
                 <li><a href="@Url.Action("Index", "Users")" aria-expanded="false"><i class="nav-icon fa fa-users"></i><span class="nav-title">My Client Users</span></a> </li>

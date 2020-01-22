@@ -64,6 +64,8 @@ namespace HiSpaceWeb.Controllers
             {
                 model.CreatedBy = GetSessionObject().UserID;
                 model.CreatedDateTime = DateTime.Now;
+                model.ClientID = GetSessionObject().ClientID.Value;
+                model.ClientLocationStatus = true;
             }
 
             using (var client = new HttpClient())

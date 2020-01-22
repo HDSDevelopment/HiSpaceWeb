@@ -29,6 +29,8 @@ namespace HiSpaceWeb.Controllers
 
 		public ActionResult Logout()
 		{
+			ApplicationState.Instance.CartSpaces.Clear();
+			ApplicationState.Instance.CartSeats.Clear();
 			UserLogin session = null;
 			HttpContext.Session.SetObjectAsJson("_user", session);
 			return View();

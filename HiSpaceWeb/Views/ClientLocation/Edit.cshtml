@@ -105,7 +105,7 @@
 										<div class="tab-pane fade active show" id="tab-1" role="tabpanel" aria-labelledby="head-1">
 											<!--row 1-->
 											<div class="row">
-
+												@Html.HiddenFor(m => m.ClientID)
 												<div class="col-lg-3 col-md-6 col-sm-6 col-12">
 													<div class="form-group">
 														@Html.EditorFor(m => m.ClientLocationName, new { htmlAttributes = new { @placeholder = "Enter Location Name" } })

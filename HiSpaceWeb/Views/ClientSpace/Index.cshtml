@@ -153,7 +153,7 @@
                                             @Html.DisplayFor(modelItem => item.Floor)
                                         </td>
                                         <td>
-                                            @Html.DisplayFor(modelItem => item.NumberOfColumns)
+                                            @Html.DisplayFor(modelItem => item.NumberOfSeats)
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.Price)
@@ -178,13 +178,13 @@
                                                 <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
                                                     @if (item.Verification == "Pending" || item.Verification == "Rejected")
                                                     {
-                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approved", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Approved" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve">
+                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approve", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Approved" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve">
                                                             <i class="fa fa-thumbs-up btn btn-icon text-success"></i>
                                                         </a>
                                                     }
                                                     @if (item.Verification == "Pending" || item.Verification == "Approved")
                                                     {
-                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approved", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Rejected" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reject">
+                                                        <a onclick="return ApproveSpace();" href="@Url.Action("Approve", "ClientSpace", new { ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, Status = "Rejected" })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reject">
                                                             <i class="fa fa-times btn btn-icon"></i>
                                                         </a>
                                                     }
@@ -196,11 +196,13 @@
                                                 <a href="@Url.Action( "Display","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID, ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, ClientFloorID = ViewBag.ClientFloorID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
                                                     <i class="fa fa-eye btn btn-icon"></i>
                                                 </a>
-                                                <a href="@Url.Action( "Edit","ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID, ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, ClientFloorID = ViewBag.ClientFloorID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                                                    <i class="fa fa-pencil-square-o btn btn-icon "></i>
-                                                </a>                                                
-
-                                            </div>
+                                                @if (ViewBag.Type == 2 || ViewBag.Type == 3)
+                                                {
+                                                    <a href="@Url.Action("Edit", "ClientSpace", new { ClientLocationID = ViewBag.ClientLocationID, ClientSpaceFloorPlanID = item.ClientSpaceFloorPlanID, ClientFloorID = ViewBag.ClientFloorID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                        <i class="fa fa-pencil-square-o btn btn-icon "></i>
+                                                    </a>
+                                                }
+                                                </div>
                                         </td>
 
                                     </tr>

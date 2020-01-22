@@ -613,8 +613,16 @@ form.md-form .button {
 /**----------------------------Login section start------------------------------------------**/
 /*******************************************************************************************************/
 .login .img-responsive {
-	width: 85%;
-	margin-left: 7.5%;
+	width: 55%;
+	margin: 0 auto;
+	display: flex;
+}
+
+.login > p{
+	text-align: center;
+	font-size: 16px;
+	margin-top: 10px;
+	color: #000;
 }
 
 .login-image {
@@ -1769,3 +1777,8 @@ form.md-form .sch-time .form-group label {
 /****************************************************************************/
 /*--------------------------------Media Query end---------------------------*/
 /****************************************************************************/
+
+.disabled-view, form.md-form .form-group input.disabled-view, form.md-form .form-group .disabled-view {
+	background: #e6e6e6;
+	pointer-events: none;
+}

@@ -53,7 +53,7 @@
                                         <th>Duration</th>
                                         <th>Price</th>
                                         <th>Renewal Alert</th>
-                                        <th align="center">Status</th>
+                                        @*<th align="center">Status</th>*@
                                         <th align="center">Recommented</th>
                                         <th class="text-center" width="106px">
                                             Action
@@ -63,17 +63,17 @@
                                 <tbody>
                                     @foreach (var item in Model)
                                     {
-                                        @if (item.IsActive == null)
+                                        @if (item.IsRecommented == null)
                                         {
-                                            ViewBag.Status = "text-danger fa fa-ban btn btn-icon icon-status";
+                                            ViewBag.IsRecommented = "text-danger fa fa-ban btn btn-icon icon-status";
                                         }
-                                        else if (item.IsActive.Value)
+                                        else if (item.IsRecommented.Value)
                                         {
-                                            ViewBag.Status = "text-success fa fa-check btn btn-icon icon-status";
+                                            ViewBag.IsRecommented = "text-success fa fa-check btn btn-icon icon-status";
                                         }
                                         else
                                         {
-                                            ViewBag.Status = "text-danger fa fa-ban btn btn-icon icon-status";
+                                            ViewBag.IsRecommented = "text-danger fa fa-ban btn btn-icon icon-status";
                                         }
 
                                     <tr>
@@ -95,10 +95,10 @@
                                         </td>
                                         <td>
                                             <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
-                                                <i class="@ViewBag.Status"></i>
+                                                <i class="@ViewBag.IsRecommented"></i>
                                             </div>
                                         </td>
-                                        <td>
+                                        @*<td>
                                             @if (item.IsRecommented == null)
                                             {<span>No</span>}
                                             else
@@ -108,7 +108,7 @@
                                                 else
                                                 {<span>No</span>}
                                             }
-                                        </td>
+                                        </td>*@
                                         <td class="p-0">
                                             <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
 

@@ -264,6 +264,7 @@ namespace HiSpaceWeb.Controllers
 
             if (!newSignupUser.IsBooking)
             {
+                newSignupUser.signupUser.IsActive = true;
                 using (var client = new HttpClient())
                 {
                     client.BaseAddress = new Uri(Common.Instance.ApiUserLoginUserLoginControllerName);
@@ -275,13 +276,12 @@ namespace HiSpaceWeb.Controllers
                     var result = postTask.Result;
                     if (result.IsSuccessStatusCode)
                     {
-                        var readTask = result.Content.ReadAsAsync<bool>();
+                        var readTask = result.Content.ReadAsAsync<UserLogin>();
                         readTask.Wait();
-                        bool rs = readTask.Result;
+                        UserLogin login = readTask.Result;
 
-                        if (rs)
+                        if (login!=null)
                         {
-                            UserLogin login = new UserLogin() { Username = newSignupUser.signupUser.Username, Password = newSignupUser.signupUser.Password, UserType = (newSignupUser.signupUser.IsClient ? 2 : 4) };
                             AssignSessionVariables(login);
                             SetSessionVariables();
                             return RedirectToAction("Index", "Home");

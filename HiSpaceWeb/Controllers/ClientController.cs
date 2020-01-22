@@ -110,138 +110,97 @@ namespace HiSpaceWeb.Controllers
 
                 string DuplicateName = "";
                 string OriginalName = "";
+                string UploadRootPath = "Upload";
+                string uploadsFolder = "\\client\\" + GetSessionObject().ClientID + "\\documents\\";
+                string serverUploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, UploadRootPath);
+                serverUploadsFolder += uploadsFolder;
+                if (!Directory.Exists(serverUploadsFolder))
+                {
+                    Directory.CreateDirectory(serverUploadsFolder);
+                }
 
                 //RCCopy image uploader
                 if (model.RCCopy != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.RCCopy.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_RCCopy" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.RCCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientMaster.Doc_RCCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                    model.ClientMaster.Doc_RCCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //PANCopy image uploader
                 if (model.PANCopy != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.PANCopy.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_PANCopy" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.PANCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientMaster.Doc_PANCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                    model.ClientMaster.Doc_PANCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //GSTCopy image uploader
                 if (model.GSTCopy != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.GSTCopy.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_GSTCopy" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.GSTCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientMaster.Doc_GSTCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                    model.ClientMaster.Doc_GSTCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //MembershipAgreementCopy image uploader
                 if (model.MembershipAgreementCopy != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.MembershipAgreementCopy.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_MembershipAgreementCopy" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.MembershipAgreementCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientMaster.Doc_MembershipAgreementCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                    model.ClientMaster.Doc_MembershipAgreementCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //ContactPersonAadhaar image uploader
                 if (model.ContactPersonAadhaar != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.ContactPersonAadhaar.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_ContactPersonAadhaar" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.ContactPersonAadhaar.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientMaster.Doc_ContactPersonAadhaar = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                    model.ClientMaster.Doc_ContactPersonAadhaar = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //ContactPersonPAN image uploader
                 if (model.ContactPersonPAN != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.ContactPersonPAN.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_ContactPersonPAN" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.ContactPersonPAN.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientMaster.Doc_ContactPersonPAN = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                    model.ClientMaster.Doc_ContactPersonPAN = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 //Logo image uploader
                 if (model.Logo != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.Logo.FileName;
                     string extension = Path.GetExtension(OriginalName);
                     DuplicateName = "_Logo" + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.Logo.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientMaster.ClientLogo = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                    model.ClientMaster.ClientLogo = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
 
@@ -349,137 +308,97 @@ namespace HiSpaceWeb.Controllers
 
             string DuplicateName = "";
             string OriginalName = "";
+            string UploadRootPath = "Upload";
+            string uploadsFolder = "\\client\\" + GetSessionObject().ClientID + "\\documents\\";
+            string serverUploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, UploadRootPath);
+            serverUploadsFolder += uploadsFolder;
+            if (!Directory.Exists(serverUploadsFolder))
+            {
+                Directory.CreateDirectory(serverUploadsFolder);
+            }
+
             //RCCopy image uploader
             if (model.RCCopy != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.RCCopy.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_RCCopy" + extension;
 
-                string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                 model.RCCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.ClientMaster.Doc_RCCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                model.ClientMaster.Doc_RCCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
             }
 
             //PANCopy image uploader
             if (model.PANCopy != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.PANCopy.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_PANCopy" + extension;
 
-                string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                 model.PANCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.ClientMaster.Doc_PANCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                model.ClientMaster.Doc_PANCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
             }
 
             //GSTCopy image uploader
             if (model.GSTCopy != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.GSTCopy.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_GSTCopy" + extension;
 
-                string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                 model.GSTCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.ClientMaster.Doc_GSTCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                model.ClientMaster.Doc_GSTCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
             }
 
             //MembershipAgreementCopy image uploader
             if (model.MembershipAgreementCopy != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.MembershipAgreementCopy.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_MembershipAgreementCopy" + extension;
 
-                string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                 model.MembershipAgreementCopy.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.ClientMaster.Doc_MembershipAgreementCopy = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                model.ClientMaster.Doc_MembershipAgreementCopy = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
             }
 
             //ContactPersonAadhaar image uploader
             if (model.ContactPersonAadhaar != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.ContactPersonAadhaar.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_ContactPersonAadhaar" + extension;
 
-                string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                 model.ContactPersonAadhaar.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.ClientMaster.Doc_ContactPersonAadhaar = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                model.ClientMaster.Doc_ContactPersonAadhaar = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
             }
 
             //ContactPersonPAN image uploader
             if (model.ContactPersonPAN != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.ContactPersonPAN.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_ContactPersonPAN" + extension;
 
-                string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                 model.ContactPersonPAN.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.ClientMaster.Doc_ContactPersonPAN = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                model.ClientMaster.Doc_ContactPersonPAN = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
             }
 
             //Logo image uploader
             if (model.Logo != null)
             {
-                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                if (!Directory.Exists(uploadsFolder))
-                {
-                    Directory.CreateDirectory(uploadsFolder);
-                }
                 OriginalName = model.Logo.FileName;
                 string extension = Path.GetExtension(OriginalName);
                 DuplicateName = "_Logo" + extension;
 
-                string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                 model.Logo.CopyTo(new FileStream(filePath, FileMode.Create));
-                model.ClientMaster.ClientLogo = "\\" + "img" + "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\" + DuplicateName;
+                model.ClientMaster.ClientLogo = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
             }
 
 
@@ -499,7 +418,7 @@ namespace HiSpaceWeb.Controllers
                     clientMaster = readTask.Result;
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Edit", new { ClientID = model.ClientMaster.ClientID });
         }
 
         [HttpGet]

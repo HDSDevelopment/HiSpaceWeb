@@ -8,7 +8,7 @@
 <html lang="en">
 
 <head>
-	<title>HiSpace - Login</title>
+	<title>HiSpace - Signup</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Admin template that can be used to build dashboards for CRM, CMS, etc." />
@@ -46,36 +46,68 @@
                     <div class="bg-white">
                         <div class="container-fluid p-0">
                             <div class="row no-gutters">
-                                <div class="col-sm-6 col-lg-5 col-xxl-3  align-self-center order-2 order-sm-1">
+                                <div class="col-sm-6 col-lg-5 col-xxl-5  align-self-center order-2 order-sm-1">
                                     <div class="d-flex align-items-center">
                                         <div class="login p-50">
                                             @*<h1 class="mb-2 text-center">Book My Workspace</h1>*@
                                             <img class="img-responsive" src="~/img/logo.png" alt="logo" />
-                                            <p>Welcome, Please create your account.</p>
+                                            <p>Welcome, Please create your account</p>
                                             @*<form action="" class="mt-3 mt-sm-4 md-form">*@
                                             @Html.HiddenFor(m => m.IsBooking)
+                                            <div class="row">
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(m => m.signupUser.Firstname, new { htmlAttributes = new { @placeholder = "Enter Firstname" } })
+                                                        <label for="lastName" class="control-label">Firstname</label><i class="bar"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(m => m.signupUser.Lastname, new { htmlAttributes = new { @placeholder = "Enter Lastname" } })
+                                                        <label for="lastName" class="control-label">Lastname</label><i class="bar"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(m => m.signupUser.Username, new { htmlAttributes = new { @placeholder = "Username" } })
+                                                        <label for="lastName" class="control-label">Username</label><i class="bar"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-6 col-12">
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(m => m.signupUser.Password, new { htmlAttributes = new { @placeholder = "Password", type="password" } })
+                                                        <label for="lastName" class="control-label">Password</label><i class="bar"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(m => m.signupUser.Email, new { htmlAttributes = new { @placeholder = "test@gmail.com" } })
+                                                        <label for="lastName" class="control-label">Email</label><i class="bar"></i>
+                                                    </div>
+                                                </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-12">
                                                         <div class="form-group">
-                                                            @Html.EditorFor(m => m.signupUser.Username, new { htmlAttributes = new { @placeholder = "Enter Username" } })
-                                                            <label for="lastName" class="control-label">Username</label><i class="bar"></i>
+                                                            @Html.EditorFor(m => m.signupUser.Number, new { htmlAttributes = new { @placeholder = "0987654321", type="number" } })
+                                                            <label for="lastName" class="control-label">Phone</label><i class="bar"></i>
                                                         </div>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            @Html.EditorFor(m => m.signupUser.Password, new { htmlAttributes = new { @placeholder = "Enter Password" } })
-                                                            <label for="lastName" class="control-label">Password</label><i class="bar"></i>
-                                                        </div>
-                                                    </div>                                                    
+                                                </div>
+                                                <div class="row">
 
                                                     @*<div class="col-12">
-                                                            <div class="form-check">
-                                                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                                                <label class="form-check-label" for="gridCheck">
-                                                                    I accept terms & policy
-                                                                </label>
-                                                            </div>
-                                                        </div>*@
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        I accept terms & policy
+                    </label>
+                </div>
+            </div>*@
                                                     <div class="col-12 mt-3">
                                                         <input type="submit" class="btn btn-primary text-uppercase" value="Sign up" />
                                                     </div>
@@ -84,11 +116,11 @@
                                                     </div>
 
                                                 </div>
-                                            @*</form>*@
-                                        </div>
+                                                @*</form>*@
+                                            </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xxl-9 col-lg-7 o-hidden order-1 order-sm-2">
+                                <div class="col-sm-6 col-xxl-7 col-lg-7 o-hidden order-1 order-sm-2">
                                     <div class="login-image">
                                     </div>
                                     <div class="login-text">

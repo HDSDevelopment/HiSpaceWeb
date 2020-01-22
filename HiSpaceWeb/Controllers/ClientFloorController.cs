@@ -130,24 +130,25 @@ namespace HiSpaceWeb.Controllers
                 ClientFloorRequest FloorRequest = new ClientFloorRequest();
                 FloorRequest.clientFacilities = facilityList;
 
+                string UploadRootPath = "Upload";
+                string uploadsFolder = "\\client\\" + GetSessionObject().ClientID + "\\FloorPlanImages\\";
+                string serverUploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, UploadRootPath);
+                serverUploadsFolder += uploadsFolder;
+                if (!Directory.Exists(serverUploadsFolder))
+                {
+                    Directory.CreateDirectory(serverUploadsFolder);
+                }
+
                 //RCCopy image uploader
                 if (model.FloorPlanFilePath != null && model.ClientFloor.FloorName != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    //uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + ViewBag.Username + "\\" + model.ClientFloor.FloorName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.FloorPlanFilePath.FileName;
                     string extension = Path.GetExtension(OriginalName);
-                    DuplicateName = "_FloorPlan" + extension;
+                    DuplicateName = Guid.NewGuid().ToString() + extension;
 
-                    string filePath = Path.Combine(uploadsFolder, DuplicateName);
+                    string filePath = Path.Combine(serverUploadsFolder, DuplicateName);
                     model.FloorPlanFilePath.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientFloor.FloorPlanFilePath = "\\" + "img" + "\\" + "client" + "\\" + DuplicateName;
+                    model.ClientFloor.FloorPlanFilePath = "\\" + UploadRootPath + uploadsFolder + DuplicateName;
                 }
 
                 model.ClientFloor.FloorNumber = model.FloorNumber;
@@ -285,24 +286,23 @@ namespace HiSpaceWeb.Controllers
                 ClientFloorRequest FloorRequest = new ClientFloorRequest();
                 FloorRequest.clientFacilities = facilityList;
 
+                string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "Upload");
+                uploadsFolder += "\\" + "client" + "\\" + GetSessionObject().ClientID + "\\FloorPlanImages\\";
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+
                 //RCCopy image uploader
                 if (model.FloorPlanFilePath != null && model.ClientFloor.FloorName != null)
                 {
-                    string uploadsFolder = Path.Combine(hostingEnvironment.WebRootPath, "img");
-                    //uploadsFolder += "\\" + NewClient.ClientID.ToString() + "_" + NewClient.ClientName + "\\";
-                    //uploadsFolder += "\\" + "client" + "\\" + model.ClientMaster.ClientName + "\\";
-                    uploadsFolder += "\\" + "client" + "\\" + ViewBag.Username + "\\" + model.ClientFloor.FloorName + "\\";
-                    if (!Directory.Exists(uploadsFolder))
-                    {
-                        Directory.CreateDirectory(uploadsFolder);
-                    }
                     OriginalName = model.FloorPlanFilePath.FileName;
                     string extension = Path.GetExtension(OriginalName);
-                    DuplicateName = "_FloorPlan" + extension;
+                    DuplicateName = Guid.NewGuid() + extension;
 
                     string filePath = Path.Combine(uploadsFolder, DuplicateName);
                     model.FloorPlanFilePath.CopyTo(new FileStream(filePath, FileMode.Create));
-                    model.ClientFloor.FloorPlanFilePath = "\\" + "img" + "\\" + "client" + "\\" + DuplicateName;
+                    model.ClientFloor.FloorPlanFilePath = uploadsFolder + DuplicateName;
                 }
 
                 //model.ClientFloor.FloorNumber = model.FloorNumber;
