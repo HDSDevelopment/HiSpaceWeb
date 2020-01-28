@@ -407,6 +407,7 @@ namespace HiSpaceWeb.Controllers
             {
                 model.ClientSpaceFloorPlan.ModifyBy = GetSessionObject().UserID;
                 model.ClientSpaceFloorPlan.ModifyDateTime = DateTime.Now;
+				
 
                 if (model.AllTimeCheck == true)
                 {

@@ -153,7 +153,7 @@
 /*-----------------------------------------------------------------------------------*/
 /*------------------------------seat booking section start---------------------------*/
 /*-----------------------------------------------------------------------------------*/
-#hs_matrixpreview td, #admin_matrixpreview td {
+#hs_matrixpreview td, .admin_matrixpreview td, #admin_matrixpreview td {
 	line-height: 0;
 }
 
@@ -161,7 +161,7 @@
 	line-height: 35px;
 }
 
-#hs_matrixpreview, #admin_matrixpreview {
+#hs_matrixpreview, .admin_matrixpreview, #admin_matrixpreview {
 	overflow: auto;
 	background: #ffffff;
 	box-shadow: 5px 5px 12px 2px #808080;
@@ -213,6 +213,7 @@
 /*scroll bar*/
 #hs_matrixpreview::-webkit-scrollbar,
 #cartSeatDetails tbody::-webkit-scrollbar,
+.admin_matrixpreview::-webkit-scrollbar,
 #admin_matrixpreview::-webkit-scrollbar,
 #ws-seat__details::-webkit-scrollbar,
 .ws-scorll::-webkit-scrollbar,
@@ -223,6 +224,7 @@
 
 #hs_matrixpreview::-webkit-scrollbar-thumb,
 #cartSeatDetails tbody::-webkit-scrollbar-thumb,
+.admin_matrixpreview::-webkit-scrollbar-thumb,
 #admin_matrixpreview::-webkit-scrollbar-thumb,
 #ws-seat__details::-webkit-scrollbar-thumb,
 .ws-scorll::-webkit-scrollbar-thumb,
@@ -235,6 +237,7 @@
 
 #hs_matrixpreview::-webkit-scrollbar-track,
 #cartSeatDetails tbody::-webkit-scrollbar-track,
+.admin_matrixpreview::-webkit-scrollbar-track,
 #admin_matrixpreview::-webkit-scrollbar-track,
 #ws-seat__details::-webkit-scrollbar-track,
 .ws-scorll::-webkit-scrollbar-track,
@@ -612,6 +615,7 @@ input.ws-seatblocked {
 		background-color: rgba(0, 0, 0, 0.4);
 	}
 
+.admin_matrixpreview .hs_matrixTable tbody td,
 #admin_matrixpreview .hs_matrixTable tbody td {
 	position: relative;
 	/*padding: 0;*/
@@ -748,11 +752,12 @@ input.ws-seatblocked {
 		margin-top: -1px;
 	}
 
+.admin_matrixpreview td .dropdown-menu,
 #admin_matrixpreview td .dropdown-menu {
 	line-height: normal;
 }
 
-/*#admin_matrixpreview .dropdown-submenu .caret {
+/*.admin_matrixpreview .dropdown-submenu .caret {
       display: inline-block;
     width: 0;
     height: 0;
@@ -798,7 +803,7 @@ form.md-form .form-radio, form.md-form .form-group, .form-radio {
 	right: 15px;
 }
 
-#admin_matrixpreview {
+.admin_matrixpreview, #admin_matrixpreview {
 	position: relative;
 }
 
@@ -866,7 +871,7 @@ form.md-form .form-radio, form.md-form .form-group, .form-radio {
 	left: 9px;
 }
 
-#admin_matrixpreview.website_floorplan {
+.admin_matrixpreview.website_floorplan, #admin_matrixpreview.website_floorplan {
 	overflow: auto;
 }
 

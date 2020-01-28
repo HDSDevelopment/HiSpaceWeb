@@ -1,6 +1,6 @@
 ﻿/*--------seat booking section web start-----------*/
 
-$("#admin_matrixpreview").hide();
+$(".admin_matrixpreview").hide();
 $("#matrixpreviewRight").hide();
 var arrSeatIDS = [];
 var seatList = [];
@@ -87,56 +87,62 @@ function PreviewWebsiteSpaceMatrix(ClientSpaceFloorPlanID, NumberOfRows, NumberO
 	}
 	html += "</table>";
 
-	$("#admin_matrixpreview").html(html);
-	$("#admin_matrixpreview").show();
+	$("#admin_matrixpreview_" + ClientSpaceFloorPlanID).html(html);
+	$("#admin_matrixpreview_" + ClientSpaceFloorPlanID).show();
 
-	wsClientSetupSeats();
+	wsClientSetupSeats(ClientSpaceFloorPlanID);
 
 	setTimeout(function () {
 		PreviewTempSeat();
 	}, 1000);
 }
 
-function wsClientSetupSeats() {
+function wsClientSetupSeats(ClientSpaceFloorPlanID) {
+	//alert(ClientSpaceFloorPlanID)
 	var html = "";
 	urlAction = "/Website/ReadClientSeats/";
 	$.ajax({
 		type: "GET",
 		url: urlAction,
 		dataType: "json",
+		data: { ClientSpaceFloorPlanID: ClientSpaceFloorPlanID },
 		success: function (response) {
+			//console.log(response)
 			$.each(response, function (index, item) {
 				var id = 'seat_' + item['seatXCoord'] + '_' + item['seatYCoord'];
+				//console.log(id)
 				var idCol = item['seatXCoord'] + ':' + item['seatYCoord'];
-				$('#' + id).attr('seatstatus', item['seatStatus']);
-				$('#' + id).attr('title', item['seatStatus']);
-				$('#' + id).attr('name', id);
-				$('#' + id).attr('price', item['seatPrice']);
-				$('#' + id).attr('seatmatrix', idCol);
-				$('#' + id).attr('description', item['seatDescription']);
-				$('#' + id).attr('clientSpaceSeatID', item['clientSpaceSeatID']);
-				$('#' + id).attr('memberBookingSpaceID', item['clientSpaceFloorPlanID']);
+				//console.log(idCol)
+				var seatId = '#admin_matrixpreview_' + ClientSpaceFloorPlanID + ' ' + '#' + id;
+				$(seatId).attr('seatstatus', item['seatStatus']);
+				$(seatId).attr('title', item['seatStatus']);
+				$(seatId).attr('name', id);
+				$(seatId).attr('price', item['seatPrice']);
+				$(seatId).attr('seatmatrix', idCol);
+				$(seatId).attr('description', item['seatDescription']);
+				$(seatId).attr('clientSpaceSeatID', item['clientSpaceSeatID']);
+				$(seatId).attr('memberBookingSpaceID', item['clientSpaceFloorPlanID']);
 
 				if (item['seatStatus'] == "Available") {
-					$('#' + id).parents('td').addClass('ws-seathint__available');
-					$('#' + id).parents('td').removeClass('seat-not-allow');
-					$('#' + id).siblings('i').addClass('flaticon-furniture-and-household');
-					$('#' + id).attr('disabled', false);
+					$(seatId).parents('td').addClass('ws-seathint__available');
+					$(seatId).parents('td').removeClass('seat-not-allow');
+					$(seatId).siblings('i').addClass('flaticon-furniture-and-household');
+					$(seatId).attr('disabled', false);
 				}
 				else if (item['seatStatus'] == "Booked") {
-					$('#' + id).parents('td').addClass('ws-seathint__booked');
-					$('#' + id).siblings('i').addClass('flaticon-furniture-and-household');
-					$('#' + id).attr('disabled', true);
+					$(seatId).parents('td').addClass('ws-seathint__booked');
+					$(seatId).siblings('i').addClass('flaticon-furniture-and-household');
+					$(seatId).attr('disabled', true);
 				}
 				else if (item['seatStatus'] == "Unavailable") {
-					$('#' + id).parents('td').addClass('ws-seathint__unavailable');
-					$('#' + id).siblings('i').addClass('flaticon-furniture-and-household');
-					$('#' + id).attr('disabled', true);
+					$(seatId).parents('td').addClass('ws-seathint__unavailable');
+					$(seatId).siblings('i').addClass('flaticon-furniture-and-household');
+					$(seatId).attr('disabled', true);
 				}
 				else {
-					$('#' + id).parents('td').addClass('ws-seathint__floorspace');
-					$('#' + id).siblings('i').addClass('flaticon-furniture-and-household');
-					$('#' + id).attr('disabled', true);
+					$(seatId).parents('td').addClass('ws-seathint__floorspace');
+					$(seatId).siblings('i').addClass('flaticon-furniture-and-household');
+					$(seatId).attr('disabled', true);
 				}
 				wsCountTotal();
 			});
@@ -718,9 +724,9 @@ $('.btn-cart__action').on('click', function () {
 });
 
 function SetSeatList() {
+	//alert('a')
 	seatList = [];
 	singleSeat = {};
-
 	var temp_memberbookingspaceid = $('.btn-cart__action:visible').parents().siblings(".ws-seat__details").find(".ws-seatdetail_show").attr('memberbookingspaceid');
 	//console.log(temp_memberbookingspaceid)
 	var temp_ClientSpaceSeatID = $('.btn-cart__action:visible').parents().siblings(".ws-seat__details").find(".ws-seatdetail_show").find('.wd_clientspaceseatid').html();
@@ -740,19 +746,19 @@ function SetSeatList() {
 			singleSeat.MemberBookingSpaceID = temp_memberbookingspaceid;
 			singleSeat.ClientSpaceSeatID = $(this).find('.wd_clientspaceseatid').html();
 			singleSeat.SeatStatus = 'Requested';
+
+			var rs = $.grep(seatDetailsArray, function (item, index) {
+				return (item.sd_id == singleSeat.sd_id && item.MemberBookingSpaceID == singleSeat.MemberBookingSpaceID);
+			});
+			console.log(rs.length);
+
+			if (rs.length == 0) {
+				seatDetailsArray.push(singleSeat);
+				console.log(seatDetailsArray);
+			}
+
+			seatList.push(singleSeat);
 		});
-
-		var rs = $.grep(seatDetailsArray, function (item, index) {
-			return (item.sd_id == singleSeat.sd_id && item.MemberBookingSpaceID == singleSeat.MemberBookingSpaceID);
-		});
-		console.log(rs.length);
-
-		if (rs.length == 0) {
-			seatDetailsArray.push(singleSeat);
-			//console.log(seatDetailsArray);
-		}
-
-		seatList.push(singleSeat);
 	}
 	else {
 		$('.btn-cart__action:visible').parents().siblings(".ws-seat__details").find(".ws-seatdetail_show").each(function (index) {
@@ -788,26 +794,34 @@ function SetSeatList() {
 		});
 	}
 
-	//console.log(seatList);
+	console.log(seatList);
 }
 
 function PreviewTempSeat() {
+	//alert('b')
 	SetSeatList();
 
 	$.each(seatList, function (index, item) {
 		//console.log(item.SeatId);
 		//console.log($('#' + item.SeatId).attr('clientspaceseatid'))
-		if ((item.SeatId == $('#' + item.SeatId).attr('id')) && (item.ClientSpaceSeatID == $('#' + item.SeatId).attr('clientspaceseatid'))) {
+
+		//console.log(item.ClientSpaceSeatID);
+		//console.log(item.MemberBookingSpaceID);
+		//console.log($('#admin_matrixpreview_' + item.MemberBookingSpaceID + ' ' + '#' + item.SeatId).attr('clientspaceseatid'));
+
+		if ((item.SeatId == $('#admin_matrixpreview_' + item.MemberBookingSpaceID + ' ' + '#' + item.SeatId).attr('id')) && (item.ClientSpaceSeatID == $('#admin_matrixpreview_' + item.MemberBookingSpaceID + ' ' + '#' + item.SeatId).attr('clientspaceseatid'))) {
+			//alert('test')
 			//console.log($('#' + item.SeatId).attr('title'));
-			$('#' + item.SeatId).addClass('ws-seatselected');
-			$('#' + item.SeatId).attr('title', 'Selected');
-			$('#' + item.SeatId).attr('seatstatus', 'Selected');
+			$('#admin_matrixpreview_' + item.MemberBookingSpaceID + ' ' + '#' + item.SeatId).addClass('ws-seatselected');
+			$('#admin_matrixpreview_' + item.MemberBookingSpaceID + ' ' + '#' + item.SeatId).attr('title', 'Selected');
+			$('#admin_matrixpreview_' + item.MemberBookingSpaceID + ' ' + '#' + item.SeatId).attr('seatstatus', 'Selected');
 		} else {
 		}
 	});
 }
 
 function AddRemoveBookingsSeats(seatList, IsAdd) {
+	console.log(seatList)
 	if (IsAdd)
 		urlAction = "/Website/AddSeats/";
 	else

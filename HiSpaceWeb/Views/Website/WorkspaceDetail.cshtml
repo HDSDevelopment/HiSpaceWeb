@@ -3,7 +3,9 @@
 	Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
 }
 
-<div class="hidden">@Model HiSpaceWeb.ViewModel.WorkspaceDetailViewModel</div>
+<div class="hidden">
+	@Model HiSpaceWeb.ViewModel.WorkspaceDetailViewModel
+</div>
 
 <!-- page title style3 START -->
 <section class="page-title style3" data-path="../img/headers/header1.jpg">
@@ -78,7 +80,7 @@
 						</ul>
 						<div class="resp-tabs-container hor_1">
 							<div class="wsd-description">
-								<p>@Model.WorkSpaceDetails.selectedSpace.SpaceDescription</p>
+								<p>@Html.Raw(@Model.WorkSpaceDetails.selectedSpace.SpaceDescription)</p>
 
 								<p>Nunc sit amet dui id lacus vehicula dictum non eu ante. Morbi rhoncus mollis magna congue viverra. Nunc ligula lorem, interdum eget consequat eget, commodo in turpis. Duis ultricies ut felis eget aliquam. Suspendisse cursus pulvinar odio vitae accumsan. Fusce vitae orci non mauris imperdiet lobortis. Donec vel ultrices turpis. Sed quis nibh iaculis, pulvinar nisl nec, fringilla tellus. Pellentesque venenatis rutrum rhoncus. Morbi eu varius nunc. Nullam aliquam consectetur magna at pellentesque. Cras dictum sapien sed sagittis sodales.</p>
 							</div>
@@ -516,11 +518,26 @@
 											{
 												@if (Model.WorkSpaceDetails.selectedSpace.ClientSpaceFloorPlanID == itemSpace.clientFloorSpace.ClientSpaceFloorPlanID)
 												{
-													<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+													if ((@itemSpace.clientFloorSpace.NumberOfRows == null) || (@itemSpace.clientFloorSpace.NumberOfColumns == null))
+													{
+														<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,0,0,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+													}
+													else
+													{
+														<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+													}
+
 												}
 												else
 												{
-													<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+													if ((@itemSpace.clientFloorSpace.NumberOfRows == null) || (@itemSpace.clientFloorSpace.NumberOfColumns == null))
+													{
+														<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,0,0,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+													}
+													else
+													{
+														<li class="space-tab" onclick="PreviewWebsiteSpaceMatrix(@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID,@itemSpace.clientFloorSpace.NumberOfRows,@itemSpace.clientFloorSpace.NumberOfColumns,@itemSpace.clientFloorSpaceSeatsCount);"><i class="flaticon-work-table"></i><span>@itemSpace.clientFloorSpace.SpaceName</span></li>
+													}
 												}
 											}
 										</ul>
@@ -631,7 +648,7 @@
 																				TimeSpan? monOpen = Model.WorkSpaceDetails.selectedSpace.MonOpen;
 																				string monOpen_s = monOpen.ToString();
 																				DateTime? monOpen_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.MonOpen != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.MonOpen != null)
 																				{
 																					monOpen_dt = Convert.ToDateTime(monOpen_s);
 																				}
@@ -642,7 +659,7 @@
 																				TimeSpan? monClose = Model.WorkSpaceDetails.selectedSpace.MonClose;
 																				string monClose_s = monClose.ToString();
 																				DateTime? monClose_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.MonClose != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.MonClose != null)
 																				{
 																					monClose_dt = Convert.ToDateTime(monClose_s);
 																				}
@@ -655,7 +672,7 @@
 																				TimeSpan? tueOpen = Model.WorkSpaceDetails.selectedSpace.TueOpen;
 																				string tueOpen_s = tueOpen.ToString();
 																				DateTime? tueOpen_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.TueOpen != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.TueOpen != null)
 																				{
 																					tueOpen_dt = Convert.ToDateTime(tueOpen_s);
 																				}
@@ -666,7 +683,7 @@
 																				TimeSpan? tueClose = Model.WorkSpaceDetails.selectedSpace.TueClose;
 																				string tueClose_s = tueClose.ToString();
 																				DateTime? tueClose_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.TueClose != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.TueClose != null)
 																				{
 																					tueClose_dt = Convert.ToDateTime(tueClose_s);
 																				}
@@ -679,7 +696,7 @@
 																				TimeSpan? wedOpen = Model.WorkSpaceDetails.selectedSpace.WedOpen;
 																				string wedOpen_s = wedOpen.ToString();
 																				DateTime? wedOpen_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.WedOpen != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.WedOpen != null)
 																				{
 																					wedOpen_dt = Convert.ToDateTime(wedOpen_s);
 																				}
@@ -690,7 +707,7 @@
 																				TimeSpan? wedClose = Model.WorkSpaceDetails.selectedSpace.WedClose;
 																				string wedClose_s = wedClose.ToString();
 																				DateTime? wedClose_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.WedClose != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.WedClose != null)
 																				{
 																					wedClose_dt = Convert.ToDateTime(wedClose_s);
 																				}
@@ -703,7 +720,7 @@
 																				TimeSpan? thuOpen = Model.WorkSpaceDetails.selectedSpace.ThuOpen;
 																				string thuOpen_s = thuOpen.ToString();
 																				DateTime? thuOpen_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.ThuOpen != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.ThuOpen != null)
 																				{
 																					thuOpen_dt = Convert.ToDateTime(thuOpen_s);
 																				}
@@ -714,7 +731,7 @@
 																				TimeSpan? thuClose = Model.WorkSpaceDetails.selectedSpace.ThuClose;
 																				string thuClose_s = thuClose.ToString();
 																				DateTime? thuClose_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.ThuClose != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.ThuClose != null)
 																				{
 																					thuClose_dt = Convert.ToDateTime(thuClose_s);
 																				}
@@ -727,7 +744,7 @@
 																				TimeSpan? friOpen = Model.WorkSpaceDetails.selectedSpace.FriOpen;
 																				string friOpen_s = friOpen.ToString();
 																				DateTime? friOpen_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.FriOpen != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.FriOpen != null)
 																				{
 																					friOpen_dt = Convert.ToDateTime(friOpen_s);
 																				}
@@ -738,7 +755,7 @@
 																				TimeSpan? friClose = Model.WorkSpaceDetails.selectedSpace.FriClose;
 																				string friClose_s = friClose.ToString();
 																				DateTime? friClose_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.FriClose != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.FriClose != null)
 																				{
 																					friClose_dt = Convert.ToDateTime(friClose_s);
 																				}
@@ -751,7 +768,7 @@
 																				TimeSpan? satOpen = Model.WorkSpaceDetails.selectedSpace.SatOpen;
 																				string satOpen_s = satOpen.ToString();
 																				DateTime? satOpen_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.SatOpen != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.SatOpen != null)
 																				{
 																					satOpen_dt = Convert.ToDateTime(satOpen_s);
 																				}
@@ -762,7 +779,7 @@
 																				TimeSpan? satClose = Model.WorkSpaceDetails.selectedSpace.SatClose;
 																				string satClose_s = satClose.ToString();
 																				DateTime? satClose_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.SatClose != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.SatClose != null)
 																				{
 																					satClose_dt = Convert.ToDateTime(satClose_s);
 																				}
@@ -775,7 +792,7 @@
 																				TimeSpan? sunOpen = Model.WorkSpaceDetails.selectedSpace.SunOpen;
 																				string sunOpen_s = sunOpen.ToString();
 																				DateTime? sunOpen_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.SunOpen != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.SunOpen != null)
 																				{
 																					sunOpen_dt = Convert.ToDateTime(sunOpen_s);
 																				}
@@ -786,7 +803,7 @@
 																				TimeSpan? sunClose = Model.WorkSpaceDetails.selectedSpace.SunClose;
 																				string sunClose_s = sunClose.ToString();
 																				DateTime? sunClose_dt = new DateTime();
-																				if(Model.WorkSpaceDetails.selectedSpace.SunClose != null)
+																				if (Model.WorkSpaceDetails.selectedSpace.SunClose != null)
 																				{
 																					sunClose_dt = Convert.ToDateTime(sunClose_s);
 																				}
@@ -827,9 +844,9 @@
 																							Sunday <span> Closed</span>
 																						</div>
 																					</li>
-																					}
-																					else if ((Model.WorkSpaceDetails.selectedSpace.Is24 == false) && (Model.WorkSpaceDetails.selectedSpace.MonAvail == true) && (Model.WorkSpaceDetails.selectedSpace.TueAvail == true) && (Model.WorkSpaceDetails.selectedSpace.WedAvail == true) && (Model.WorkSpaceDetails.selectedSpace.ThuAvail == true) && (Model.WorkSpaceDetails.selectedSpace.FriAvail == true) && (Model.WorkSpaceDetails.selectedSpace.SatAvail == true) && (Model.WorkSpaceDetails.selectedSpace.SunAvail == false) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonOpen, Model.WorkSpaceDetails.selectedSpace.TueOpen, Model.WorkSpaceDetails.selectedSpace.WedOpen, Model.WorkSpaceDetails.selectedSpace.ThuOpen, Model.WorkSpaceDetails.selectedSpace.FriOpen }.Contains(monOpen)) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonClose, Model.WorkSpaceDetails.selectedSpace.TueClose, Model.WorkSpaceDetails.selectedSpace.WedClose, Model.WorkSpaceDetails.selectedSpace.ThuClose, Model.WorkSpaceDetails.selectedSpace.FriClose }.Contains(monClose)))
-																					{
+																				}
+																				else if ((Model.WorkSpaceDetails.selectedSpace.Is24 == false) && (Model.WorkSpaceDetails.selectedSpace.MonAvail == true) && (Model.WorkSpaceDetails.selectedSpace.TueAvail == true) && (Model.WorkSpaceDetails.selectedSpace.WedAvail == true) && (Model.WorkSpaceDetails.selectedSpace.ThuAvail == true) && (Model.WorkSpaceDetails.selectedSpace.FriAvail == true) && (Model.WorkSpaceDetails.selectedSpace.SatAvail == true) && (Model.WorkSpaceDetails.selectedSpace.SunAvail == false) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonOpen, Model.WorkSpaceDetails.selectedSpace.TueOpen, Model.WorkSpaceDetails.selectedSpace.WedOpen, Model.WorkSpaceDetails.selectedSpace.ThuOpen, Model.WorkSpaceDetails.selectedSpace.FriOpen }.Contains(monOpen)) && (new[] { Model.WorkSpaceDetails.selectedSpace.MonClose, Model.WorkSpaceDetails.selectedSpace.TueClose, Model.WorkSpaceDetails.selectedSpace.WedClose, Model.WorkSpaceDetails.selectedSpace.ThuClose, Model.WorkSpaceDetails.selectedSpace.FriClose }.Contains(monClose)))
+																				{
 																					<li>
 																						<i class="fa fa-check-circle" aria-hidden="true"></i>
 																						<div>
@@ -856,132 +873,139 @@
 																					//mon
 																					if (Model.WorkSpaceDetails.selectedSpace.MonAvail == true)
 																					{
-																					<li>
-																						<i class="fa fa-check-circle" aria-hidden="true"></i>
-																						<div>
-																							Monday <span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
-																						</div>
-																					</li>
-																					}
-																					else{
 																						<li>
-																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-																						<div>
-																							Monday <span> Closed</span>
-																						</div>
-																					</li>
+																							<i class="fa fa-check-circle" aria-hidden="true"></i>
+																							<div>
+																								Monday <span>( @monOpen_dt.Value.ToString("hh:mm tt") - @monClose_dt.Value.ToString("hh:mm tt") )</span>
+																							</div>
+																						</li>
+																					}
+																					else
+																					{
+																						<li>
+																							<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																							<div>
+																								Monday <span> Closed</span>
+																							</div>
+																						</li>
 																					}
 																					//tue
 																					if (Model.WorkSpaceDetails.selectedSpace.TueAvail == true)
 																					{
-																					<li>
-																						<i class="fa fa-check-circle" aria-hidden="true"></i>
-																						<div>
-																							Tuesday <span>( @tueOpen_dt.Value.ToString("hh:mm tt") - @tueClose_dt.Value.ToString("hh:mm tt") )</span>
-																						</div>
-																					</li>
-																					}
-																					else{
 																						<li>
-																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-																						<div>
-																							Tuesday <span> Closed</span>
-																						</div>
-																					</li>
+																							<i class="fa fa-check-circle" aria-hidden="true"></i>
+																							<div>
+																								Tuesday <span>( @tueOpen_dt.Value.ToString("hh:mm tt") - @tueClose_dt.Value.ToString("hh:mm tt") )</span>
+																							</div>
+																						</li>
+																					}
+																					else
+																					{
+																						<li>
+																							<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																							<div>
+																								Tuesday <span> Closed</span>
+																							</div>
+																						</li>
 																					}
 																					//wed
 																					if (Model.WorkSpaceDetails.selectedSpace.WedAvail == true)
 																					{
-																					<li>
-																						<i class="fa fa-check-circle" aria-hidden="true"></i>
-																						<div>
-																							Wednesday <span>( @wedOpen_dt.Value.ToString("hh:mm tt") - @wedClose_dt.Value.ToString("hh:mm tt") )</span>
-																						</div>
-																					</li>
-																					}
-																					else{
 																						<li>
-																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-																						<div>
-																							Wednesday <span> Closed</span>
-																						</div>
-																					</li>
+																							<i class="fa fa-check-circle" aria-hidden="true"></i>
+																							<div>
+																								Wednesday <span>( @wedOpen_dt.Value.ToString("hh:mm tt") - @wedClose_dt.Value.ToString("hh:mm tt") )</span>
+																							</div>
+																						</li>
+																					}
+																					else
+																					{
+																						<li>
+																							<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																							<div>
+																								Wednesday <span> Closed</span>
+																							</div>
+																						</li>
 																					}
 																					//thu
 																					if (Model.WorkSpaceDetails.selectedSpace.ThuAvail == true)
 																					{
-																					<li>
-																						<i class="fa fa-check-circle" aria-hidden="true"></i>
-																						<div>
-																							Thursday <span>( @thuOpen_dt.Value.ToString("hh:mm tt") - @thuClose_dt.Value.ToString("hh:mm tt") )</span>
-																						</div>
-																					</li>
-																					}
-																					else{
 																						<li>
-																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-																						<div>
-																							Thursday <span> Closed</span>
-																						</div>
-																					</li>
+																							<i class="fa fa-check-circle" aria-hidden="true"></i>
+																							<div>
+																								Thursday <span>( @thuOpen_dt.Value.ToString("hh:mm tt") - @thuClose_dt.Value.ToString("hh:mm tt") )</span>
+																							</div>
+																						</li>
+																					}
+																					else
+																					{
+																						<li>
+																							<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																							<div>
+																								Thursday <span> Closed</span>
+																							</div>
+																						</li>
 																					}
 																					//fri
 																					if (Model.WorkSpaceDetails.selectedSpace.FriAvail == true)
 																					{
-																					<li>
-																						<i class="fa fa-check-circle" aria-hidden="true"></i>
-																						<div>
-																							Friday <span>( @friOpen_dt.Value.ToString("hh:mm tt") - @friClose_dt.Value.ToString("hh:mm tt") )</span>
-																						</div>
-																					</li>
-																					}
-																					else{
 																						<li>
-																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-																						<div>
-																							Friday <span> Closed</span>
-																						</div>
-																					</li>
+																							<i class="fa fa-check-circle" aria-hidden="true"></i>
+																							<div>
+																								Friday <span>( @friOpen_dt.Value.ToString("hh:mm tt") - @friClose_dt.Value.ToString("hh:mm tt") )</span>
+																							</div>
+																						</li>
+																					}
+																					else
+																					{
+																						<li>
+																							<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																							<div>
+																								Friday <span> Closed</span>
+																							</div>
+																						</li>
 																					}
 																					//sat
 																					if (Model.WorkSpaceDetails.selectedSpace.SatAvail == true)
 																					{
-																					<li>
-																						<i class="fa fa-check-circle" aria-hidden="true"></i>
-																						<div>
-																							Saturday <span>( @satOpen_dt.Value.ToString("hh:mm tt") - @satClose_dt.Value.ToString("hh:mm tt") )</span>
-																						</div>
-																					</li>
-																					}
-																					else{
 																						<li>
-																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-																						<div>
-																							Saturday <span> Closed</span>
-																						</div>
-																					</li>
+																							<i class="fa fa-check-circle" aria-hidden="true"></i>
+																							<div>
+																								Saturday <span>( @satOpen_dt.Value.ToString("hh:mm tt") - @satClose_dt.Value.ToString("hh:mm tt") )</span>
+																							</div>
+																						</li>
+																					}
+																					else
+																					{
+																						<li>
+																							<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																							<div>
+																								Saturday <span> Closed</span>
+																							</div>
+																						</li>
 																					}
 																					//sun
 																					if (Model.WorkSpaceDetails.selectedSpace.SunAvail == true)
 																					{
-																					<li>
-																						<i class="fa fa-check-circle" aria-hidden="true"></i>
-																						<div>
-																							Sunday <span>( @sunOpen_dt.Value.ToString("hh:mm tt") - @sunClose_dt.Value.ToString("hh:mm tt") )</span>
-																						</div>
-																					</li>
-																					}
-																					else{
 																						<li>
-																						<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
-																						<div>
-																							Sunday <span> Closed</span>
-																						</div>
-																					</li>
+																							<i class="fa fa-check-circle" aria-hidden="true"></i>
+																							<div>
+																								Sunday <span>( @sunOpen_dt.Value.ToString("hh:mm tt") - @sunClose_dt.Value.ToString("hh:mm tt") )</span>
+																							</div>
+																						</li>
+																					}
+																					else
+																					{
+																						<li>
+																							<i class="fa fa-times-circle text-danger" aria-hidden="true"></i>
+																							<div>
+																								Sunday <span> Closed</span>
+																							</div>
+																						</li>
 																					}
 																				}
 
-																				}
+																			}
 																		</ul>
 																	</div>
 																</div>
@@ -1125,7 +1149,7 @@
 																	</div>
 																	@*<img src="~/img/officeTypes/businesscentre.jpg" alt="space image" />*@
 																	@*<a href="javascript:void(0);" id="hs_matrixView__btn" class="btn btn-success cst-btn-nine full-width"><span>View Cart</span></a>*@
-																	<div id="admin_matrixpreview" class="matrix-preview-panel website_floorplan">
+																	<div id="admin_matrixpreview_@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID" class="matrix-preview-panel website_floorplan admin_matrixpreview">
 																	</div>
 																</div>
 															</div>
@@ -1291,7 +1315,7 @@
 																					</div>
 																					<div class="col-md-12 hide">
 																						<span class="ws-seatdetail__head">ClientSpaceSeatID:</span>
-																						<span class="wd_clientspaceseatid">0</span>
+																						<span class="wd_clientspaceseatid">@itemSpace.clientFloorSpace.ClientSpaceFloorPlanID</span>
 																					</div>
 																					<div class="col-md-12">
 																						<span class="ws-seatdetail__head">Price:</span>
@@ -1299,7 +1323,7 @@
 																					</div>
 																					<div class="col-md-12">
 																						<span class="ws-seatdetail__head">Description: </span>
-																						<span class="wd_desc">@itemSpace.clientFloorSpace.SpaceDescription</span>
+																						<span class="wd_desc">@Html.Raw(@itemSpace.clientFloorSpace.SpaceDescription)</span>
 																					</div>
 																				</div>
 																			</div>

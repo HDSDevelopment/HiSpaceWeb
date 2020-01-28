@@ -313,12 +313,29 @@ namespace HiSpaceWeb.Controllers
 		}
 
 		[HttpGet]
-		public ActionResult ReadClientSeats()
+		public ActionResult ReadClientSeats(int ClientSpaceFloorPlanID)
 		{
 			SetSessionVariables();
 
-			List<ClientSpaceSeat> sessionSeatObject = GetClientSeats();
+			//List<ClientSpaceSeat> sessionSeatObject = GetClientSeats();
+			List<ClientSpaceSeat> sessionSeatObject = new List<ClientSpaceSeat>();
 
+			using (var client = new HttpClient())
+			{
+				client.BaseAddress = new Uri(Common.Instance.ApiClientControllerName);
+				var responseTask = client.GetAsync(Common.Instance.ApiClientGetClientSpaceSeats + ClientSpaceFloorPlanID.ToString());
+				responseTask.Wait();
+
+				var result = responseTask.Result;
+				if (result.IsSuccessStatusCode)
+				{
+					var readTask = result.Content.ReadAsAsync<List<ClientSpaceSeat>>();
+					readTask.Wait();
+					var seats = readTask.Result;
+					//SetSeatListObject(seats);
+					sessionSeatObject = ApplicationState.Instance.ReadClientSeats = seats;
+				}
+			}
 			return Json(sessionSeatObject);
 		}
 

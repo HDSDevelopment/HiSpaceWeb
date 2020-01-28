@@ -671,11 +671,11 @@ function seatDeatilsClose(obj) {
 }
 
 function spaceDetailsApply(obj, seatMatrix, type, defParam = '') {
-	//var NoRows = $('#ClientSpaceFloorPlan_NumberOfRows').val();
+	var NoRows = $('#ClientSpaceFloorPlan_NumberOfRows').val();
 	console.log('apply' + defParam);
-	var NoRows = 8;
-	//var NoColumns = $('#ClientSpaceFloorPlan_NumberOfColumns').val();
-	var NoColumns = 8;
+	//var NoRows = 8;
+	var NoColumns = $('#ClientSpaceFloorPlan_NumberOfColumns').val();
+	//var NoColumns = 8;
 	var urlAction = "";
 	var arrSeatIDS = [];
 	var seatList = [];
