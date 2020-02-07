@@ -1,0 +1,107 @@
+﻿@model IEnumerable<HiSpaceModels.Lead>
+
+@{
+	ViewBag.Title = "Lead";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- begin app-main -->
+<div class="app-main" id="main">
+	<!-- begin container-fluid -->
+	<div class="container-fluid">
+		<!-- begin row -->
+		<div class="row">
+			<div class="col-md-12 m-b-10">
+				<!-- begin page title -->
+				<div class="d-block d-sm-flex flex-nowrap align-items-center">
+					<div class="page-title mb-2 mb-sm-0">
+						<h1>Lead Master<span class="action-text"></span></h1>
+					</div>
+					<div class="ml-auto d-flex align-items-center">
+						<nav>
+							<ol class="breadcrumb p-0 m-b-0">
+								<li class="breadcrumb-item">
+									<a href="@Url.Action( "Index","Home")"><i class="ti ti-home"></i></a>
+								</li>
+								<li class="breadcrumb-item active text-primary" aria-current="page">Lead</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+				<!-- end page title -->
+			</div>
+		</div>
+		<!-- end row -->
+		<!-- begin row -->
+		<!--Lead table view-->
+		<div class="row" id="table_view">
+			<div class="col-lg-12">
+				<div class="card card-statistics">
+					<div class="card-body">
+						<div class="datatable-wrapper table-responsive">
+							<a href="@Url.Action( "Create","Lead")">
+								<div class="add-new tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click to add">
+									<i class="fa fa-plus"></i>
+								</div>
+							</a>
+							<table id="LeadTable" class="display compact table table-striped mdtable">
+								<thead>
+
+									<tr>
+										<th>L-ID</th>
+										<th>Name</th>
+										<th>Phone</th>
+										<th>Email</th>
+										<th>Space Type</th>
+										<th>No.of Seats</th>
+										<th>City</th>
+										<th class="text-center" width="106px">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									@foreach (var item in Model)
+									{
+										<tr>
+											<td>
+												@Html.DisplayFor(modelItem => item.LeadID)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.LeadName)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.Phone)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.Email)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.SpaceType)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.TotalSeat)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.City)
+											</td>
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+
+													<a href="@Url.Action( "Display","Lead", new { LeadID = item.LeadID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+														<i class="fa fa-eye btn btn-icon"></i>
+													</a>
+													<a href="@Url.Action( "Edit","Lead", new { LeadID = item.LeadID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+														<i class="fa fa-pencil-square-o btn btn-icon "></i>
+													</a>
+												</div>
+											</td>
+										</tr>
+									}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

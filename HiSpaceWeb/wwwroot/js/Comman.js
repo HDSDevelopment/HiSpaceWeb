@@ -10,7 +10,13 @@ function ApplyPicker() {
 	$('#DOJ, #DOR, #FromDate, #ToDate').datetimepicker({
 		//debug: true,
 		format: 'YYYY-MM-DD',
+		//daysOfWeekDisabled: [1, 2, 3, 4, 5],
 	});
+	//$('.from_date, .to_date').datetimepicker({
+	//	//debug: true,
+	//	format: 'YYYY-MM-DD',
+	//	daysOfWeekDisabled: [1, 2, 3, 4, 5],
+	//});
 }
 
 $(document).ready(function () {
@@ -47,25 +53,7 @@ $(document).ready(function () {
 
 	ApplyPicker();
 
-	$('#from_date').datetimepicker({
-		//debug: true,
-		//format: 'L',
-		//format: 'DD-MM-YYYY hh:mm A',
-		format: 'DD/MM/YYYY',
-		minDate: moment()
-	});
-	$('#to_date').datetimepicker({
-		useCurrent: false,
-		//format: 'L',
-		//debug: true,
-		format: 'DD/MM/YYYY',
-	});
-	$("#from_date").on("dp.change", function (e) {
-		$('#to_date').data("DateTimePicker").minDate(e.date);
-	});
-	$("#to_date").on("dp.change", function (e) {
-		$('#from_date').data("DateTimePicker").maxDate(e.date);
-	});
+	
 	$('.selectpicker').selectpicker("refresh");
 	// Initialize Editor
 	$('.textarea-editor').summernote({

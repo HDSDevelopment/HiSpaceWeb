@@ -2015,3 +2015,8 @@ sub, sup {
 .wd_desc p{
 	display: inline-block;
 }
+
+.complete-space {
+	opacity: 1 !important;
+	pointer-events: unset !important;
+}

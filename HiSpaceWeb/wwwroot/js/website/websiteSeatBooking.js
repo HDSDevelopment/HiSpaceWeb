@@ -8,10 +8,23 @@ var cartCount = 0;
 var seatDetailsArray = [];
 
 $(window).load(function () {
-	$('.wsb-floors__space .space-tab:first-child').click();
-	allPageCartAdd()
-});
+	//$('.wsb-floors__space .space-tab:first-child').click();
+	allPageCartAdd();
 
+	//select the active tab
+	activeSelectedTab();
+});
+function activeSelectedTab() {
+	if (data != null) {
+		var space_id = data['WorkSpaceDetails']['selectedSpace']['ClientSpaceFloorPlanID'];
+		var floor_id = data['WorkSpaceDetails']['selectedSpace']['ClientFloorID'];
+		//console.log(space_id);
+		//console.log(floor_id);
+		//$('.wsb-floors__space .space-tab:first-child').click();
+		$("#floor_" + floor_id).click();
+		$("#space_" + space_id).click();
+	}
+};
 $(document).on('click', '.level2 li a', function () {
 	$(this).parents('td').removeClass('open');
 	$(this).parents('.level2').css('display', 'none');
@@ -94,7 +107,158 @@ function PreviewWebsiteSpaceMatrix(ClientSpaceFloorPlanID, NumberOfRows, NumberO
 
 	setTimeout(function () {
 		PreviewTempSeat();
+
+		//complete space sub-total shows
+		$('.complete-space .sd_subtotal:visible').html($('.complete-space .wd_price:visible').html());
 	}, 1000);
+	getAvailableDayTime(ClientSpaceFloorPlanID);
+};
+
+function getAvailableDayTime(ClientSpaceFloorPlanID) {
+	if (data != null) {
+		var space_id = ClientSpaceFloorPlanID;
+		urlAction = "/Website/GetClientSpaceFloorPlanByID/";
+		$.ajax({
+			type: "GET",
+			url: urlAction,
+			dataType: "json",
+			data: { ClientSpaceFloorPlanID: ClientSpaceFloorPlanID },
+			success: function (response) {
+
+
+
+				var week = ["sun","mon","tue","wed","thu","fri","sat"];
+				var spaceFloorPlan = response[0];
+				
+				var weekoff = [];
+
+				console.log(spaceFloorPlan);
+			
+				if (spaceFloorPlan) {
+					
+
+
+						$.each(week, function (index, value) {
+
+							if (!spaceFloorPlan[value + "Avail"]) {
+								weekoff.push(index);
+							}
+							
+						});
+
+						
+						
+					
+
+				}
+
+
+
+				$('#from_date_' + space_id).datetimepicker({
+					useCurrent: false,
+					//debug: true,
+					//format: 'L',
+					//format: 'DD-MM-YYYY hh:mm A',
+					format: 'DD/MM/YYYY',
+					daysOfWeekDisabled: weekoff
+				})
+
+				$('#to_date_' + space_id).datetimepicker({
+					useCurrent: false,
+					//format: 'L',
+					//debug: true,
+					format: 'DD/MM/YYYY',
+					daysOfWeekDisabled: weekoff,
+				});
+
+
+				//	$('.from_date, .to_date').datetimepicker({
+				//});
+				$('body').on('click', '#from_date_' + space_id, function () {
+
+					$(this).datetimepicker({
+						useCurrent: false,
+						//debug: true,
+						//format: 'L',
+						//format: 'DD-MM-YYYY hh:mm A',
+						format: 'DD/MM/YYYY',
+						daysOfWeekDisabled: weekoff,
+						minDate: moment()
+					})
+				})
+				$('body').on('click', '#to_date_' + space_id, function () {
+					$(this).datetimepicker({
+						useCurrent: false,
+						//format: 'L',
+						//debug: true,
+						format: 'DD/MM/YYYY',
+						daysOfWeekDisabled: weekoff,
+					});
+				});
+
+				$("#from_date_" + space_id).on("dp.change", function (e) {
+
+					var dt = moment(e.date).day();
+					var openTime  = spaceFloorPlan[week[dt] + "Open"];
+					var closeTime = spaceFloorPlan[week[dt] + "Close"];
+				
+
+					$('#OpenTime_' + space_id + ' option').each(function (index) {
+						if ($(this).val() >= openTime && $(this).val() <= closeTime) {
+							$(this).css({ display: "block" });
+						}
+						else {
+							$(this).css({ display: "none" });
+						}
+
+
+					});
+
+					$('#OpenTime_' + space_id + '').selectpicker('refresh');
+
+
+					$('#to_date_' + space_id).data("DateTimePicker").minDate(e.date);
+				});
+				$("#to_date_" + space_id).on("dp.change", function (e) {
+					var dt = moment(e.date).day();
+					var openTime = spaceFloorPlan[week[dt] + "Open"];
+					var closeTime = spaceFloorPlan[week[dt] + "Close"];
+
+
+					$('#CloseTime_' + space_id + ' option').each(function (index) {
+						if ($(this).val() >= openTime && $(this).val() <= closeTime) {
+							$(this).css({ display: "block" });
+						}
+						else {
+							$(this).css({ display: "none" });
+						}
+
+
+					});
+
+					$('#CloseTime_' + space_id + '').selectpicker('refresh');
+
+					$('#from_date_' + space_id).data("DateTimePicker").maxDate(e.date);
+				});
+			}
+		});
+
+		
+	}
+}
+
+function getFloorSpaceAvailableDays(ClientSpaceFloorPlanID) {
+	urlAction = "/Website/ReadClientSeats/";
+	$.ajax({
+		type: "GET",
+		url: urlAction,
+		dataType: "json",
+		data: { ClientSpaceFloorPlanID: ClientSpaceFloorPlanID },
+		success: function (response) {
+			alert();
+			console.log(response);
+		}
+	})
 }
 
 function wsClientSetupSeats(ClientSpaceFloorPlanID) {
@@ -794,7 +958,7 @@ function SetSeatList() {
 		});
 	}
 
-	console.log(seatList);
+	//console.log(seatList);
 }
 
 function PreviewTempSeat() {
@@ -821,7 +985,7 @@ function PreviewTempSeat() {
 }
 
 function AddRemoveBookingsSeats(seatList, IsAdd) {
-	console.log(seatList)
+	//console.log(seatList)
 	if (IsAdd)
 		urlAction = "/Website/AddSeats/";
 	else

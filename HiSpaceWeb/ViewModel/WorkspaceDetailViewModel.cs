@@ -14,16 +14,17 @@ using HiSpaceService.ViewModel;
 
 namespace HiSpaceWeb.ViewModel
 {
-    public class WorkspaceDetailViewModel
-    {
-        public WorkspaceDetailViewModel()
-        {
-            WorkSpaceDetails = new WorkSpaceDetailsResponse();
-        }
-        
-        public WorkSpaceDetailsResponse WorkSpaceDetails { set; get; }
+	public class WorkspaceDetailViewModel
+	{
+		public WorkspaceDetailViewModel()
+		{
+			WorkSpaceDetails = new WorkSpaceDetailsResponse();
+		}
 
-        public IFormFile FloorPlanFile { set; get; }
+		public WorkSpaceDetailsResponse WorkSpaceDetails { set; get; }
 
-    }
+		public IFormFile FloorPlanFile { set; get; }
+		public TimeSpan? OpenTime { get; set; }
+		public TimeSpan? CloseTime { get; set; }
+	}
 }

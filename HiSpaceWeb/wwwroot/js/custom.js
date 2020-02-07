@@ -1,6 +1,5 @@
 //document ready function
 $(function () {
-
 	// We can attach the `fileselect` event to all file inputs on the page
 	$(document).on('change', ':file', function () {
 		var input = $(this),
@@ -120,13 +119,9 @@ $(function () {
 	//	//console.log($(this).val())
 	//	var EmpID = $(this).val();
 
-
-
 	//           success: function (response) {
-
 	//           },
 	//           error: function (e) {
-
 	//employee is check for relieving
 	$('.relieving_date_check input[type=checkbox]').each(function () {
 		if ($(this).is(":checked")) {
@@ -136,7 +131,6 @@ $(function () {
 			$(this).parents('.relieving_date_check').siblings('.relieving_date').css('display', 'none');
 		}
 	});
-
 
 	//amenities for each function
 	$('#l_floor_facilities input[type=checkbox]').each(function () {
@@ -256,6 +250,12 @@ $(function () {
 
 	//Attendance section datatable
 	$('#attendanceTable').DataTable({
+		"bPaginate": true,
+		"bSortable": true
+	});
+
+	//Lead section datatable
+	$('#LeadTable').DataTable({
 		"bPaginate": true,
 		"bSortable": true
 	});
@@ -544,7 +544,6 @@ $(function () {
 	});
 
 	//attendance section
-
 });
 
 var selectedSeat;
@@ -765,7 +764,6 @@ $(function () {
 		$('#CustomCheck').parents('label').addClass('radio-active');
 	}
 
-
 	//display view in the scheduler section
 	if ($('#Display_view #AllTimeCheck option:selected').text() == "True") {
 		$('.sch-2, .sch-3, .sch-4').css('display', 'none');
@@ -783,10 +781,8 @@ $(function () {
 		$('.sch-1, .sch-2, .sch-3').css('display', 'none');
 		$('.sch-4').css('display', 'block');
 	}
-
 });
 //***********************user section end****************************//
-
 
 $('input[name="ClientSpaceFloorPlan.Is24"]').click(function () {
 	//$('input[name="AllTimeCheck"], input[name="MonToFriCheck"], input[name="MonToSatCheck"], input[name="CustomCheck"]').click(function () {
@@ -828,10 +824,7 @@ $('input[name="ClientSpaceFloorPlan.Is24"]').click(function () {
 		$('.sch-weekdays, .sch-weeksaturday').addClass('cursor-no-drop');
 		$('.sch-weekdays > div, .sch-weeksaturday > div').addClass('pointer-event-none');
 	}
-
-
 });
-
 
 $(".sch-status").click(function () {
 	if ($(this).prop("checked") == true) {
@@ -870,4 +863,3 @@ $('.relieving_date_check input[type=checkbox]').change(function () {
 		$(this).parents('.relieving_date_check').siblings('.relieving_date').css('display', 'none');
 	}
 });
-

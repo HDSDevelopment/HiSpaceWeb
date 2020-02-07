@@ -339,6 +339,30 @@ namespace HiSpaceWeb.Controllers
 			return Json(sessionSeatObject);
 		}
 
+		[HttpGet]
+		public ActionResult GetClientSpaceFloorPlanByID(int ClientSpaceFloorPlanID)
+		{
+			List<ClientWorkSpaceFloorPlan> clientWorkSpaceFloorPlan = new List<ClientWorkSpaceFloorPlan>();
+
+			using (var client = new HttpClient())
+			{
+				client.BaseAddress = new Uri(Common.Instance.ApiClientControllerName);
+				//HTTP GET
+				var responseTask = client.GetAsync(Common.Instance.ApiGetClientSpaceFloorPlanByID + ClientSpaceFloorPlanID.ToString());
+				responseTask.Wait();
+
+				var result = responseTask.Result;
+				if (result.IsSuccessStatusCode)
+				{
+					var readTask = result.Content.ReadAsAsync<List<ClientWorkSpaceFloorPlan>>();
+					readTask.Wait();
+					clientWorkSpaceFloorPlan = readTask.Result;
+				}
+			}
+
+			return Json(clientWorkSpaceFloorPlan);
+		}
+
 		public void SetSessionVariables()
 		{
 			#region

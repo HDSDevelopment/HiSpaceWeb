@@ -30,9 +30,9 @@
                                 <li class="breadcrumb-item">
                                     <a href="@Url.Action( "Index","ClientLocation")">Client Location</a>
                                 </li>
-                                @*<li class="breadcrumb-item">
-                        <a href="@Url.Action( "Index","ClientFloor")">Client Floor</a>
-                    </li>*@
+                                <li class="breadcrumb-item">
+                        <a href="@Url.Action( "Index","ClientFloor", new { ClientLocationID = ViewBag.ClientLocationID})">Client Floor</a>
+                    </li>
                                 @*<li class="breadcrumb-item">
                         <a href="@Url.Action( "Index","ClientSpace")">Client Space</a>
                     </li>*@

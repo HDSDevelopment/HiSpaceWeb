@@ -48,7 +48,7 @@ namespace HiSpaceWeb.Controllers
             {
                 client.BaseAddress = new Uri(Common.Instance.ApiClientControllerName);
                 //HTTP GET
-                var responseTask = client.GetAsync(Common.Instance.ApiClientGetClientWorkSpaceFloorPlansByFilter + ClientID + "/" + ClientLocationID);
+                var responseTask = client.GetAsync(Common.Instance.ApiClientGetClientWorkSpaceFloorPlansByFilter + ClientID + "/" + ClientLocationID + "/" + ClientFloorID);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
