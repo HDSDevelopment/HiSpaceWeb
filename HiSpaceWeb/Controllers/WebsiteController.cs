@@ -235,7 +235,9 @@ namespace HiSpaceWeb.Controllers
 						MemberBookingSpaceID = seat.MemberBookingSpaceID,
 						ClientSpaceSeatID = seat.ClientSpaceSeatID,
 						SeatPrice = seat.SeatPrice,
-						SeatStatus = seat.SeatStatus
+						SeatStatus = seat.SeatStatus,
+						FromDateTime = seat.FromDateTime,
+						ToDateTime = seat.ToDateTime
 					});
 					//sessionSeatObject.Add(seat);
 				}

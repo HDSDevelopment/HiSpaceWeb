@@ -91,8 +91,13 @@
 	height: 70px;
 }
 
-	.top-bar .navbar .navbar-header .logo-desktop {
+	/*.top-bar .navbar .navbar-header .logo-desktop {
 		width: 100%;
+	}*/
+	.top-bar .navbar .navbar-header .logo-desktop {
+		width: 60%;
+		position: relative;
+		top: 5px;
 	}
 
 .mCS-minimal.mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar {
@@ -618,7 +623,7 @@ form.md-form .button {
 	display: flex;
 }
 
-.login > p{
+.login > p {
 	text-align: center;
 	font-size: 16px;
 	margin-top: 10px;
@@ -1742,8 +1747,6 @@ form.md-form .sch-time .form-group label {
 		flex-direction: column;
 		align-items: center;
 	}
-
-	
 }
 
 /*Extra small devices (portrait phones, less than 576px)*/

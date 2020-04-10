@@ -60,6 +60,8 @@
                                         <th>Floor</th>
                                         <th>Requested Seats</th>
                                         <th>Price</th>
+                                        <th>From</th>
+                                        <th>To</th>
                                         <th align="center">Status</th>
                                         @if (ViewBag.Type != 4)
                                         {
@@ -75,94 +77,100 @@
                                     {
 
 
-                                    <tr>
-                                        @if (ViewBag.Type != 4)
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.MemberID)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.MemberName)
-                                            </td>
-                                        }
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ClientName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.WSpaceTypeName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.SpaceName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.ClientLocationName)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.Floor)
-                                        </td>
-                                        @if (item.NumberOfSeats == 0)
-                                        {
-                                            <td>
-                                                Complete Space
-                                            </td>
-                                        }
-                                        else
-                                        {
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.NumberOfSeats)
-                                            </td>
-                                        }
+									<tr>
+										@if (ViewBag.Type != 4)
+										{
+											<td>
+												@Html.DisplayFor(modelItem => item.MemberID)
+											</td>
+											<td>
+												@Html.DisplayFor(modelItem => item.MemberName)
+											</td>
+										}
+										<td>
+											@Html.DisplayFor(modelItem => item.ClientName)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.WSpaceTypeName)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.SpaceName)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.ClientLocationName)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.Floor)
+										</td>
+										@if (item.NumberOfSeats == 0)
+										{
+											<td>
+												Complete Space
+											</td>
+										}
+										else
+										{
+											<td>
+												@Html.DisplayFor(modelItem => item.NumberOfSeats)
+											</td>
+										}
 
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.SpacePrice)
-                                        </td>
+										<td>
+											@Html.DisplayFor(modelItem => item.SpacePrice)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.FromDayTime)
+										</td>
+										<td>
+											@Html.DisplayFor(modelItem => item.ToDayTime)
+										</td>
 
-                                        <td>
-                                            @*<div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
-                <i class="@ViewBag.Status"></i>
-            </div>*@
-                                            @Html.DisplayFor(modelItem => item.BookingStatus)
-                                        </td>
-                                        @if (ViewBag.Type != 4)
-                                        {
-                                            <td class="p-0">
-                                                <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
-                                                    @if (item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Requested || item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Rejected)
-                                                    {
-                                                        <a onclick="return ApproveMemberBooking();" href="@Url.Action("Approve", "MemberBooking", new { MemberBookingSpaceID = item.MemberBookingSpaceID, Status = HiSpaceService.Contracts.MemberBookingStatus.Approved })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve">
-                                                            <i class="fa fa-thumbs-up btn btn-icon text-success"></i>
-                                                        </a>
-                                                    }
-                                                    @if (item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Requested || item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Approved)
-                                                    {
-                                                        <a onclick="return ApproveMemberBooking();" href="@Url.Action("Approve", "MemberBooking", new { MemberBookingSpaceID = item.MemberBookingSpaceID, Status = HiSpaceService.Contracts.MemberBookingStatus.Rejected })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reject">
-                                                            <i class="fa fa-times btn btn-icon"></i>
-                                                        </a>
-                                                    }
-                                                </div>
-                                            </td>
-                                        }
-                                        @*<td class="p-0">
-            <div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+										<td>
+											@*<div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu">
+				<i class="@ViewBag.Status"></i>
+			</div>*@
+											@Html.DisplayFor(modelItem => item.BookingStatus)
+										</td>
+										@if (ViewBag.Type != 4)
+										{
+											<td class="p-0">
+												<div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
+													@if (item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Requested || item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Rejected)
+													{
+														<a onclick="return ApproveMemberBooking();" href="@Url.Action("Approve", "MemberBooking", new { MemberBookingSpaceID = item.MemberBookingSpaceID, Status = HiSpaceService.Contracts.MemberBookingStatus.Approved })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Approve">
+															<i class="fa fa-thumbs-up btn btn-icon text-success"></i>
+														</a>
+													}
+													@if (item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Requested || item.BookingStatus == HiSpaceService.Contracts.MemberBookingStatus.Approved)
+													{
+														<a onclick="return ApproveMemberBooking();" href="@Url.Action("Approve", "MemberBooking", new { MemberBookingSpaceID = item.MemberBookingSpaceID, Status = HiSpaceService.Contracts.MemberBookingStatus.Rejected })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reject">
+															<i class="fa fa-times btn btn-icon"></i>
+														</a>
+													}
+												</div>
+											</td>
+										}
+										@*<td class="p-0">
+			<div class="ml-auto d-flex align-items-center secondary-menu text-center md-crud-menu justify-content-center">
 
-                <a href="@Url.Action("Display", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
-                    <i class="fa fa-eye btn btn-icon"></i>
-                </a>
-                <a href="@Url.Action("Edit", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
-                    <i class="fa fa-pencil-square-o btn btn-icon "></i>
-                </a>
-                <a href="@Url.Action("Index", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Deactive">
-                    <i class="fa fa-ban btn btn-icon "></i>
-                </a>
-                <a href="@Url.Action("Index", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
-                    <i class="fa fa-trash-o btn btn-icon "></i>
-                </a>
+				<a href="@Url.Action("Display", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="View">
+					<i class="fa fa-eye btn btn-icon"></i>
+				</a>
+				<a href="@Url.Action("Edit", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+					<i class="fa fa-pencil-square-o btn btn-icon "></i>
+				</a>
+				<a href="@Url.Action("Index", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Deactive">
+					<i class="fa fa-ban btn btn-icon "></i>
+				</a>
+				<a href="@Url.Action("Index", "Member", new { MemberBookingSpaceID = item.MemberBookingSpaceID })" class="tooltip-wrapper" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+					<i class="fa fa-trash-o btn btn-icon "></i>
+				</a>
 
-            </div>
-        </td>*@
+			</div>
+		</td>*@
 
 
-                                    </tr>
+									</tr>
                                     }
                                 </tbody>
 

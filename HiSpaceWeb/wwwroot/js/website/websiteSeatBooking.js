@@ -12,19 +12,19 @@ $(window).load(function () {
 	allPageCartAdd();
 
 	//select the active tab
-	activeSelectedTab();
+	//activeSelectedTab();
 });
-function activeSelectedTab() {
-	if (data != null) {
-		var space_id = data['WorkSpaceDetails']['selectedSpace']['ClientSpaceFloorPlanID'];
-		var floor_id = data['WorkSpaceDetails']['selectedSpace']['ClientFloorID'];
-		//console.log(space_id);
-		//console.log(floor_id);
-		//$('.wsb-floors__space .space-tab:first-child').click();
-		$("#floor_" + floor_id).click();
-		$("#space_" + space_id).click();
-	}
-};
+//function activeSelectedTab() {
+//	if (data != null) {
+//		var space_id = data['WorkSpaceDetails']['selectedSpace']['ClientSpaceFloorPlanID'];
+//		var floor_id = data['WorkSpaceDetails']['selectedSpace']['ClientFloorID'];
+//		//console.log(space_id);
+//		//console.log(floor_id);
+//		//$('.wsb-floors__space .space-tab:first-child').click();
+//		$("#floor_" + floor_id).click();
+//		$("#space_" + space_id).click();
+//	}
+//};
 $(document).on('click', '.level2 li a', function () {
 	$(this).parents('td').removeClass('open');
 	$(this).parents('.level2').css('display', 'none');
@@ -127,28 +127,22 @@ function getAvailableDayTime(ClientSpaceFloorPlanID) {
 
 
 
-				var week = ["sun","mon","tue","wed","thu","fri","sat"];
+				var week = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 				var spaceFloorPlan = response[0];
-				
+
 				var weekoff = [];
 
 				console.log(spaceFloorPlan);
-			
+
 				if (spaceFloorPlan) {
-					
 
+					$.each(week, function (index, value) {
 
-						$.each(week, function (index, value) {
+						if (!spaceFloorPlan[value + "Avail"]) {
+							weekoff.push(index);
+						}
 
-							if (!spaceFloorPlan[value + "Avail"]) {
-								weekoff.push(index);
-							}
-							
-						});
-
-						
-						
-					
+					});
 
 				}
 
@@ -199,9 +193,9 @@ function getAvailableDayTime(ClientSpaceFloorPlanID) {
 				$("#from_date_" + space_id).on("dp.change", function (e) {
 
 					var dt = moment(e.date).day();
-					var openTime  = spaceFloorPlan[week[dt] + "Open"];
+					var openTime = spaceFloorPlan[week[dt] + "Open"];
 					var closeTime = spaceFloorPlan[week[dt] + "Close"];
-				
+
 
 					$('#OpenTime_' + space_id + ' option').each(function (index) {
 						if ($(this).val() >= openTime && $(this).val() <= closeTime) {
@@ -243,7 +237,7 @@ function getAvailableDayTime(ClientSpaceFloorPlanID) {
 			}
 		});
 
-		
+
 	}
 }
 
@@ -589,7 +583,7 @@ function wsSelectRow(obj) {
 }
 
 //column select
-function wsSelectColumn(obj) {
+function wsSelectColumn(obj) { 
 	var ws_seatDropdownLevel1 = $(obj).parents('.level2').siblings('a');
 	var ws_seatDropdownLevel1Status = ws_seatDropdownLevel1.attr('seatstatus');
 	if (ws_seatDropdownLevel1Status == "Available") {
@@ -807,8 +801,8 @@ function checkSelectedCount() {
 /*--------seat booking section web end-----------*/
 //cart button action
 $('.btn-cart__action').on('click', function () {
-	//alert('click event');
-	//alert('a');
+
+	
 	//if ($(window).width() > 576) {
 	var cart = $('.cart.ws-cart a');
 	//} else {
@@ -896,6 +890,13 @@ function SetSeatList() {
 	var temp_ClientSpaceSeatID = $('.btn-cart__action:visible').parents().siblings(".ws-seat__details").find(".ws-seatdetail_show").find('.wd_clientspaceseatid').html();
 	//console.log(temp_ClientSpaceSeatID)
 
+	var fromDay = $('.from_date:visible input.form-control').val().split("/").reverse().join("-");
+	var fromTime = $('select.OpenTime:visible').val();
+	var fromDayTime = fromDay + " " + fromTime;
+	var toDay = $('.to_date:visible input.form-control').val().split("/").reverse().join("-");
+	var toTime = $('select.CloseTime:visible').val();
+	var toDayTime = toDay + " " + toTime;
+
 	if (temp_ClientSpaceSeatID == '0') {
 		$('.btn-cart__action:visible').parents().siblings(".ws-seat__details").find(".ws-seatdetail_show").each(function (index) {
 			singleSeat = {};
@@ -910,6 +911,9 @@ function SetSeatList() {
 			singleSeat.MemberBookingSpaceID = temp_memberbookingspaceid;
 			singleSeat.ClientSpaceSeatID = $(this).find('.wd_clientspaceseatid').html();
 			singleSeat.SeatStatus = 'Requested';
+			singleSeat.FromDateTime = fromDayTime;
+			singleSeat.ToDateTime = toDayTime;
+			
 
 			var rs = $.grep(seatDetailsArray, function (item, index) {
 				return (item.sd_id == singleSeat.sd_id && item.MemberBookingSpaceID == singleSeat.MemberBookingSpaceID);
@@ -942,6 +946,8 @@ function SetSeatList() {
 			//console.log(singleSeat.ClientSpaceSeatID);
 			//alert($(this).find('.wd_clientspaceseatid').html());
 			singleSeat.SeatStatus = 'Requested';
+			singleSeat.FromDateTime = fromDayTime;
+			singleSeat.ToDateTime = toDayTime;
 
 			var rs = $.grep(seatDetailsArray, function (item, index) {
 				return (item.sd_id == singleSeat.sd_id && item.MemberBookingSpaceID == singleSeat.MemberBookingSpaceID);
@@ -985,7 +991,7 @@ function PreviewTempSeat() {
 }
 
 function AddRemoveBookingsSeats(seatList, IsAdd) {
-	//console.log(seatList)
+	console.log(seatList)
 	if (IsAdd)
 		urlAction = "/Website/AddSeats/";
 	else

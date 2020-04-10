@@ -21,13 +21,7 @@ $('.wsd-carousel').owlCarousel({
 	animateIn: 'slideInUp',
 	dots: true
 });
-//google map section
-function displayMap(lat, lon) {
-	document.getElementById("ws-map").src = 'https://www.google.com/maps/embed/v1/place?q=' + lat + ',' + lon + '&key=AIzaSyB59thq3ND2fzB_9zq5IZa3Ko2antbwRGw';
-}
-var latitude = "12.973350";
-var longitude = "80.250280";
-displayMap(latitude, longitude);
+
 
 //Remove the row
 function removeRow(obj) {
@@ -115,3 +109,34 @@ $('.ws-image-lightbox-1, .ws-image-lightbox-2, .ws-image-lightbox-3').cubeportfo
 //	if (winWidth > 991) {
 //	}
 //});
+
+var maxHeight = 0;
+
+$(".split-form").each(function () {
+	if ($(this).height() > maxHeight) { maxHeight = $(this).height(); }
+});
+
+$(".split-form").height(maxHeight);
+
+$(".left").mouseenter(function () {
+	$('.split-slider').addClass('hover-left');
+});
+$(".left").mouseleave(function () {
+	$('.split-slider').removeClass('hover-left');
+});
+$(".right").mouseenter(function () {
+	$('.split-slider').addClass('hover-right');
+});
+$(".right").mouseleave(function () {
+	$('.split-slider').removeClass('hover-right');
+});
+
+
+
+//google map section
+function displayMap(lat, lon) {
+	document.getElementById("ws-map").src = 'https://www.google.com/maps/embed/v1/place?q=' + lat + ',' + lon + '&key=AIzaSyB59thq3ND2fzB_9zq5IZa3Ko2antbwRGw';
+}
+var latitude = "12.973350";
+var longitude = "80.250280";
+displayMap(latitude, longitude);
