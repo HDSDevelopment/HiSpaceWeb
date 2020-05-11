@@ -1,5 +1,4 @@
-﻿
-@model HiSpaceWeb.ViewModel.UserLoginViewModel
+﻿@model HiSpaceWeb.ViewModel.UserLoginViewModel
 @{
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_WebsiteLayout.cshtml";
@@ -12,117 +11,80 @@
 <!-- page content START -->
 <div class="content hi-index" id="content">
 	<!-- slider START -->
-	<div id="" class="split-slider">
+	<div id="corporateSlider" class="corporate-slider">
 
-		<div class="split left">
-			<img src="~/img/slides/bmwHomeSlides/desk.png" alt="" class="split-need">
-			<div class="text">
-				<p class="subtitle"></p>
-				<h1 class="title">Need <br /> Workspace</h1>
-				<p class="desc">
-					Move Into Your Workspace With Us
-				</p>
-			</div>
-			<div class="split-form">
-				<div class="row mb--20">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<div class="col-sm-2">
-								<i class="fa fa-search" aria-hidden="true"></i>
-							</div>
-							<div class="col-sm-10">
-								<input type="text" class="form-control input-sm" id="" name="" placeholder="Location">
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<div class="col-sm-2">
-								<i class="fa fa-list-ul" aria-hidden="true"></i>
-							</div>
-							<div class="col-sm-10">
-								<input type="password" class="form-control input-sm" id="" name="" placeholder="Co-Working">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
-						<div class="form-group">
-							<div class="col-sm-2">
-								<i class="fa fa-hourglass-start" aria-hidden="true"></i>
-							</div>
-							<div class="col-sm-10">
-								<input type="text" class="form-control input-sm" id="" name="" placeholder="From Date">
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="form-group">
-							<div class="col-sm-2">
-								<i class="fa fa-hourglass-end" aria-hidden="true"></i>
-							</div>
-							<div class="col-sm-10">
-								<input type="text" class="form-control input-sm" id="" name="" placeholder="To Date">
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="text-center mt--20">
-						<a href="@Url.Action( "ListWorkspace","Website")" title="Traverse" class="btn btn-default btn-icon contact-btn no-margin"><i class="livicon" data-name="location-alt" data-color="#fff" data-hovercolor="false" data-size="18"></i> TRAVERSE</a>
-					</div>
-				</div>
-			</div>
+		<!-- slide1 START -->
+		<div class="kr-sky" data-duration="12000" data-transition="14">
+
+			<!-- Setting slide background -->
+			<img class="sky-background" src="~/img/slides/bmwHomeSlides/slider1.jpg" alt="slide1" data-size="cover">
+
+			<h1 class="kr-cloud slide-title big light-color" style="top:150px; width:100%; text-align:center;" data-transitionin="offsetx:0;skewx:40;duration:1500;delay:500;easing:easeOutQuart;scalex:4;"
+				data-transitionout="scalex:0.1; scaley:0,1; duration:1500; delay:3000;">
+				Move Into Your Space With Us
+			</h1>
+
+			<p class="kr-cloud slide-sub-title light-color" style="top:330px;width:100%; text-align:center;" data-transitionin="offsety:400;duration:1500;delay:1500;easing:easeInOutExpo;"
+			   data-transitionout="scalex:0.1; scaley:0.1; duration:400; delay:2500;">
+				Unzip your business
+			</p>
+
+			<p class="kr-cloud slide-sub-title" style="top:380px; text-align:center; width:100%;" data-transitionin="offsety:500;duration:1500;delay:2800;easing:easeOutQuart;" data-transitionout="offsety:500; scaley:0.1; duration:1200; delay:3500;easing:easeInOutExpo;">
+				<a href="@Url.Action( "WorkspaceDetail","Website")" class="btn btn-primary btn-lg cst-btn-nine" title="Lest Start">Explore It</a>
+			</p>
 		</div>
-		<div class="split right">
-			<img src="~/img/slides/bmwHomeSlides/building.png" alt="" class="split-list">
-			<div class="text">
-				<p class="subtitle"></p>
-				<h1 class="title">List My <br /> Workspace</h1>
-				<p class="desc">
-					Make Your Space Usable To Others
-				</p>
+		<!-- slide1 END -->
+		<!-- slide2 START -->
+		<div class="kr-sky" data-duration="12000" data-transition="14">
 
-			</div>
-			<div class="split-form">
-				@using (Html.BeginForm("Login", "Authentication", FormMethod.Post, new { IsBooking = ViewBag.IsBooking, id = "login_form", @class = "md-form" }))
-				{
-					@Html.HiddenFor(m => m.IsBooking)
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<div class="col-sm-2">
-									<i class="fa fa-user" aria-hidden="true"></i>
-								</div>
-								<div class="col-sm-10">
-									@Html.TextBoxFor(m => m.UserLogin.Username, new { @id = "txtUsername", required = "required", @class= "form-control input-sm", placeholder="Username", @type="text" })
-									@*<input type="text" class="form-control input-sm" id="" name="" placeholder="Username">*@
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-6">
-							<div class="form-group">
-								<div class="col-sm-2">
-									<i class="fa fa-key" aria-hidden="true"></i>
-								</div>
-								<div class="col-sm-10">
-									@Html.EditorFor(m => m.UserLogin.Password, new { htmlAttributes = new { type = "password", @maxlength = "16", onfocus = "applyStyle(this)", onblur = "removeStyle(this)", @class = "form-control input-sm", required = "required", placeholder="Password" } })
-									@*<input type="password" class="form-control input-sm" id="" name="" placeholder="Password">*@
-								</div>
-							</div>
-						</div>
+			<!-- Setting slide background -->
+			<img class="sky-background" src="~/img/slides/bmwHomeSlides/slider3.jpg" alt="slide3" data-size="cover">
+
+			<h1 class="kr-cloud slide-title big light-color" style="top:150px; width:100%; text-align:center;" data-transitionin="offsetx:-200;duration:1500;delay:500;easing:easeOutQuart;scalex:0;"
+				data-transitionout="offsety:-500; duration:1500; delay:3000;">
+				Move Into Your Space With Us
+			</h1>
+
+			<p class="kr-cloud slide-sub-title light-color" style="top:330px;width:100%; text-align:center;" data-transitionin="offsetx:200;duration:1500;delay:1500;easing:easeInOutExpo;scalex:0"
+			   data-transitionout="offsety:-500; scaley:0.1; duration:1200; delay:2500;">
+				Any Where Any Time
+			</p>
+
+			<p class="kr-cloud slide-sub-title" style="top:380px; text-align:center; width:100%;" data-transitionin="offsety:500;duration:1500;delay:2800;easing:easeOutQuart;" data-transitionout="offsety:500; scaley:0.1; duration:1200; delay:3500;easing:easeInOutExpo;">
+				<a href="javascript:void(0);" class="btn btn-info btn-lg cst-btn-nine" title="Lest Start">About Us</a>
+			</p>
+		</div>
+		<!-- slide2 END -->
+		<!-- slide3 START -->
+		<div class="kr-sky" data-duration="12000" data-transition="14">
+
+			<!-- Setting slide background -->
+			<img class="sky-background" src="~/img/slides/bmwHomeSlides/slider4.jpg" alt="slide4" data-size="cover">
+
+			<h1 class="kr-cloud slide-title big light-color" style="top:230px; width:100%; text-align:center;" data-transitionin="offsety:500;duration:1500;delay:500;easing:easeOutQuart;" data-transitionout="offsety:-500; duration:1500; delay:3000;">
+				Workspace
+			</h1>
+
+			<p class="kr-cloud slide-sub-title light-color" style="top:330px;width:100%; text-align:center;" data-transitionin="offsety:500;duration:1500;delay:900;easing:easeInOutExpo;"
+			   data-transitionout="offsety:-500; scaley:0.1; duration:1200; delay:3000;">
+				Make your space usable to others
+			</p>
+
+			<p class="kr-cloud slide-sub-title" style="top:380px; text-align:center; width:100%;" data-transitionin="offsety:500;duration:1500;delay:2800;easing:easeOutQuart;" data-transitionout="offsety:500; scaley:0.1; duration:1200; delay:3500;easing:easeInOutExpo;">
+				<a href="javascript:void(0);" class="btn btn-success btn-lg cst-btn-nine" title="Lest Start">I Share Myspace</a>
+			</p>
+		</div>
+		<!-- slide3 END -->
+
+		<div class="row space-search">
+			<div class="">
+				<form class="form-inline d-flex">
+					<div class="form-group">
+						<label class="sr-only" for="search">Enter city name...</label>
+						<input type="text" class="form-control" id="search" name="" placeholder="Enter city name...">
 					</div>
-					<div class="row">
-						<div class="text-center mt--20">
-							<a  href="#" id="login_btn" title="Login" class="btn btn-default btn-icon contact-btn no-margin"><i class="livicon" data-name="user" data-color="#fff" data-hovercolor="false" data-size="18"></i> LOGIN</a>
-							<a href="@Url.Action("Signup", "Authentication")" title="Signup" class="btn btn-default btn-icon contact-btn split-signup"><i class="livicon" data-name="building" data-color="#fff" data-hovercolor="false" data-size="18"></i> SIGNUP</a>
-							<div class="split-link">
-								<a href="@Url.Action("ForgotPassword", "Authentication")" class="split-signup split-password">FORGOT PASSWORD?</a>
-							</div>
-						</div>
-					</div>
-				}
+					<button class="btn btn-warning cst-btn-nine" name="submit" type="submit" value="Submit"><i class="livicon" data-name="search" data-color="#fff" data-hovercolor="false" data-size="22"></i> Search</button>
+				</form>
 			</div>
 		</div>
 	</div>
