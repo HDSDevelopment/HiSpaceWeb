@@ -1,0 +1,16 @@
+﻿@using HiSpaceModels
+@model Invoice
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+InvoiceId : @Model.InvoiceID
+
+Booking Id : @Model.MemberBookingSpaceID;
+
+Seat/Space Cost: @Model.SeatCost ?? @Model.SpaceCost
+
+Add-Ons Cost : @Model.FacilitiesTotal
+
+Total Cost : @Model.TotalCost
